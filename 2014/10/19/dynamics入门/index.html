@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   
-  <title>归档 | weiji info</title>
+  <title>Uikit Dynamics入门 | weiji info</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   
     <meta name="author" content="weiji info">
   
   
-  <meta content="website" property="og:type">
-<meta content="weiji info" property="og:title">
-<meta content="http://weiji.info/archives/" property="og:url">
+    <meta name="description" content="什么是UIKit动力学（UIKit Dynamics）
+其实就是UIKit的一套动画和交互体系。我们现在进行UI动画基本都是使用CoreAnimation或者UIView animations。而UIKit动力学最大的特点是将现实世界动力驱动的动画引入了UIKit，比如重力，铰链连接，碰撞，悬挂等效果。一言蔽之，即是，将2D物理引擎引入了人UIKit。需要注意，UIKit动力学的引入，并不是以替代">
+  
+  <meta content="article" property="og:type">
+<meta content="Uikit Dynamics入门" property="og:title">
+<meta content="http://weiji.info/2014/10/19/dynamics入门/" property="og:url">
 <meta property="og:image">
 <meta content="weiji info" property="og:site_name">
-<meta content="学习总结 思考感悟 知识管理" property="og:description">
+<meta content="什么是UIKit动力学（UIKit Dynamics）
+其实就是UIKit的一套动画和交互体系。我们现在进行UI动画基本都是使用CoreAnimation或者UIView animations。而UIKit动力学最大的特点是将现实世界动力驱动的动画引入了UIKit，比如重力，铰链连接，碰撞，悬挂等效果。一言蔽之，即是，将2D物理引擎引入了人UIKit。需要注意，UIKit动力学的引入，并不是以替代" property="og:description">
 <meta content="summary" name="twitter:card">
   
   
@@ -48,13 +52,7 @@
   </nav>
   <div class="clearfix"></div>
 </header>
-    <div class="content">
-
-
-
-
-  
-    <article class="post">
+    <div class="content"><article class="post">
   <header>
     
       <div class="icon"></div>
@@ -66,7 +64,7 @@
     
     
   
-    <h1 class="title"><a href="/2014/10/19/dynamics入门/">Uikit Dynamics入门</a></h1>
+    <h1 class="title">Uikit Dynamics入门</h1>
   
 
   </header>
@@ -137,7 +135,7 @@ UIGravityBehavior *g = [[UIGravityBehavior alloc] initWithItems:@[<span class="k
 } else if (gesture<span class="preprocessor">.state</span> == UIGestureRecognizerStateEnded) {
     [self<span class="preprocessor">.animator</span> removeBehavior:self<span class="preprocessor">.attachmentBehavior</span>]<span class="comment">;</span>
 }
-</code></pre><p>}<br>viewDidiLoad时先在现在环境中加入了重力，然后监测到pan时附加一个UIAttachmentBehavior，并在pan位置更新更新其锚点，此时UIAttachmentBehavior和UIGravityBehavior将同时作用（想象成一根木棒连着手指处和view）。在手势结束时将这个UIAttachmentBehavior移除，view将在重力作用下下落。整个过程如下图：<br>Drag &amp; Drop<br>Drag &amp; Drop<br>UIKit力学的物理学分析<br>既然是力学，那显然各种单位是很重要的。在现实世界中，理想情况下物体的运动符合牛顿第二运动定理，在国际单位制中，力的单位是牛顿（N），距离单位是米（m），时间单位是秒（s），质量单位是千克（kg）。根据地球妈妈的心情，我们生活在这样一套体制中：重力加速度约为9.8m/s2 ，加速度的单位是m/s2 ，速度单位是m/s，牛顿其实是kg·m/s2 ，即1牛顿是让质量为1千克的物体产生1米每二次方秒的加速度所需要的力。<br>以上是帮助您回忆初中知识，而现在这一套体系在UIKit里又怎么样呢？这其实是每一个物理引擎都要讨论和明白的事情，UIKit的单位体制里由于m这个东西太过夸张，因此用等量化的点（point，之后简写为p）来代替。具体是这样的：UI重力加速度定义为1000p/s2 ，这样的定义有两方面的考虑，一时为了简化，好记，确实1000比9.8来的只观好看，二是也算符合人们的直感：一个UIView从y=0开始自由落体落到屏幕底部所需的时间，在3.5寸屏幕上为0.98秒，4寸屏幕上为1.07秒，1秒左右的自由落体的视觉效果对人眼来说是很舒服能进行判断的。<br>那么UIView的质量又如何定义呢，这也是很重要的，并涉及到力作用和加速度下UIView的表现。苹果又给出了自己的“UIKit牛顿第二定律”，定义了1单位作用力相当于将一个100px100p的默认密度的UIView以100p/s2 的加速度移动。这里需要注意默认密度这个假设，因为���UIDynamicItem的委托中并没有实现任何密度相关的定义，而是通过UIDynamicItemBehavior来附加指定的。默认情况下，密度值为1，这就相当于质量是10000单位的UIView在1单位的作用力下可以达到1/10的UI重力加速度。<br>这样类比之后的结论是，如果将1单位的UI力学中的力等同于1牛顿的话：<br>1000单位的UI质量，与现实世界中1kg的质量相当，即一个点等同一克；<br>屏幕的100像素的长度，约和现实世界中0.99米相当（完全可以看为1米）<br>UI力学中的默认密度，约和现实世界的0.1kg/m2 相当<br>可以说UIKit为我们构建了一套适应iOS屏幕的相当优雅的力学系统，不仅让人过目不忘，在实际的物理情景和用户体验中也近乎完美。在开发中，我们可以参照这些关系寻找现实中的例子，然后将其带入UIKit的力学系统中，以得到良好的模拟效果。<br>UIKit动力学自定义<br>除了SDK预先定义好的行为以外，我们还可以自己定义想要的行为。这种定义可以发生在两个层级上，一种是将官方的行为打包，以简化实现。另一种是完全定义新的计算规则。<br>对于第一种，其实考虑一下上面的重力+边界碰撞，或者drag &amp; drop行为，其实都是两个甚至多个行为的叠加。要是每次都这样设定一次的话，不是很辛苦么，还容易遗忘出错。于是一种好的方式是将它们打包封装一下。具体地，如下步骤：<br>继承一下UIDynamicBehavior（在这里UIDynamicBehavior类似一个抽象类，并没有具体实现什么行为）<br>在子类中实现一个类似其他内置行为初始化方法initWithItems:，用以添加物体和想要打包的规则。当然你如果喜欢用其他方式也行..只不过和自带的行为保持API统一对大家都有好处..添加item的话就用默认规则的initWithItems:就行，对于规则UIDynamicBehavior提供了一个addChildBehavior:的方法，来将其他规则加入到当前规则里<br>没有第三步了，使用就行了。<br>一个例子，打包了碰撞和重力两种行为，定义之后使用时就只需要写一次了。当然这只是最简单的例子和运用，当行为复杂以后，这样的使用方法是不可避免的，否则管理起来会让人有想死的心。另外，将手势等交互的方式也集成之中，进一步封装调用细节会是不错的实践。</p>
+</code></pre><p>}<br>viewDidiLoad时先在现在环境中加入了重力，然后监测到pan时附加一个UIAttachmentBehavior，并在pan位置更新更新其锚点，此时UIAttachmentBehavior和UIGravityBehavior将同时作用（想象成一根木棒连着手指处和view）。在手势结束时将这个UIAttachmentBehavior移除，view将在重力作用下下落。整个过程如下图：<br>Drag &amp; Drop<br>Drag &amp; Drop<br>UIKit力学的物理学分析<br>既然是力学，那显然各种单位是很重要的。在现实世界中，理想情况下物体的运动符合牛顿第二运动定理，在国际单位制中，力的单位是牛顿（N），距离单位是米（m），时间单位是秒（s），质量单位是千克（kg）。根据地球妈妈的心情，我们生活在这样一套体制中：重力加速度约为9.8m/s2 ，加速度的单位是m/s2 ，速度单位是m/s，牛顿其实是kg·m/s2 ，即1牛顿是让质量为1千克的物体产生1米每二次方秒的加速度所需要的力。<br>以上是帮助您回忆初中知识，而现在这一套体系在UIKit里又怎么样呢？这其实是每一个物理引擎都要讨论和明白的事情，UIKit的单位体制里由于m这个东西太过夸张，因此用等量化的点（point，之后简写为p）来代替。具体是这样的：UI重力加速度定义为1000p/s2 ，这样的定义有两方面的考虑，一时为了简化，好记，确实1000比9.8来的只观好看，二是也算符合人们的直感：一个UIView从y=0开始自由落体落到屏幕底部所需的时间，在3.5寸屏幕上为0.98秒，4寸屏幕上为1.07秒，1秒左右的自由落体的视觉效果对人眼来说是很舒服能进行判断的。<br>那么UIView的质量又如何定义呢，这也是很重要的，并涉及到力作用和加速度下UIView的表现。苹果又给出了自己的“UIKit牛顿第二定律”，定义了1单位作用力相当于将一个100px100p的默认密度的UIView以100p/s2 的加速度移动。这里需要注意默认密度这个假设，因为在UIDynamicItem的委托中并没有实现任何密度相关的定义，而是通过UIDynamicItemBehavior来附加指定的。默认情况下，密度值为1，这就相当于质量是10000单位的UIView在1单位的作用力下可以达到1/10的UI重力加速度。<br>这样类比之后的结论是，如果将1单位的UI力学中的力等同于1牛顿的话：<br>1000单位的UI质量，与现实世界中1kg的质量相当，即一个点等同一克；<br>屏幕的100像素的长度，约和现实世界中0.99米相当（完全可以看为1米）<br>UI力学中的默认密度，约和现实世界的0.1kg/m2 相当<br>可以说UIKit为我们构建了一套适应iOS屏幕的相当优雅的力学系统，不仅让人过目不忘，在实际的物理情景和用户体验中也近乎完美。在开发中，我们可以参照这些关系寻找现实中的例子，然后将其带入UIKit的力学系统中，以得到良好的模拟效果。<br>UIKit动力学自定义<br>除了SDK预先定义好的行为以外，我们还可以自己定义想要的行为。这种定义可以发生在两个层级上，一种是将官方的行为打包，以简化实现。另一种是完全定义新的计算规则。<br>对于第一种，其实考虑一下上面的重力+边界碰撞，或者drag &amp; drop行为，其实都是两个甚至多个行为的叠加。要是每次都这样设定一次的话，不是很辛苦么，还容易遗忘出错。于是一种好的方式是将它们打包封装一下。具体地，如下步骤：<br>继承一下UIDynamicBehavior（在这里UIDynamicBehavior类似一个抽象类，并没有具体实现什么行为）<br>在子类中实现一个类似其他内置行为初始化方法initWithItems:，用以添加物体和想要打包的规则。当然你如果喜欢用其他方式也行..只不过和自带的行为保持API统一对大家都有好处..添加item的话就用默认规则的initWithItems:就行，对于规则UIDynamicBehavior提供了一个addChildBehavior:的方法，来将其他规则加入到当前规则里<br>没有第三步了，使用就行了。<br>一个例子，打包了碰撞和重力两种行为，定义之后使用时就只需要写一次了。当然这只是最简单的例子和运用，当行为复杂以后，这样的使用方法是不可避免的，否则管理起来会让人有想死的心。另外，将手势等交互的方式也集成之中，进一步封装调用细节会是不错的实践。</p>
 <p>//GravityWithCollisionBehavior.h<br>@interface GravityWithCollisionBehavior : UIDynamicBehavior</p>
 <p>-(instancetype) initWithItems:(NSArray *)items;</p>
 <p>@end</p>
@@ -147,7 +145,7 @@ UIGravityBehavior *g = [[UIGravityBehavior alloc] initWithItems:@[<span class="k
 
     
   </div>
-  <footer class="end-sep">
+  <footer>
     
       
       
@@ -157,82 +155,11 @@ UIGravityBehavior *g = [[UIGravityBehavior alloc] initWithItems:@[<span class="k
 </article>
 
 
-  
-    <article class="post">
-  <header>
-    
-      <div class="icon"></div>
-      <a href="/2014/09/18/让别人理解/">
-  <time datetime="2014-09-18T03:20:28.000Z">
-    9月 18 2014
-  </time>
-</a>
-    
-    
-  
-    <h1 class="title"><a href="/2014/09/18/让别人理解/">让别人理解</a></h1>
-  
-
-  </header>
-  
-  <div class="entry">
-    
-      <p>理解分为两类，将需要理解的事物归到已经理解的，此为上策；不然，那就只能强制理解，习惯的力量是无穷的，如果习惯了，那他就应该是那样，不需要理解了。</p>
-
-    
+<section id="comment">
+  <h1 class="title">评论</h1>
+  <div class="ds-thread" data-title="Uikit Dynamics入门">
   </div>
-  <footer class="end-sep">
-    
-      
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-  
-    <article class="post">
-  <header>
-    
-      <div class="icon"></div>
-      <a href="/2014/09/12/hello-world/">
-  <time datetime="2014-09-12T06:19:03.000Z">
-    9月 12 2014
-  </time>
-</a>
-    
-    
-  
-    <h1 class="title"><a href="/2014/09/12/hello-world/">欢迎来到我的小站</a></h1>
-  
-
-  </header>
-  
-  <div class="entry">
-    
-      <p>欢迎来到我的<a href="weiji.info">小站</a></p>
-
-    
-  </div>
-  <footer class="end-sep">
-    
-      
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-  
-
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
-
+</section>
 </div>
   </div>
   <footer id="footer"><div class="copyright">

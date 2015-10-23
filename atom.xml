@@ -4,7 +4,7 @@
   <subtitle><![CDATA[危机信息]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://biancheng.me/"/>
-  <updated>2015-10-22T06:11:00.469Z</updated>
+  <updated>2015-10-23T06:09:17.706Z</updated>
   <id>http://biancheng.me/</id>
   
   <author>
@@ -388,13 +388,11 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     <link href="http://biancheng.me/2014/09/18/%E8%AE%A9%E5%88%AB%E4%BA%BA%E7%90%86%E8%A7%A3/"/>
     <id>http://biancheng.me/2014/09/18/让别人理解/</id>
     <published>2014-09-18T03:20:28.000Z</published>
-    <updated>2015-01-31T04:02:33.000Z</updated>
+    <updated>2015-10-23T05:21:54.000Z</updated>
     <content type="html"><![CDATA[<p>理解分为两类，将需要理解的事物归到已经理解的，此为上策；不然，那就只能强制理解，习惯的力量是无穷的，如果习惯了，那他就应该是那样，不需要理解了。</p>
-<p><img src="123.png" alt="Mou icon"></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>理解分为两类，将需要理解的事物归到已经理解的，此为上策；不然，那就只能强制理解，习惯的力量是无穷的，如果习惯了，那他就应该是那样，不需要理解了。</p>
-<p><img src="123.png" alt="Mou icon"></p>
 ]]>
     </summary>
     

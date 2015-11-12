@@ -4,7 +4,7 @@
   <subtitle><![CDATA[危机信息]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://biancheng.me/"/>
-  <updated>2015-11-07T05:11:05.769Z</updated>
+  <updated>2015-11-12T06:16:31.995Z</updated>
   <id>http://biancheng.me/</id>
   
   <author>
@@ -13,6 +13,307 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[swift中switch使用]]></title>
+    <link href="http://biancheng.me/2015/11/11/swift%E4%B8%ADswitch%E4%BD%BF%E7%94%A8/"/>
+    <id>http://biancheng.me/2015/11/11/swift中switch使用/</id>
+    <published>2015-11-11T07:14:52.000Z</published>
+    <updated>2015-11-12T06:16:12.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="Switch简介">Switch简介</h3>
+<p>Switch作为选择结构中必不可少的语句也被加入到了Swift中，只要有过编程经验的人对Switch语句都不会感到陌生，但苹果对Switch进行了大大的增强，使其拥有其他语言中没有的特性。使用Switch语句很简单：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="keyword">var</span> i = <span class="number">0</span>  
+<span class="keyword">switch</span> i {  
+    <span class="keyword">case</span> <span class="number">0</span>:  
+        <span class="string">"0"</span> <span class="comment">//被输出  </span>
+    <span class="keyword">case</span> <span class="number">1</span>:  
+        <span class="string">"1"</span>  
+    <span class="keyword">default</span>:  
+        <span class="string">"2"</span>  
+}
+</pre></td></tr></table></figure>
+
+
+<p>在这个最简单的Switch语句中，与其他语言很不同的一点是：不用显式的加上break。Swift的Switch语句会自动在case结尾处加上break，执行完满足条件的case部分后，就自动退出了。但是在某些情况下，我们可能会希望Switch能同时执行两条case，那么可以这样：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="keyword">var</span> i = <span class="number">3</span>  
+<span class="keyword">switch</span> i {  
+    <span class="keyword">case</span> <span class="number">0</span>,<span class="number">3</span>:  
+        <span class="string">"0"</span> <span class="comment">//被输出  </span>
+    <span class="keyword">case</span> <span class="number">1</span>:  
+        <span class="string">"1"</span>  
+    <span class="keyword">default</span>:  
+        <span class="string">"2"</span>  
+}
+</pre></td></tr></table></figure>
+
+
+<p>在case后的多个条件中，用逗号隔开即可。<br>如果就是想执行完一条case之后，想继续执行下一条case，就要用到一个新的关键字：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="keyword">var</span> i =<span class="number"> 0</span>  
+<span class="keyword">switch</span> i {  
+    <span class="keyword">case</span><span class="number"> 0</span>:  
+        <span class="string">"0"</span> <span class="comment">//被输出  </span>
+        <span class="keyword">fallthrough</span>  
+    <span class="keyword">case</span><span class="number"> 1</span>:  
+        <span class="string">"1"</span> <span class="comment">//被输出  </span>
+    <span class="keyword">case</span><span class="number"> 2</span>:  
+        <span class="string">"2"</span>  
+    <span class="keyword">default</span>:  
+        <span class="string">"default"</span>  
+}
+</pre></td></tr></table></figure>
+
+
+<p>使用新的关键字fallthrough能使Switch在执行完一个case之后，紧接着执行下一条case。<br>Swift的Switch语句一定要涵盖所有的情况，这并不是说一定要有default，只要上面的case能满足所有的情况，就可以不用写default。<br>需要注意的地方有两点：<br>Switch当然也支持显式的break，通常只有一种情况下你会这么做，那就是当你也不想在default里做任何事情的时候，这个时候你就可以在default里显式地加上一句break。<br>fallthrough并不是在任何情况下都有效，当你在Switch里使用Value Binding技术的时候，fallthrough就被禁止了。Value Binding在下面会讲到。</p>
+<p>支持多种数据类型<br>在Objective-C里，Switch语句只能支持整形的数据（或者一个字符），但是在Swift里，Switch能支持多种数据类型，包括浮点、布尔、字符串等：<br>支持浮点：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="keyword">let</span> <span class="keyword">float</span> = <span class="number">1.5</span>  
+<span class="keyword">switch</span> <span class="keyword">float</span> {  
+    <span class="keyword">case</span> <span class="number">1.5</span>:  
+        <span class="string">"1.5"</span>   <span class="comment">//被输出  </span>
+    <span class="keyword">default</span>:  
+        <span class="string">"default"</span>  
+}
+</pre></td></tr></table></figure>
+
+
+<p>支持布尔：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="keyword">let</span> isSuccess = <span class="keyword">true</span>  
+<span class="keyword">switch</span> isSuccess {  
+    <span class="keyword">case</span> <span class="keyword">true</span>:  
+        <span class="string">"true"</span>   <span class="comment">//被输出  </span>
+    <span class="keyword">default</span>:  
+        <span class="string">"default"</span>  
+}
+</pre></td></tr></table></figure>
+
+
+<p>支持字符串：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="keyword">let</span> name = <span class="string">"Bannings"</span>  
+<span class="keyword">switch</span> name {  
+    <span class="keyword">case</span> <span class="string">"Bannings"</span>:  
+        <span class="string">"Bannings"</span>   <span class="comment">//被输出  </span>
+    <span class="keyword">default</span>:  
+        <span class="string">"default"</span>  
+}
+</pre></td></tr></table></figure>
+
+
+<p>可以说是史上支持数据类型最多的Switch了。</p>
+<h3 id="支持区间运算符">支持区间运算符</h3>
+<p>不仅仅是循环结构里可以用区间运算符，在Switch里同样可以用区间运算符：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>var i = <span class="number">15</span>  
+<span class="keyword">switch</span> i {  
+    case <span class="number">0</span> <span class="keyword">...</span> <span class="number">10</span>:  
+        <span class="string">"0~10"</span>  
+    case <span class="number">11</span> <span class="keyword">...</span> <span class="number">20</span>:  
+        <span class="string">"11~20"</span> //被输出  
+    default:  
+        <span class="string">"default"</span>  
+}
+</pre></td></tr></table></figure>
+
+
+<p>对某个数值区间进行批量匹配，这样是不是很酷？浮点数也同样支持区间运算符。</p>
+<h3 id="支持元组">支持元组</h3>
+<p>作为被大大增强的Switch，元组也是被支持的：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="keyword">let</span> request = (<span class="keyword">true</span>,<span class="string">"success"</span>)  
+<span class="keyword">switch</span> request {  
+    <span class="keyword">case</span> (<span class="keyword">true</span>, <span class="string">"success"</span>):  
+        <span class="string">"success"</span>   <span class="comment">//被输出  </span>
+    <span class="keyword">case</span> (<span class="keyword">false</span>, <span class="string">"failed"</span>):  
+        <span class="string">"failed"</span>  
+    <span class="keyword">default</span>:  
+        <span class="string">"default"</span>  
+}
+</pre></td></tr></table></figure>
+
+
+<p>使用元组和使用其他数据类型一致，不过元组还有一项特点，对于不想关心的值，可以用下划线_跳过，如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="keyword">let</span> (name,  _, age) = (<span class="string">"Bannings"</span> ,<span class="keyword">true</span>, <span class="number">22</span>)  
+那么在使用Switch时，同样支持这项特性：
+<span class="keyword">let</span> request = (<span class="keyword">true</span>,<span class="string">"success"</span>)  
+<span class="keyword">switch</span> request {  
+    <span class="keyword">case</span> (_, <span class="string">"success"</span>):  
+        <span class="string">"success"</span>   <span class="comment">//被输出  </span>
+    <span class="keyword">case</span> (<span class="keyword">false</span>, _):  
+        <span class="string">"failed"</span>  
+    <span class="keyword">default</span>:  
+        <span class="string">"default"</span>  
+}
+</pre></td></tr></table></figure>
+
+
+<p>对于不关心的值跳过，只要满足另一个值就行了。需要注意一点的是，如果元组中的值也是数字类型，那么也是可以用区间运算符的：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>let request = (<span class="number">10</span>,<span class="string">"failed"</span>)  
+<span class="keyword">switch</span> request {  
+    case (_, <span class="string">"success"</span>):  
+        <span class="string">"success"</span>  
+    case (<span class="number">1</span> <span class="keyword">...</span> <span class="number">10</span>, _):  
+        <span class="string">"1~10"</span>    //被输出  
+    default:  
+        <span class="string">"default"</span>  
+}
+</pre></td></tr></table></figure>
+
+
+<h3 id="Value_Binding">Value Binding</h3>
+<p>针对元组，Switch还支持类似于Optional Binding的Value Binding，就是能把元组中的各个值提取出来，然后直接在下面使用：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre><span class="keyword">let</span> request = (<span class="number">0</span>,<span class="string">"success"</span>)  
+<span class="keyword">switch</span> request {  
+    <span class="keyword">case</span> (<span class="number">0</span>, <span class="keyword">let</span> state):  
+        state    <span class="comment">//被输出:success  </span>
+    <span class="keyword">case</span> (<span class="keyword">let</span> errorCode, _):  
+        <span class="string">"error code is \(errorCode)"</span>  
+}  <span class="comment">// 涵盖了所有可能的case，不用写default了  </span>
+这样也是可以的：
+<span class="keyword">let</span> request = (<span class="number">0</span>,<span class="string">"success"</span>)  
+<span class="keyword">switch</span> request {  
+    <span class="keyword">case</span> <span class="keyword">let</span> (errorCode, state):  
+        state    <span class="comment">//被输出:success  </span>
+    <span class="keyword">case</span> (<span class="keyword">let</span> errorCode, _):  
+        <span class="string">"error code is \(errorCode)"</span>  
+}
+</pre></td></tr></table></figure>
+
+
+<p>把let放在外面和放在里面为每一个元素单独写上let是等价的。<br>当你在一个case里使用Value Binding的时候，如果你同时也在它的上一个case里使用了fallthrough，这是编译器所不允许的，你可能会收到这样一个编译错误：</p>
+<p>只要把下面的errorCode去掉就行了，当然，考虑好自己的逻辑。</p>
+<h3 id="支持额外的逻辑判断">支持额外的逻辑判断</h3>
+<p>在使用Switch语句时，Switch会适当地导向相应的case部分，这其实就相当于做了一次逻辑判断，但Swift的Switch语句还支持额外的逻辑判断：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="keyword">let</span> request = (<span class="number">0</span>,<span class="string">"success"</span>)  
+<span class="keyword">switch</span> request {  
+    <span class="keyword">case</span> (<span class="number">0</span>, <span class="keyword">let</span> state) <span class="keyword">where</span> state != <span class="string">"success"</span>:  
+        state  
+    <span class="keyword">case</span> (<span class="keyword">let</span> errorCode, _):  
+        <span class="string">"error code is \(errorCode)"</span><span class="comment">//被输出:"error code is 0"  </span>
+}
+</pre></td></tr></table></figure>
+
+
+<p>这同样很酷，相信在某种情况下会派上大用场。</p>
+<h3 id="总结">总结</h3>
+<p>Swift对Switch进行了大大增强，使Switch的灵活性得到了很大提升，这是激动人心的改变，但是如果掌控不好其中的变化，可能会使你在进行错误排查时增加难度，也会使代码复杂度变高。在适当地时候灵活运用，保持头脑清晰总是有益的。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="Switch简介">Switch简介</h3>
+<p>Switch作为选择结构中必不可少的语句也被加入到了Swift中，只要有过编程经验的人对Switch语句都不会感到陌生，但苹果对Switch进行了大大的增强，使其拥有其他语言中没有的特性。使用Switch语句很]]>
+    </summary>
+    
+      <category term="swift" scheme="http://biancheng.me/tags/swift/"/>
+    
+      <category term="iOS" scheme="http://biancheng.me/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[AFNetworking 3.0 & AFNetworking 2.X]]></title>
@@ -27,7 +328,7 @@
 <h3 id="新设备要求:_iOS_7,_Mac_OS_X_10-9,_watchOS_2,_tvOS_9,_&amp;_Xcode_7">新设备要求: iOS 7, Mac OS X 10.9, watchOS 2, tvOS 9, &amp; Xcode 7</h3>
 <p>AFNetworking 3.0正式支持的iOS 7， Mac OS X的10.9， watchOS 2 ， tvOS 9 和Xcode 7。如果你想使用AFNetworking在针对较旧版本的SDK项目，请检查README的兼容性信息。</p>
 <h3 id="NSURLConnection的API已废弃">NSURLConnection的API已废弃</h3>
-<p>AFNetworking 1.0建立在NSURLConnection的基础API之上 ，AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API的选项。 AFNetworking 3.0现已完全基于NSURLSession的API，这降低了维护的负担，同时支持苹果增强关于NSURLSession提供的任何额外功能。由于Xcode 7中，NSURLConnection的API已经正式被苹果弃用。虽然该API将继续运行，但将没有新功能将被添加，并且苹果已经通知所有基于网络的功能，以充分使NSURLSession向前发展。</p>
+<p>AFNetworking 1.0建立在NSURLConnection的基础API之上 ，AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API���选项。 AFNetworking 3.0现已完全基于NSURLSession的API，这降低了维护的负担，同时支持苹果增强关于NSURLSession提供的任何额外功能。由于Xcode 7中，NSURLConnection的API已经正式被苹果弃用。虽然该API将继续运行，但将没有新功能将被添加，并且苹果已经通知所有基于网络的功能，以充分使NSURLSession向前发展。</p>
 <p>AFNetworking 2.X将继续获得关键的隐患和安全补丁，但没有新的功能将被添加。Alamofire(Swift下的网络请求)软件基金会建议，所有的项目迁移到基于NSURLSession的API。</p>
 <h3 id="弃用的类">弃用的类</h3>
 <p>下面的类已从AFNetworking 3.0中废弃：</p>
@@ -131,7 +432,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 
 
 <h3 id="UIKit的迁移">UIKit的迁移</h3>
-<p>图片下载已经被重构，以遵循AlamofireImage架构与新的AFImageDownloader类。这个类的图片下载职责的代���人是UIButton与UIImageView的类目，并且提供了一些方法，在必要时可以自定义。类别中，下载远程图片的实际方法没有改变。</p>
+<p>图片下载已经被重构，以遵循AlamofireImage架构与新的AFImageDownloader类。这个类的图片下载职责的代理人是UIButton与UIImageView的类目，并且提供了一些方法，在必要时可以自定义。类别中，下载远程图片的实际方法没有改变。</p>
 <p>UIWebView的类目被重构为使用AFHTTPSessionManager作为其网络请求。</p>
 <h3 id="UIAlertView的类目被废弃">UIAlertView的类目被废弃</h3>
 <p>从AFNetworking 3.0后UIAlertView的类目因过时而被废弃。并没有提供UIAlertController类目的计划，因为这是应用程序应处理的逻辑，而不是这个库。</p>
@@ -157,7 +458,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     <updated>2015-11-07T05:10:19.000Z</updated>
     <content type="html"><![CDATA[<p>随和的人更幸福。</p>
 <p>随和是什么？有人说，随和就是不计较，不争斗，遇事而安，和和气气的态度，随和体现在友善的气质。笔者试从四个方面来分析什么事随和：<br><a id="more"></a></p>
-<p>（一）随和是一种素质<br>    当今社会，随和体现的是一种素质，这种素质需要学习与沉淀，随和的人以团队为中心，而不是以自我为中心，即便您毕业于名牌大学，即便您有漂亮的外表，即便您比别人聪明，都要学会团队精神，学会随和。笔者见过这样的朋友，在团队中，气势要压过别人，凡事都争个上风，斤斤计较自己的名誉、地位，什么都要比人家好，结果往往造成人际关系不和谐。<br>    生活中，工作中，做一个随和的人，笔者认为，随和是一种素质，随和的人，善于发现周围其他人的真善美，善于发现周围朋友的优点，善于享受生活赐予我们的快乐，随和的人，心胸宽广，视野宽阔，智慧无比。随和是一种素质，无论在生活中，还是工作中，做一个随和的人吧。</p>
+<p>（一）随和是一种素质<br>    当今社会，随和体现的是一种素质，这种素质需要学习与沉淀，随和的人以团���为中心，而不是以自我为中心，即便您毕业于名牌大学，即便您有漂亮的外表，即便您比别人聪明，都要学会团队精神，学会随和。笔者见过这样的朋友，在团队中，气势要压过别人，凡事都争个上风，斤斤计较自己的名誉、地位，什么都要比人家好，结果往往造成人际关系不和谐。<br>    生活中，工作中，做一个随和的人，笔者认为，随和是一种素质，随和的人，善于发现周围其他人的真善美，善于发现周围朋友的优点，善于享受生活赐予我们的快乐，随和的人，心胸宽广，视野宽阔，智慧无比。随和是一种素质，无论在生活中，还是工作中，做一个随和的人吧。</p>
 <p>（二）随和是一种修养<br>    随着是一种修养，随和的人善于聆听，随和的人善于与不同性格特点的人进行沟通，随和的人常常换位思考，随和的人真诚地赞扬别人。随和是一种修养，这种修养是一种积累之后的沉淀，这种修养体现在举手投足之间的美丽。随和不是没有原则，而是善于从周围朋友的角度来看事物与问题，随和的人不是没有人云亦云，随和的人不是随波逐流，而是从善于从不同的看法与观点中找到共同点，与人为善，善待他人，多一份坦然，添一份好心情。随和是一种修养，随和的人是智慧的人，随和一些，享受生活。</p>
 <p>（三）随和是一种文化<br>    在一个组织中，随和的团队氛围，会让每一个成员感到轻松，感到愉悦，随和的人更容易融入到团队中，即便您的能力不是最强，但随和的性格会让你在团队中很快进步与成长。随和是一种文化，这种文化不仅体现在组织文化中，更体现在文化给予每个成员的力量与进步。随和的文化促进组织每一位成员成长与进步，反过来促进组织的成长与进步。反之，如果没有随和的组织文化，每一个成员都以自我为中心，会影响到组织的凝聚力，会破坏组织的团结，反过来影响组织的进步与成长。随和是一种文化，这种文化需要组织每一个成员的随和。</p>
 <p>（四）随和是一种心态<br>    俗话说，态度决定一切，心态就是性格加态度。性格是一个人独特而稳定的个性特征，它表现一个人对现实的心理认知和相应的习惯化的行为方式。态度是一个人对客观事物的心理反应。有人说，心态要有三种构成模式：骆驼的心态，狮子的心态，婴儿的心态。笔者认为，首先你要学会随和。随和的人更容易从其他人身上学习到长处与优点，随和的人在聆听周围的同时，也会得到周围的聆听。苏格拉底也有一句名言：“快乐就是这样，它往往在你为着一个明确的目标忙得无暇顾及其他的时候而不知不觉地来到。”同样，当你把目标锁定，“只问耕耘，莫论收获”的时候，上帝也就把收获悄悄地给你预备好了。<br>    随和是一种素质，一种修养，一种文化，一种心态，随和的人更幸福。</p>
@@ -179,7 +480,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     <published>2014-10-19T15:36:35.000Z</published>
     <updated>2015-11-07T05:10:55.000Z</updated>
     <content type="html"><![CDATA[<h3 id="什么是UIKit动力学（UIKit_Dynamics）">什么是UIKit动力学（UIKit Dynamics）</h3>
-<p>其实就是UIKit的一套动画和交互体系。我们现在进行UI动画基本都是使用CoreAnimation或者UIView animations。而UIKit动力学最大的特点是将现实世界动力驱动的动画引入了UIKit，比如重力，铰链连接，碰撞，悬挂等效果。一言蔽之，即是，将2D物理引擎引入了人UIKit。需要注意，UIKit动力学的引入，并不是以替代CA或者UIView动画为目的的，在绝大多数情况下CA或者UIView动画仍然是最优方案，只有在需要引入逼真的交互设计的时候，才需要使用UIKit动力学它是作为现有交互设计和实现的一种补充而存在的。<br>目的当然是更加自然和炫目的UI动画效果，比如模拟现实的拖拽和弹性效果，放在以前如果单用iOS SDK的动画实现起来还是相当困难的，而在UIKit Dynamics的帮助下，复杂的动画效果可能也只需要很短的代码（基本100行以内…其实现在用UIView animation想实现一个不太复杂的动画所要的代码行数都不止这个数了吧）。总之，便利多多，配合UI交互设计，以前很多不敢想和不敢写（至少不敢自己写）的效果实现起来会非常方便，也相信在iOS7的时代各色使用UIKit动力学的应用的在动画效果肯定会上升一个档次。<br>那么，应该怎么做呢<br><a id="more"></a><br>UIKit动力学实现的结构<br>为了实现动力UI，需要注册一套UI行为的体系，之后UI便会按照预先的设定进行运动了。我们应该了解的新的基本概念有如下四个：<br>UIDynamicItem：用来描述一个力学物体的状态，其实就是实现了UIDynamicItem委托的对象，或者抽象为有面积有旋转的质点；<br>UIDynamicBehavior：动力行为的描述，用来指定UIDynamicItem应该如何运动，即定义适用的物理规则。一般我们使用这个类的子类对象来对一组UIDynamicItem应该遵守的行为规���进行描述；<br>UIDynamicAnimator；动画的播放者，动力行为（UIDynamicBehavior）的容器，添加到容器内的行为将发挥作用；<br>ReferenceView：等同于力学参考系，如果你的初中物理不是语文老师教的话，我想你知道这是啥..只有当想要添加力学的UIView是ReferenceView的子view时，动力UI才发生作用。<br>光说不练假把式，来做点简单的demo吧。比如为一个view添加重力行为：</p>
+<p>其实就是UIKit的一套动画和交互体系。我们现在进行UI动画基本都是使用CoreAnimation或者UIView animations。而UIKit动力学最大的特点是将现实世界动力驱动的动画引入了UIKit，比如重力，铰链连接，碰撞，悬挂等效果。一言蔽之，即是，将2D物理引擎引入了人UIKit。需要注意，UIKit动力学的引入，并不是以替代CA或者UIView动画为目的的，在绝大多数情况下CA或者UIView动画仍然是最优方案，只有在需要引入逼真的交互设计的时候，才需要使用UIKit动力学它是作为现有交互设计和实现的一种补充而存在的。<br>目的当然是更加自然和炫目的UI动画效果，比如模拟现实的拖拽和弹性效果，放在以前如果单用iOS SDK的动画实现起来还是相当困难的，而在UIKit Dynamics的帮助下，复杂的动画效果可能也只需要很短的代码（基本100行以内…其实现在用UIView animation想实现一个不太复杂的动画所要的代码行数都不止这个数了吧）。总之，便利多多，配合UI交互设计，以前很多不敢想和不敢写（至少不敢自己写）的效果实现起来会非常方便，也相信在iOS7的时代各色使用UIKit动力学的应用的在动画效果肯定会上升一个档次。<br>那么，应该怎么做呢<br><a id="more"></a><br>UIKit动力学实现的结构<br>为了实现动力UI，需要注册一套UI行为的体系，之后UI便会按照预先的设定进行运动了。我们应该了解的新的基本概念有如下四个：<br>UIDynamicItem：用来描述一个力学物体的状态，其实就是实现了UIDynamicItem委托的对象，或者抽象为有面积有旋转的质点；<br>UIDynamicBehavior：动力行为的描述，用来指定UIDynamicItem应该如何运动，即定义适用的物理规则。一般我们使用这个类的子类对象来对一组UIDynamicItem应该遵守的行为规则进行描述；<br>UIDynamicAnimator；动画的播放者，动力行为（UIDynamicBehavior）的容器，添加到容器内的行为将发挥作用；<br>ReferenceView：等同于力学参考系，如果你的初中物理不是语文老师教的话，我想你知道这是啥..只有当想要添加力学的UIView是ReferenceView的子view时，动力UI才发生作用。<br>光说不练假把式，来做点简单的demo吧。比如为一个view添加重力行为：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -209,7 +510,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>代码很简单，<br>以现在ViewController的view为参照系（ReferenceView），来初始化一个UIDynamicAnimator。<br>然后分配并初始化一个动力行为，这里是UIGravityBehavior，将需要进行物理模拟的UIDynamicItem传入。UIGravityBehavior的initWithItems:接受的参数为包含id的数组，另外UIGravityBehavior实例还有一个addItem:方法接受单个的id。就是说，实现了UIDynamicItem委托的对象，都可以看作是被力学特性影响的，进而参与到计算中。UIDynamicItem委托需要我们实现bounds，center和transform三个属性，在UIKit Dynamics计算新的位置时，需要向Behavior内的item询问这些参数，以进行正确计算。iOS7中，UIView和UICollectionViewLayoutAttributes已经默认实现了这个接口，所以这里我们直接把需要模拟重力的UIView添加到UIGravityBehavior里就行了。<br>把配置好的UIGravityBehavior添加到animator中。<br>strong持有一下animator，避免当前scope结束被ARC释放掉（后果当然就是UIView在哪儿傻站着不掉）<br>运行结果，view开始受重力影响了：<br>重力作用下的UIview<br>重力作用下的UIview<br>碰撞，我要碰撞<br>没有碰撞的话，物理引擎就没有任何意义了。和重力行为类似，碰撞也有一个UIDynamicBehavior子类来描述碰撞行为，即UICollisionBehavior。在上面的demo中加上几句：</p>
+<p>代码很简单，<br>以现在ViewController的view为参照系（ReferenceView），来初始化一个UIDynamicAnimator。<br>然后分配并初始化一个动力行为，这里是UIGravityBehavior，将需要进行物理模拟的UIDynamicItem传入。UIGravityBehavior的initWithItems:接受的参数为包含id的数组，另外UIGravityBehavior实例还有一个addItem:方法接受单个的id。就是说，实现了UIDynamicItem委托的对象，都可以看作是被���学特性影响的，进而参与到计算中。UIDynamicItem委托需要我们实现bounds，center和transform三个属性，在UIKit Dynamics计算新的位置时，需要向Behavior内的item询问这些参数，以进行正确计算。iOS7中，UIView和UICollectionViewLayoutAttributes已经默认实现了这个接口，所以这里我们直接把需要模拟重力的UIView添加到UIGravityBehavior里就行了。<br>把配置好的UIGravityBehavior添加到animator中。<br>strong持有一下animator，避免当前scope结束被ARC释放掉（后果当然就是UIView在哪儿傻站着不掉）<br>运行结果，view开始受重力影响了：<br>重力作用下的UIview<br>重力作用下的UIview<br>碰撞，我要碰撞<br>没有碰撞的话，物理引擎就没有任何意义了。和重力行为类似，碰撞也有一个UIDynamicBehavior子类来描述碰撞行为，即UICollisionBehavior。在上面的demo中加上几句：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -251,7 +552,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>也许聪明的你已经看到了，还是一样的，创建新的行为规则（UICollisionBehavior），然后加到animator中…唯一区别的地方是碰撞需要设定碰撞边界范围translatesReferenceBoundsIntoBoundary将整个参照view（也就是self.view）的边框作为碰撞边界（另外你还可以使用setTranslatesReferenceBoundsIntoBoundaryWithInsets:这样的方法来设定某一个区域作为碰撞边界，更复杂的边界可以使用addBoundaryWithIdentifier:forPath:来添加UIBezierPath，或者addBoundaryWithIdentifier:fromPoint:toPoint:来添加一条线段为边界，详细地还请查阅文档）；另外碰撞是有回调的，可以在self中实现UICollisionBehaviorDelegate。<br>最后，只是直直地掉下来的话未免太无聊了，加个角度吧：<br>1<br>aView.transform = CGAffineTransformRotate(aView.transform, 45);<br>结果是这样的，帅死了…这在以前只用iOS SDK的话，够写上很长时间了吧..<br>碰撞和重力同时作用的动力UI<br>碰撞和重力同时作用的动力UI<br>碰撞的delegate可以帮助我们了解碰撞的具体情况，包括哪个item和哪个item开始发生碰撞，碰撞接触点是什么，是否和边界碰撞，和哪个边界碰撞了等信息。这些回调方法保持了Apple一向的命名原则，所以通俗易懂。需要多说一句的是回调方法中对于ReferenceView的Bounds做边界的情况，BoundaryIdentifier将会是nil，自行添加的其他边界的话，ID自然是添加时指定的ID了。<br>– collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:<br>– collisionBehavior:beganContactForItem:withItem:atPoint:<br>– collisionBehavior:endedContactForItem:withBoundaryIdentifier:<br>– collisionBehavior:endedContactForItem:withItem:<br>其他能实现的效果<br>除了重力和碰撞，iOS SDK还预先帮我们实现了一些其他的有用的物理行为，它们包括<br>UIAttachmentBehavior 描述一个view和一个锚相连接的情况，也可以描述view和view之间的连接。attachment描述的是两个点之间的连接情况，可以通过设置来模拟无形变或者弹性形变的情况（再次希望你还记得这些概念，简单说就是木棒连接和弹簧连接两个物体）。当然，在多个物体间设定多个；UIAttachmentBehavior，就可以模拟多物体连接了..有了这些，似乎可以做个老鹰捉小鸡的游戏了- -…<br>UISnapBehavior 将UIView通过动画吸附到某个点上。初始化的时候设定一下UISnapBehavior的initWithItem:snapToPoint:就行，因为API非常简单，视觉效果也很棒，估计它是今后非游戏app里会被最常用的效果之一了；<br>UIPushBehavior 可以为一个UIView施加一个力的作用，这个力可以是持续的，也可以只是一个冲量。当然我们可以指定力的大小，方向和作用点等等信息。<br>UIDynamicItemBehavior 其实是一个辅助的行为，用来在item层级设定一些参数，比如item的摩擦，阻力，角阻力，弹性密度和可允许的旋转等等<br>UIDynamicItemBehavior有一组系统定义的默认值，<br>allowsRotation YES<br>density 1.0<br>elasticity 0.0<br>friction 0.0<br>resistance 0.0<br>所有的UIDynamicBehavior都是可以独立作用的，同时作用时也遵守力的合成。也就是说，组合使用行为可以达到一些较复杂的效果。举个例子，希望模拟一个drag物体然后drop后下落的过程，可以用如下���码：</p>
+<p>也许聪明的你已经看到了，还是一样的，创建新的行为规则（UICollisionBehavior），然后加到animator中…唯一区别的地方是碰撞需要设定碰撞边界范围translatesReferenceBoundsIntoBoundary将整个参照view（也就是self.view）的边框作为碰撞边界（另外你还可以使用setTranslatesReferenceBoundsIntoBoundaryWithInsets:这样的方法来设定某一个区域作为碰撞边界，更复杂的边界可以使用addBoundaryWithIdentifier:forPath:来添加UIBezierPath，或者addBoundaryWithIdentifier:fromPoint:toPoint:来添加一条线段为边界，详细地还请查阅文档）；另外碰撞是有回调的，可以在self中实现UICollisionBehaviorDelegate。<br>最后，只是直直地掉下来的话未免太无聊了，加个角度吧：<br>1<br>aView.transform = CGAffineTransformRotate(aView.transform, 45);<br>结果是这样的，帅死了…这在以前只用iOS SDK的话，够写上很长时间了吧..<br>碰撞和重力同时作用的动力UI<br>碰撞和重力同时作用的动力UI<br>碰撞的delegate可以帮助我们了解碰撞的具体情况，包括哪个item和哪个item开始发生碰撞，碰撞接触点是什么，是否和边界碰撞，和哪个边界碰撞了等信息。这些回调方法保持了Apple一向的命名原则，所以通俗易懂。需要多说一句的是回调方法中对于ReferenceView的Bounds做边界的情况，BoundaryIdentifier将会是nil，自行添加的其他边界的话，ID自然是添加时指定的ID了。<br>– collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:<br>– collisionBehavior:beganContactForItem:withItem:atPoint:<br>– collisionBehavior:endedContactForItem:withBoundaryIdentifier:<br>– collisionBehavior:endedContactForItem:withItem:<br>其他能实现的效果<br>除了重力和碰撞，iOS SDK还预先帮我们实现了一些其他的有用的物理行为，它们包括<br>UIAttachmentBehavior 描述一个view和一个锚相连接的情况，也可以描述view和view之间的连接。attachment描述的是两个点之间的连接情况，可以通过设置来模拟无形变或者弹性形变的情况（再次希望你还记得这些概念，简单说就是木棒连接和弹簧连接两个物体）。当然，在多个物体间设定多个；UIAttachmentBehavior，就可以模拟多物体连接了..有了这些，似乎可以做个老鹰捉小鸡的游戏了- -…<br>UISnapBehavior 将UIView通过动画吸附到某个点上。初始化的时候设定一下UISnapBehavior的initWithItem:snapToPoint:就行，因为API非常简单，视觉效果也很棒，估计它是今后非游戏app里会被最常用的效果之一了；<br>UIPushBehavior 可以为一个UIView施加一个力的作用，这个力可以是持续的，也可以只是一个冲量。当然我们可以指定力的大小，方向和作用点等等信息。<br>UIDynamicItemBehavior 其实是一个辅助的行为，用来在item层级设定一些参数，比如item的摩擦，阻力，角阻力，弹性密度和可允许的旋转等等<br>UIDynamicItemBehavior有一组系统定义的默认值，<br>allowsRotation YES<br>density 1.0<br>elasticity 0.0<br>friction 0.0<br>resistance 0.0<br>所有的UIDynamicBehavior都是可以独立作用的，同时作用时也遵守力的合成。也就是说，组合使用行为可以达到一些较复杂的效果。举个例子，希望模拟一个drag物体然后drop后下落的过程，可以用如下代码：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3

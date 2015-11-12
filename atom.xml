@@ -4,7 +4,7 @@
   <subtitle><![CDATA[危机信息]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://biancheng.me/"/>
-  <updated>2015-11-12T06:16:31.995Z</updated>
+  <updated>2015-11-12T09:42:52.048Z</updated>
   <id>http://biancheng.me/</id>
   
   <author>
@@ -19,9 +19,13 @@
     <link href="http://biancheng.me/2015/11/11/swift%E4%B8%ADswitch%E4%BD%BF%E7%94%A8/"/>
     <id>http://biancheng.me/2015/11/11/swift中switch使用/</id>
     <published>2015-11-11T07:14:52.000Z</published>
-    <updated>2015-11-12T06:16:12.000Z</updated>
+    <updated>2015-11-12T09:42:28.000Z</updated>
     <content type="html"><![CDATA[<h3 id="Switch简介">Switch简介</h3>
 <p>Switch作为选择结构中必不可少的语句也被加入到了Swift中，只要有过编程经验的人对Switch语句都不会感到陌生，但苹果对Switch进行了大大的增强，使其拥有其他语言中没有的特性。使用Switch语句很简单：</p>
+<a id="more"></a>
+
+
+
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -306,7 +310,9 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="Switch简介">Switch简介</h3>
-<p>Switch作为选择结构中必不可少的语句也被加入到了Swift中，只要有过编程经验的人对Switch语句都不会感到陌生，但苹果对Switch进行了大大的增强，使其拥有其他语言中没有的特性。使用Switch语句很]]>
+<p>Switch作为选择结构中必不可少的语句也被加入到了Swift中，只要有过编程经验的人对Switch语句都不会感到陌生，但苹果对Switch进行了大大的增强，使其拥有其他语言中没有的特性。使用Switch语句很简单：</p>
+]]>
+    
     </summary>
     
       <category term="swift" scheme="http://biancheng.me/tags/swift/"/>
@@ -328,7 +334,7 @@
 <h3 id="新设备要求:_iOS_7,_Mac_OS_X_10-9,_watchOS_2,_tvOS_9,_&amp;_Xcode_7">新设备要求: iOS 7, Mac OS X 10.9, watchOS 2, tvOS 9, &amp; Xcode 7</h3>
 <p>AFNetworking 3.0正式支持的iOS 7， Mac OS X的10.9， watchOS 2 ， tvOS 9 和Xcode 7。如果你想使用AFNetworking在针对较旧版本的SDK项目，请检查README的兼容性信息。</p>
 <h3 id="NSURLConnection的API已废弃">NSURLConnection的API已废弃</h3>
-<p>AFNetworking 1.0建立在NSURLConnection的基础API之上 ，AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API���选项。 AFNetworking 3.0现已完全基于NSURLSession的API，这降低了维护的负担，同时支持苹果增强关于NSURLSession提供的任何额外功能。由于Xcode 7中，NSURLConnection的API已经正式被苹果弃用。虽然该API将继续运行，但将没有新功能将被添加，并且苹果已经通知所有基于网络的功能，以充分使NSURLSession向前发展。</p>
+<p>AFNetworking 1.0建立在NSURLConnection的基础API之上 ，AFNetworking 2.0开始使用NSURLConnection的���础API ，以及较新基于NSURLSession的API的选项。 AFNetworking 3.0现已完全基于NSURLSession的API，这降低了维护的负担，同时支持苹果增强关于NSURLSession提供的任何额外功能。由于Xcode 7中，NSURLConnection的API已经正式被苹果弃用。虽然该API将继续运行，但将没有新功能将被添加，并且苹果已经通知所有基于网络的功能，以充分使NSURLSession向前发展。</p>
 <p>AFNetworking 2.X将继续获得关键的隐患和安全补丁，但没有新的功能将被添加。Alamofire(Swift下的网络请求)软件基金会建议，所有的项目迁移到基于NSURLSession的API。</p>
 <h3 id="弃用的类">弃用的类</h3>
 <p>下面的类已从AFNetworking 3.0中废弃：</p>
@@ -458,7 +464,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     <updated>2015-11-07T05:10:19.000Z</updated>
     <content type="html"><![CDATA[<p>随和的人更幸福。</p>
 <p>随和是什么？有人说，随和就是不计较，不争斗，遇事而安，和和气气的态度，随和体现在友善的气质。笔者试从四个方面来分析什么事随和：<br><a id="more"></a></p>
-<p>（一）随和是一种素质<br>    当今社会，随和体现的是一种素质，这种素质需要学习与沉淀，随和的人以团���为中心，而不是以自我为中心，即便您毕业于名牌大学，即便您有漂亮的外表，即便您比别人聪明，都要学会团队精神，学会随和。笔者见过这样的朋友，在团队中，气势要压过别人，凡事都争个上风，斤斤计较自己的名誉、地位，什么都要比人家好，结果往往造成人际关系不和谐。<br>    生活中，工作中，做一个随和的人，笔者认为，随和是一种素质，随和的人，善于发现周围其他人的真善美，善于发现周围朋友的优点，善于享受生活赐予我们的快乐，随和的人，心胸宽广，视野宽阔，智慧无比。随和是一种素质，无论在生活中，还是工作中，做一个随和的人吧。</p>
+<p>（一）随和是一种素质<br>    当今社会，随和体现的是一种素质，这种���质需要学习与沉淀，随和的人以团队为中心，而不是以自我为中心，即便您毕业于名牌大学，即便您有漂亮的外表，即便您比别人聪明，都要学会团队精神，学会随和。笔者见过这样的朋友，在团队中，气势要压过别人，凡事都争个上风，斤斤计较自己的名誉、地位，什么都要比人家好，结果往往造成人际关系不和谐。<br>    生活中，工作中，做一个随和的人，笔者认为，随和是一种素质，随和的人，善于发现周围其他人的真善美，善于发现周围朋友的优点，善于享受生活赐予我们的快乐，随和的人，心胸宽广，视野宽阔，智慧无比。随和是一种素质，无论在生活中，还是工作中，做一个随和的人吧。</p>
 <p>（二）随和是一种修养<br>    随着是一种修养，随和的人善于聆听，随和的人善于与不同性格特点的人进行沟通，随和的人常常换位思考，随和的人真诚地赞扬别人。随和是一种修养，这种修养是一种积累之后的沉淀，这种修养体现在举手投足之间的美丽。随和不是没有原则，而是善于从周围朋友的角度来看事物与问题，随和的人不是没有人云亦云，随和的人不是随波逐流，而是从善于从不同的看法与观点中找到共同点，与人为善，善待他人，多一份坦然，添一份好心情。随和是一种修养，随和的人是智慧的人，随和一些，享受生活。</p>
 <p>（三）随和是一种文化<br>    在一个组织中，随和的团队氛围，会让每一个成员感到轻松，感到愉悦，随和的人更容易融入到团队中，即便您的能力不是最强，但随和的性格会让你在团队中很快进步与成长。随和是一种文化，这种文化不仅体现在组织文化中，更体现在文化给予每个成员的力量与进步。随和的文化促进组织每一位成员成长与进步，反过来促进组织的成长与进步。反之，如果没有随和的组织文化，每一个成员都以自我为中心，会影响到组织的凝聚力，会破坏组织的团结，反过来影响组织的进步与成长。随和是一种文化，这种文化需要组织每一个成员的随和。</p>
 <p>（四）随和是一种心态<br>    俗话说，态度决定一切，心态就是性格加态度。性格是一个人独特而稳定的个性特征，它表现一个人对现实的心理认知和相应的习惯化的行为方式。态度是一个人对客观事物的心理反应。有人说，心态要有三种构成模式：骆驼的心态，狮子的心态，婴儿的心态。笔者认为，首先你要学会随和。随和的人更容易从其他人身上学习到长处与优点，随和的人在聆听周围的同时，也会得到周围的聆听。苏格拉底也有一句名言：“快乐就是这样，它往往在你为着一个明确的目标忙得无暇顾及其他的时候而不知不觉地来到。”同样，当你把目标锁定，“只问耕耘，莫论收获”的时候，上帝也就把收获悄悄地给你预备好了。<br>    随和是一种素质，一种修养，一种文化，一种心态，随和的人更幸福。</p>
@@ -510,7 +516,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>代码很简单，<br>以现在ViewController的view为参照系（ReferenceView），来初始化一个UIDynamicAnimator。<br>然后分配并初始化一个动力行为，这里是UIGravityBehavior，将需要进行物理模拟的UIDynamicItem传入。UIGravityBehavior的initWithItems:接受的参数为包含id的数组，另外UIGravityBehavior实例还有一个addItem:方法接受单个的id。就是说，实现了UIDynamicItem委托的对象，都可以看作是被���学特性影响的，进而参与到计算中。UIDynamicItem委托需要我们实现bounds，center和transform三个属性，在UIKit Dynamics计算新的位置时，需要向Behavior内的item询问这些参数，以进行正确计算。iOS7中，UIView和UICollectionViewLayoutAttributes已经默认实现了这个接口，所以这里我们直接把需要模拟重力的UIView添加到UIGravityBehavior里就行了。<br>把配置好的UIGravityBehavior添加到animator中。<br>strong持有一下animator，避免当前scope结束被ARC释放掉（后果当然就是UIView在哪儿傻站着不掉）<br>运行结果，view开始受重力影响了：<br>重力作用下的UIview<br>重力作用下的UIview<br>碰撞，我要碰撞<br>没有碰撞的话，物理引擎就没有任何意义了。和重力行为类似，碰撞也有一个UIDynamicBehavior子类来描述碰撞行为，即UICollisionBehavior。在上面的demo中加上几句：</p>
+<p>代码很简单，<br>以现在ViewController的view为参照系（ReferenceView），来初始化一个UIDynamicAnimator。<br>然后分配并初始化一个动力行为，这里是UIGravityBehavior，将需要进行物理模拟的UIDynamicItem传入。UIGravityBehavior的initWithItems:接受的参数为包含id的数组，另外UIGravityBehavior实例还有一个addItem:方法接受单个的id。就是说，实现了UIDynamicItem委托的对象，都可以看作是被力学特性影响的，进而参与到计算中。UIDynamicItem委托需要我们实现bounds，center和transform三个属性，在UIKit Dynamics计算新的位置时，需要向Behavior内的item询问这些参数，以进行正确计算。iOS7中，UIView和UICollectionViewLayoutAttributes已经默认实现了这个接口，所以这里我们直接把需要模拟重力的UIView添加到UIGravityBehavior里就行了。<br>把配置好的UIGravityBehavior添加到animator中。<br>strong持有一下animator，避免当前scope结束被ARC释放掉（后果当然就是UIView在哪儿傻站着不掉）<br>运行结果，view开始受重力影响了：<br>重力作用下的UIview<br>重力作用下的UIview<br>碰撞，我要碰撞<br>没有碰撞的话，物理引擎就没有任何意义了。和重力行为类似，碰撞也有一个UIDynamicBehavior子类来描述碰撞行为，即UICollisionBehavior。在上面的demo中加上几句：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -676,7 +682,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>@end<br>另一种比较高级一点，需要对计算完全定义。在默认的行为或者它们组合不能满足禽兽般的产品经理/设计师的需求是，亲爱的骚年..开始自己写吧..其实说简单也简单，UIDynamicBehavior里提供了一个@property(nonatomic, copy) void (^action)(void)，animator将在每次animation step（就是需要计算动画时）调用这个block。就是说，你可以通过设定这个block来实现自己的行为。基本思路就是在这个block中向所有item询问它们当前的center和transform状态，然后开始计算，然后把计算后的相应值再赋予item，从而改变在屏幕上的位置，大小，角度等。<br>UIKit动力学的性能分析和限制<br>使用物理引擎不是没有代价的的，特别是在碰撞检测这块，是要耗费一定CPU资源的。但是以测试的情况来看，如果只是UI层面上的碰撞检测还是没有什么问题的，我自己实测iPhone4上同时进行数十个碰撞计算完全没有掉帧的情况。因此如果只是把其用在UI特效上，应该不用太在意资源的耗费。但是如果同时有成百上千的碰撞需要处理的情况，可能会出现卡顿吧。<br>对于UIDynamicItem来说，当它们被添加到动画系统后，我们只能通过动画系统来改变位置，而外部的对于UIDynamicItem的center,transform等设定是被忽略的（其实这也是大多数2D引擎的实现策略，算不上限制）。<br>主要的限制是在当计算迭代无法得到有效解的时候，动画将无法正确呈现。这对于绝大多数物理引擎都是一样的。迭代不能收敛时整个物理系统处于不确定的状态，比如初始时就设定了碰撞物体位于边界内部，或者在狭小空间内放入了过多的非弹性碰撞物体等。另外，这个引擎仅仅只是用来呈现UI效果，它并没有保证物理上的精确度，因此如果要用它来做UI以外的事情，有可能是无法得到很好的结果的。<br>总结<br>总之就是一套全新的UI交互的视觉体验和效果，但是并非处处适用。在合适的地方使用可以增加体验，但是也会有其他方式更适合的情况。</p>
+<p>@end<br>另一种比较高级一点，需要对计算完全定义。在默认的行为或者它们组合不能满足禽兽般的产品经理/设计师的需求是，亲爱的骚年..开始自己写吧..其实说简单也简单，UIDynamicBehavior里提供了一个@property(nonatomic, copy) void (^action)(void)，animator将在每次animation step（就是需要计算动画时）调用这个block。就是说，你可以通过设定这个block来实现自己的行为。基本思路就是在这个block中向所有item询问它们当前的center和transform状态，然后开始计算，然后把计算后的相应值再赋予item，从而改变在屏幕上的位置，大小，角度等。<br>UIKit动力学的性能分析和限制<br>使用物理引擎不是没有代价的的，特别是在碰撞检测这块，是要耗费一定CPU资源的。但是以测试的情况来看，如果只是UI层面上的碰撞检测还是没有什么问题的，我自己实测iPhone4上同时进行数十个碰撞计算完全没有掉帧的情况。因此如果只是把其用在UI特效上，应该不用太在意资源的耗费。但是如果同时有成百上千的碰撞需要处理的情况���可能会出现卡顿吧。<br>对于UIDynamicItem来说，当它们被添加到动画系统后，我们只能通过动画系统来改变位置，而外部的对于UIDynamicItem的center,transform等设定是被忽略的（其实这也是大多数2D引擎的实现策略，算不上限制）。<br>主要的限制是在当计算迭代无法得到有效解的时候，动画将无法正确呈现。这对于绝大多数物理引擎都是一样的。迭代不能收敛时整个物理系统处于不确定的状态，比如初始时就设定了碰撞物体位于边界内部，或者在狭小空间内放入了过多的非弹性碰撞物体等。另外，这个引擎仅仅只是用来呈现UI效果，它并没有保证物理上的精确度，因此如果要用它来做UI以外的事情，有可能是无法得到很好的结果的。<br>总结<br>总之就是一套全新的UI交互的视觉体验和效果，但是并非处处适用。在合适的地方使用可以增加体验，但是也会有其他方式更适合的情况。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="什么是UIKit动力学（UIKit_Dynamics）">什么是UIKit动力学（UIKit Dynamics）</h3>

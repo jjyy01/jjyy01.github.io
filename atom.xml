@@ -4,7 +4,7 @@
   <subtitle><![CDATA[危机信息]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://biancheng.me/"/>
-  <updated>2015-11-12T13:16:26.352Z</updated>
+  <updated>2015-11-17T05:01:03.637Z</updated>
   <id>http://biancheng.me/</id>
   
   <author>
@@ -13,6 +13,152 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[hexo生成静态博客]]></title>
+    <link href="http://biancheng.me/2015/11/17/hexo%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://biancheng.me/2015/11/17/hexo生成静态博客/</id>
+    <published>2015-11-17T03:51:01.000Z</published>
+    <updated>2015-11-17T04:59:31.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="先屡一下思路">先屡一下思路</h3>
+<ol>
+<li>首先hexo是基于nodejs的，所以必须安装nodejs </li>
+<li>安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它 </li>
+<li>安装homebrew就很简单了，mac自带ruby脚本功能，一句话搞定 </li>
+<li>hexo提交部署github需要使用git工具，所以需要安装git，用homebrew的话也是一句话搞定 </li>
+<li>OK整理一下安装顺序（homebrew-nodejs-hexo-git） </li>
+<li>思路屡清楚了，下面安装方法整理一下 </li>
+</ol>
+<h3 id="1-安装brewhome，一句话搞定">1.安装brewhome，一句话搞定</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)</span>”</span>
+</pre></td></tr></table></figure>
+
+
+<h3 id="2-0_安装nodejs">2.0 安装nodejs</h3>
+<h4 id="2-1_第一种方式，brewhome安装，一句话搞定">2.1 第一种方式，brewhome安装，一句话搞定</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>brew <span class="keyword">install</span> node
+</pre></td></tr></table></figure>
+
+
+<h4 id="2-2_第二种方式，前提是已经安装好Xcode和git，安装git方法在下面介绍">2.2 第二种方式，前提是已经安装好Xcode和git，安装git方法在下面介绍</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>git clone git:<span class="comment">//github.com/joyent/node.git</span>
+cd node
+./configure
+<span class="built_in">make</span>
+sudo <span class="built_in">make</span> install
+</pre></td></tr></table></figure>
+
+
+<h4 id="2-3_第三种方式，下载源码(_http://nodejs-org/download/_)，编译执行同上">2.3 第三种方式，下载源码( <a href="http://nodejs.org/download/" target="_blank">http://nodejs.org/download/</a> )，编译执行同上</h4>
+<h3 id="3-0_安装hexo">3.0 安装hexo</h3>
+<h4 id="3-1_第一种方式，用nodejs自带npm安装">3.1 第一种方式，用nodejs自带npm安装</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>npm <span class="keyword">install</span> -g hexo
+hexo init
+npm <span class="keyword">install</span>
+</pre></td></tr></table></figure>
+
+
+<h4 id="3-2_第二种方式，下载源码(_http://www-nodejs-org/download/_)，编译执行">3.2 第二种方式，下载源码( <a href="http://www.nodejs.org/download/" target="_blank">http://www.nodejs.org/download/</a> )，编译执行</h4>
+<h3 id="4-0_安装git">4.0 安装git</h3>
+<h4 id="4-1_第一种方式，homebrew安装，一句话搞定">4.1 第一种方式，homebrew安装，一句话搞定</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="built_in">sudo</span> brew install git
+</pre></td></tr></table></figure>
+
+
+<h4 id="4-2_第二种方式，前提是已经安装好Xcode">4.2 第二种方式，前提是已经安装好Xcode</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>curl -O http://kernel<span class="preprocessor">.org</span>/pub/software/scm/git/git-<span class="number">1.7</span><span class="number">.5</span><span class="preprocessor">.tar</span><span class="preprocessor">.bz</span>2
+tar xjvf git-<span class="number">1.7</span><span class="number">.4</span><span class="number">.1</span><span class="preprocessor">.tar</span><span class="preprocessor">.bz</span>2
+cd git-<span class="number">1.7</span><span class="number">.4</span><span class="number">.1</span>
+./configure --prefix=/usr/local
+make
+sudo make install
+which git
+</pre></td></tr></table></figure>
+
+
+<h4 id="4-3_第三种方式，下载源码(_https://www-kernel-org/pub/software/scm/git/_)，编译执行同上">4.3 第三种方式，下载源码( <a href="https://www.kernel.org/pub/software/scm/git/" target="_blank">https://www.kernel.org/pub/software/scm/git/</a> )，编译执行同上</h4>
+<h4 id="4-4_第四种方式：图形界面安装OpenInGitGui(_https://code-google-com/p/git-osx-installer_)，但是天朝被墙">4.4 第四种方式：图形界面安装OpenInGitGui( <a href="https://code.google.com/p/git-osx-installer" target="_blank">https://code.google.com/p/git-osx-installer</a> )，但是天朝被墙</h4>
+<h4 id="4-5_配置">4.5 配置</h4>
+<h5 id="4-5-1_检查SSH_key">4.5.1 检查SSH key</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="built_in">cd</span> ~/.ssh
+</pre></td></tr></table></figure>
+
+
+<h5 id="4-5-2_备份已有的key，（如果有的话）">4.5.2 备份已有的key，（如果有的话）</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="keyword">mkdir</span> key_backup
+mv id_rsa* key_backup
+</pre></td></tr></table></figure>
+
+
+<h5 id="4-5-3_生成SSH_key">4.5.3 生成SSH key</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ssh<span class="attribute">-keygen</span> <span class="attribute">-t</span> rsa <span class="attribute">-C</span> <span class="string">"xxxx@xxxx.com”</span>
+</pre></td></tr></table></figure>
+
+
+<h5 id="4-5-4_将SSH_key添加到Github">4.5.4 将SSH key添加到Github</h5>
+<p>登录到GitHub页面，Account Settings-&gt;SSH Public Keys-&gt;Add another key将生成的key(id_rsa.pub文件）内容copy到输入框中，save。 </p>
+<h5 id="4-5-5_测试连接">4.5.5 测试连接</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ssh git<span class="variable">@github</span>.com
+</pre></td></tr></table></figure>
+
+
+<h5 id="4-5-6_设置个人信息">4.5.6 设置个人信息</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="comment">git</span> <span class="comment">config</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">global</span> <span class="comment">user</span><span class="string">.</span><span class="comment">name</span> <span class="comment">"treason258”</span>
+<span class="comment">git</span> <span class="comment">config</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">global</span> <span class="comment">user</span><span class="string">.</span><span class="comment">email</span> <span class="comment">ma</span><span class="string">.</span><span class="comment">tengfei2008@163</span><span class="string">.</span><span class="comment">com</span>
+</pre></td></tr></table></figure>
+
+
+<h3 id="5_修改hexo根目录下_config-yml文���（xxxx为你的github账户名称）">5 修改hexo根目录下_config.yml文件（xxxx为你的github账户名称）</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="label">deploy:</span>
+  type: github
+  repo: git@github<span class="preprocessor">.com</span>:xxxx/xxxx<span class="preprocessor">.github</span><span class="preprocessor">.io</span><span class="preprocessor">.git</span>
+  branch: master
+</pre></td></tr></table></figure>
+
+
+<h3 id="6_注册github账号，新建名为xxxx-github-io的repository">6 注册github账号，新建名为xxxx.github.io的repository</h3>
+<p>到这，Hexo博客搭建已经完成了，并且可以git提交到github上，通过访问xxxx.github.io就可以访问本博客，关于hexo的一些操作以后有时间再整理吧</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="先屡一下思路">先屡一下思路</h3>
+<ol>
+<li>首先hexo是基于nodejs的，所以必须安装nodejs </li>
+<li>安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它 </li>
+<li>安装homebrew就很简单了，]]>
+    </summary>
+    
+      <category term="hexo" scheme="http://biancheng.me/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[swift中switch使用]]></title>
@@ -328,13 +474,13 @@
     <published>2015-10-22T05:44:09.000Z</published>
     <updated>2015-10-22T06:10:49.000Z</updated>
     <content type="html"><![CDATA[<p>AFNetworking是一款在OS X和iOS下都令人喜爱的网络库。为了迎合iOS新版本的升级, AFNetworking在3.0版本中删除了基于 NSURLConnection API的所有支持。如果你的项目以前使用过这些API，建议您立即升级到基于 NSURLSession 的API的AFNetworking的版本。本指南将引导您完成这个过程。</p>
-<p>本指南是为了引导使用AFNetworking 2.x升级到最新的版本API，以达到过渡的目的，并且解释了新增和更改的设计结构。</p>
+<p>本指南是为了引导使���AFNetworking 2.x升级到最新的版本API，以达到过渡的目的，并且解释了新增和更改的设计结构。</p>
 <a id="more"></a>
 
 <h3 id="新设备要求:_iOS_7,_Mac_OS_X_10-9,_watchOS_2,_tvOS_9,_&amp;_Xcode_7">新设备要求: iOS 7, Mac OS X 10.9, watchOS 2, tvOS 9, &amp; Xcode 7</h3>
 <p>AFNetworking 3.0正式支持的iOS 7， Mac OS X的10.9， watchOS 2 ， tvOS 9 和Xcode 7。如果你想使用AFNetworking在针对较旧版本的SDK项目，请检查README的兼容性信息。</p>
 <h3 id="NSURLConnection的API已废弃">NSURLConnection的API已废弃</h3>
-<p>AFNetworking 1.0建立在NSURLConnection的基础API之上 ，AFNetworking 2.0开始使用NSURLConnection的���础API ，以及较新基于NSURLSession的API的选项。 AFNetworking 3.0现已完全基于NSURLSession的API，这降低了维护的负担，同时支持苹果增强关于NSURLSession提供的任何额外功能。由于Xcode 7中，NSURLConnection的API已经正式被苹果弃用。虽然该API将继续运行，但将没有新功能将被添加，并且苹果已经通知所有基于网络的功能，以充分使NSURLSession向前发展。</p>
+<p>AFNetworking 1.0建立在NSURLConnection的基础API之上 ，AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API的选项。 AFNetworking 3.0现已完全基于NSURLSession的API，这降低了维护的负担，同时支持苹果增强关于NSURLSession提供的任何额外功能。由于Xcode 7中，NSURLConnection的API已经正式被苹果弃用。虽然该API将继续运行，但将没有新功能将被添加，并且苹果已经通知所有基于网络的功能，以充分使NSURLSession向前发展。</p>
 <p>AFNetworking 2.X将继续获得关键的隐患和安全补丁，但没有新的功能将被添加。Alamofire(Swift下的网络请求)软件基金会建议，所有的项目迁移到基于NSURLSession的API。</p>
 <h3 id="弃用的类">弃用的类</h3>
 <p>下面的类已从AFNetworking 3.0中废弃：</p>
@@ -464,7 +610,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     <updated>2015-11-07T05:10:19.000Z</updated>
     <content type="html"><![CDATA[<p>随和的人更幸福。</p>
 <p>随和是什么？有人说，随和就是不计较，不争斗，遇事而安，和和气气的态度，随和体现在友善的气质。笔者试从四个方面来分析什么事随和：<br><a id="more"></a></p>
-<p>（一）随和是一种素质<br>    当今社会，随和体现的是一种素质，这种���质需要学习与沉淀，随和的人以团队为中心，而不是以自我为中心，即便您毕业于名牌大学，即便您有漂亮的外表，即便您比别人聪明，都要学会团队精神，学会随和。笔者见过这样的朋友，在团队中，气势要压过别人，凡事都争个上风，斤斤计较自己的名誉、地位，什么都要比人家好，结果往往造成人际关系不和谐。<br>    生活中，工作中，做一个随和的人，笔者认为，随和是一种素质，随和的人，善于发现周围其他人的真善美，善于发现周围朋友的优点，善于享受生活赐予我们的快乐，随和的人，心胸宽广，视野宽阔，智慧无比。随和是一种素质，无论在生活中，还是工作中，做一个随和的人吧。</p>
+<p>（一）随和是一种素质<br>    当今社会，随和体现的是一种素质，这种素质需要学习与沉淀，随和的人以团队为中心，而不是以自我为中心，即便您毕业于名牌大学，即便您有漂亮的外表，即便您比别人聪明，都要学会团队精神，学会随和。笔者见过这样的朋友，在团队中，气势要压过别人，凡事都争个上风，斤斤计较自己的名誉、地位，什么都要比人家好，结果往往造成人际关系不和谐。<br>    生活中，工作中，做一个随和的人，笔者认为，随和是一种素质，随和的人，善于发现周围其他人的真善美，善于发现周围朋友的优点，善于享受生活赐予我们的快乐，随和的人，心胸宽广，视野宽阔，智慧无比。随和是一种素质，无论在生活中，还是工作中，做一个随和的人吧。</p>
 <p>（二）随和是一种修养<br>    随着是一种修养，随和的人善于聆听，随和的人善于与不同性格特点的人进行沟通，随和的人常常换位思考，随和的人真诚地赞扬别人。随和是一种修养，这种修养是一种积累之后的沉淀，这种修养体现在举手投足之间的美丽。随和不是没有原则，而是善于从周围朋友的角度来看事物与问题，随和的人不是没有人云亦云，随和的人不是随波逐流，而是从善于从不同的看法与观点中找到共同点，与人为善，善待他人，多一份坦然，添一份好心情。随和是一种修养，随和的人是智慧的人，随和一些，享受生活。</p>
 <p>（三）随和是一种文化<br>    在一个组织中，随和的团队氛围，会让每一个成员感到轻松，感到愉悦，随和的人更容易融入到团队中，即便您的能力不是最强，但随和的性格会让你在团队中很快进步与成长。随和是一种文化，这种文化不仅体现在组织文化中，更体现在文化给予每个成员的力量与进步。随和的文化促进组织每一位成员成长与进步，反过来促进组织的成长与进步。反之，如果没有随和的组织文化，每一个成员都以自我为中心，会影响到组织的凝聚力，会破坏组织的团结，反过来影响组织的进步与成长。随和是一种文化，这种文化需要组织每一个成员的随和。</p>
 <p>（四）随和是一种心态<br>    俗话说，态度决定一切，心态就是性格加态度。性格是一个人独特而稳定的个性特征，它表现一个人对现实的心理认知和相应的习惯化的行为方式。态度是一个人对客观事物的心理反应。有人说，心态要有三种构成模式：骆驼的心态，狮子的心态，婴儿的心态。笔者认为，首先你要学会随和。随和的人更容易从其他人身上学习到长处与优点，随和的人在聆听周围的同时，也会得到周围的聆听。苏格拉底也有一句名言：“快乐就是这样，它往往在你为着一个明确的目标忙得无暇顾及其他的时候而不知不觉地来到。”同样，当你把目标锁定，“只问耕耘，莫论收获”的时候，上帝也就把收获悄悄地给你预备好了。<br>    随和是一种素质，一种修养，一种文化，一种心态，随和的人更幸福。</p>
@@ -682,7 +828,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>@end<br>另一种比较高级一点，需要对计算完全定义。在默认的行为或者它们组合不能满足禽兽般的产品经理/设计师的需求是，亲爱的骚年..开始自己写吧..其实说简单也简单，UIDynamicBehavior里提供了一个@property(nonatomic, copy) void (^action)(void)，animator将在每次animation step（就是需要计算动画时）调用这个block。就是说，你可以通过设定这个block来实现自己的行为。基本思路就是在这个block中向所有item询问它们当前的center和transform状态，然后开始计算，然后把计算后的相应值再赋予item，从而改变在屏幕上的位置，大小，角度等。<br>UIKit动力学的性能分析和限制<br>使用物理引擎不是没有代价的的，特别是在碰撞检测这块，是要耗费一定CPU资源的。但是以测试的情况来看，如果只是UI层面上的碰撞检测还是没有什么问题的，我自己实测iPhone4上同时进行数十个碰撞计算完全没有掉帧的情况。因此如果只是把其用在UI特效上，应该不用太在意资源的耗费。但是如果同时有成百上千的碰撞需要处理的情况���可能会出现卡顿吧。<br>对于UIDynamicItem来说，当它们被添加到动画系统后，我们只能通过动画系统来改变位置，而外部的对于UIDynamicItem的center,transform等设定是被忽略的（其实这也是大多数2D引擎的实现策略，算不上限制）。<br>主要的限制是在当计算迭代无法得到有效解的时候，动画将无法正确呈现。这对于绝大多数物理引擎都是一样的。迭代不能收敛时整个物理系统处于不确定的状态，比如初始时就设定了碰撞物体位于边界内部，或者在狭小空间内放入了过多的非弹性碰撞物体等。另外，这个引擎仅仅只是用来呈现UI效果，它并没有保证物理上的精确度，因此如果要用它来做UI以外的事情，有可能是无法得到很好的结果的。<br>总结<br>总之就是一套全新的UI交互的视觉体验和效果，但是并非处处适用。在合适的地方使用可以增加体验，但是也会有其他方式更适合的情况。</p>
+<p>@end<br>另一种比较高级一点，需要对计算完全定义。在默认的行为或者它们组合不能满足禽兽般的产品经理/设计师的需求是，亲爱的骚年..开始自己写吧..其实说简单也简单，UIDynamicBehavior里提供了一个@property(nonatomic, copy) void (^action)(void)，animator将在每次animation step（就是需要计算动画时）调用这个block。就是说，你可以通过设定这个block来实现自己的行为。基���思路就是在这个block中向所有item询问它们当前的center和transform状态，然后开始计算，然后把计算后的相应值再赋予item，从而改变在屏幕上的位置，大小，角度等。<br>UIKit动力学的性能分析和限制<br>使用物理引擎不是没有代价的的，特别是在碰撞检测这块，是要耗费一定CPU资源的。但是以测试的情况来看，如果只是UI层面上的碰撞检测还是没有什么问题的，我自己实测iPhone4上同时进行数十个碰撞计算完全没有掉帧的情况。因此如果只是把其用在UI特效上，应该不用太在意资源的耗费。但是如果同时有成百上千的碰撞需要处理的情况，可能会出现卡顿吧。<br>对于UIDynamicItem来说，当它们被添加到动画系统后，我们只能通过动画系统来改变位置，而外部的对于UIDynamicItem的center,transform等设定是被忽略的（其实这也是大多数2D引擎的实现策略，算不上限制）。<br>主要的限制是在当计算迭代无法得到有效解的时候，动画将无法正确呈现。这对于绝大多数物理引擎都是一样的。迭代不能收敛时整个物理系统处于不确定的状态，比如初始时就设定了碰撞物体位于边界内部，或者在狭小空间内放入了过多的非弹性碰撞物体等。另外，这个引擎仅仅只是用来呈现UI效果，它并没有保证物理上的精确度，因此如果要用它来做UI以外的事情，有可能是无法得到很好的结果的。<br>总结<br>总之就是一套全新的UI交互的视觉体验和效果，但是并非处处适用。在合适的地方使用可以增加体验，但是也会有其他方式更适合的情况。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="什么是UIKit动力学（UIKit_Dynamics）">什么是UIKit动力学（UIKit Dynamics）</h3>

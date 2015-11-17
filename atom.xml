@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[weiji info]]></title>
-  <subtitle><![CDATA[危机信息]]></subtitle>
+  <title><![CDATA[Xiong Hai Zi]]></title>
+  <subtitle><![CDATA[熊孩子的学习]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://biancheng.me/"/>
-  <updated>2015-11-17T05:15:14.685Z</updated>
+  <updated>2015-11-17T09:35:39.607Z</updated>
   <id>http://biancheng.me/</id>
   
   <author>
-    <name><![CDATA[weiji info]]></name>
+    <name><![CDATA[熊孩子]]></name>
     <email><![CDATA[jmme@foxmail.com]]></email>
   </author>
   
@@ -480,7 +480,7 @@ mv id_rsa* key_backup
     <id>http://biancheng.me/2015/10/22/afnetworking-30-&-afnetworking-2x/</id>
     <published>2015-10-22T05:44:09.000Z</published>
     <updated>2015-10-22T06:10:49.000Z</updated>
-    <content type="html"><![CDATA[<p>AFNetworking是一款在OS X和iOS下都令人喜爱的网络���。为了迎合iOS新版本的升级, AFNetworking在3.0版本中删除了基于 NSURLConnection API的所有支持。如果你的项目以前使用过这些API，建议您立即升级到基于 NSURLSession 的API的AFNetworking的版本。本指南将引导您完成这个过程。</p>
+    <content type="html"><![CDATA[<p>AFNetworking是一款在OS X和iOS下都令人喜爱的网络库。为了迎合iOS新版本的升级, AFNetworking在3.0版本中删除了基于 NSURLConnection API的所有支持。如果你的项目以前使用过这些API，建议您立即升级到基于 NSURLSession 的API的AFNetworking的版本。本指南将引导您完成这个过程。</p>
 <p>本指南是为了引导使用AFNetworking 2.x升级到最新的版本API，以达到过渡的目的，并且解释了新增和更改的设计结构。</p>
 <a id="more"></a>
 
@@ -598,7 +598,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 ]]></content>
     <summary type="html">
     <![CDATA[<p>AFNetworking是一款在OS X和iOS下都令人喜爱的网络库。为了迎合iOS新版本的升级, AFNetworking在3.0版本中删除了基于 NSURLConnection API的所有支持。如果你的项目以前使用过这些API，建议您立即升级到基于 NSURLSession 的API的AFNetworking的版本。本指南将引导您完成这个过程。</p>
-<p>本指南是为了引导使用AFNetworking 2.x升级到最新的版本API，以达到过渡的目的，并且解释���新增和更改的设计结构。</p>
+<p>本指南是为了引导使用AFNetworking 2.x升级到最新的版本API，以达到过渡的目的，并且解释了新增和更改的设计结构。</p>
 ]]>
     
     </summary>
@@ -835,7 +835,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>@end<br>另一种比较高级一点，需要对计算完全定义。在默认的行为或者它们组合不能满足禽兽般的产品经理/设计师的���求是，亲爱的骚年..开始自己写吧..其实说简单也简单，UIDynamicBehavior里提供了一个@property(nonatomic, copy) void (^action)(void)，animator将在每次animation step（就是需要计算动画时）调用这个block。就是说，你可以通过设定这个block来实现自己的行为。基本思路就是在这个block中向所有item询问它们当前的center和transform状态，然后开始计算，然后把计算后的相应值再赋予item，从而改变在屏幕上的位置，大小，角度等。<br>UIKit动力学的性能分析和限制<br>使用物理引擎不是没有代价的的，特别是在碰撞检测这块，是要耗费一定CPU资源的。但是以测试的情况来看，如果只是UI层面上的碰撞检测还是没有什么问题的，我自己实测iPhone4上同时进行数十个碰撞计算完全没有掉帧的情况。因此如果只是把其用在UI特效上，应该不用太在意资源的耗费。但是如果同时有成百上千的碰撞需要处理的情况，可能会出现卡顿吧。<br>对于UIDynamicItem来说，当它们被添加到动画系统后，我们只能通过动画系统来改变位置，而外部的对于UIDynamicItem的center,transform等设定是被忽略的（其实这也是大多数2D引擎的实现策略，算不上限制）。<br>主要的限制是在当计算迭代无法得到有效解的时候，动画将无法正确呈现。这对于绝大多数物理引擎都是一样的。迭代不能收敛时整个物理系统处于不确定的状态，比如初始时就设定了碰撞物体位于边界内部，或者在狭小空间内放入了过多的非弹性碰撞物体等。另外，这个引擎仅仅只是用来呈现UI效果，它并没有保证物理上的精确度，因此如果要用它来做UI以外的事情，有可能是无法得到很好的结果的。<br>总结<br>总之就是一套全新的UI交互的视觉体验和效果，但是并非处处适用。在合适的地方使用可以增加体验，但是也会有其他方式更适合的情况。</p>
+<p>@end<br>另一种比较高级一点，需要对计算完全定义。在默认的行为或者它们组合不能满足禽兽般的产品经理/设计���的需求是，亲爱的骚年..开始自己写吧..其实说简单也简单，UIDynamicBehavior里提供了一个@property(nonatomic, copy) void (^action)(void)，animator将在每次animation step（就是需要计算动画时）调用这个block。就是说，你可以通过设定这个block来实现自己的行为。基本思路就是在这个block中向所有item询问它们当前的center和transform状态，然后开始计算，然后把计算后的相应值再赋予item，从而改变在屏幕上的位置，大小，角度等。<br>UIKit动力学的性能分析和限制<br>使用物理引擎不是没有代价的的，特别是在碰撞检测这块，是要耗费一定CPU资源的。但是以测试的情况来看，如果只是UI层面上的碰撞检测还是没有什么问题的，我自己实测iPhone4上同时进行数十个碰撞计算完全没有掉帧的情况。因此如果只是把其用在UI特效上，应该不用太在意资源的耗费。但是如果同时有成百上千的碰撞需要处理的情况，可能会出现卡顿吧。<br>对于UIDynamicItem来说，当它们被添加到动画系统后，我们只能通过动画系统来改变位置，而外部的对于UIDynamicItem的center,transform等设定是被忽略的（其实这也是大多数2D引擎的实现策略，算不上限制）。<br>主要的限制是在当计算迭代无法得到有效解的时候，动画将无法正确呈现。这对于绝大多数物理引擎都是一样的。迭代不能收敛时整个物理系统处于不确定的状态，比如初始时就设定了碰撞物体位于边界内部，或者在狭小空间内放入了过多的非弹性碰撞物体等。另外，这个引擎仅仅只是用来呈现UI效果，它并没有保证物理上的精确度，因此如果要用它来做UI以外的事情，有可能是无法得到很好的结果的。<br>总结<br>总之就是一套全新的UI交互的视觉体验和效果，但是并非处处适用。在合适的地方使用可以增加体验，但是也会有其他方式更适合的情况。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="什么是UIKit动力学（UIKit_Dynamics）">什么是UIKit动力学（UIKit Dynamics）</h3>

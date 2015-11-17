@@ -55,11 +55,11 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-11-17T03:51:01.000Z"><a href="/2015/11/17/hexo生成静态博客/">11月 17 2015</a></time>
+        <time datetime="2015-11-17T03:51:01.000Z"><a href="/2015/11/17/使用hexo在github搭建静态博客/">11月 17 2015</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/11/17/hexo生成静态博客/">hexo生成静态博客</a></h1>
+    <h1 class="title"><a href="/2015/11/17/使用hexo在github搭建静态博客/">hexo生成静态博客</a></h1>
   
 
     </header>
@@ -72,131 +72,16 @@
 <li>安装homebrew就很简单了，mac自带ruby脚本功能，一句话搞定 </li>
 <li>hexo提交部署github需要使用git工具，所以需要安装git，用homebrew的话也是一句话搞定 </li>
 <li>OK整理一下安装顺序（homebrew-nodejs-hexo-git） </li>
-<li>思路屡清楚了，下面安装方法整理一下 </li>
 </ol>
-<h3 id="1-安装brewhome，一句话搞定">1.安装brewhome，一句话搞定</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)</span>”</span>
-</pre></td></tr></table></figure>
-
-
-<h3 id="2-0_安装nodejs">2.0 安装nodejs</h3>
-<h4 id="2-1_第一种方式，brewhome安装，一句话搞定">2.1 第一种方式，brewhome安装，一句话搞定</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>brew <span class="keyword">install</span> node
-</pre></td></tr></table></figure>
-
-
-<h4 id="2-2_第二种方式，前提是已经安装好Xcode和git，安装git方法在下面介绍">2.2 第二种方式，前提是已经安装好Xcode和git，安装git方法在下面介绍</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>git clone git:<span class="comment">//github.com/joyent/node.git</span>
-cd node
-./configure
-<span class="built_in">make</span>
-sudo <span class="built_in">make</span> install
-</pre></td></tr></table></figure>
-
-
-<h4 id="2-3_第三种方式，下载源码(_http://nodejs-org/download/_)，编译执行同上">2.3 第三种方式，下载源码( <a href="http://nodejs.org/download/" target="_blank">http://nodejs.org/download/</a> )，编译执行同上</h4>
-<h3 id="3-0_安装hexo">3.0 安装hexo</h3>
-<h4 id="3-1_第一种方式，用nodejs自带npm安装">3.1 第一种方式，用nodejs自带npm安装</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>npm <span class="keyword">install</span> -g hexo
-hexo init
-npm <span class="keyword">install</span>
-</pre></td></tr></table></figure>
-
-
-<h4 id="3-2_第二种方式，下载源码(_http://www-nodejs-org/download/_)，编译执行">3.2 第二种方式，下载源码( <a href="http://www.nodejs.org/download/" target="_blank">http://www.nodejs.org/download/</a> )，编译执行</h4>
-<h3 id="4-0_安装git">4.0 安装git</h3>
-<h4 id="4-1_第一种方式，homebrew安装，一句话搞定">4.1 第一种方式，homebrew安装，一句话搞定</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="built_in">sudo</span> brew install git
-</pre></td></tr></table></figure>
-
-
-<h4 id="4-2_第二种方式，前提是已经安装好Xcode">4.2 第二种方式，前提是已经安装好Xcode</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre>curl -O http://kernel<span class="preprocessor">.org</span>/pub/software/scm/git/git-<span class="number">1.7</span><span class="number">.5</span><span class="preprocessor">.tar</span><span class="preprocessor">.bz</span>2
-tar xjvf git-<span class="number">1.7</span><span class="number">.4</span><span class="number">.1</span><span class="preprocessor">.tar</span><span class="preprocessor">.bz</span>2
-cd git-<span class="number">1.7</span><span class="number">.4</span><span class="number">.1</span>
-./configure --prefix=/usr/local
-make
-sudo make install
-which git
-</pre></td></tr></table></figure>
-
-
-<h4 id="4-3_第三种方式，下载源码(_https://www-kernel-org/pub/software/scm/git/_)，编译执行同上">4.3 第三种方式，下载源码( <a href="https://www.kernel.org/pub/software/scm/git/" target="_blank">https://www.kernel.org/pub/software/scm/git/</a> )，编译执行同上</h4>
-<h4 id="4-4_第四种方式：图形界面安装OpenInGitGui(_https://code-google-com/p/git-osx-installer_)，但是天朝被墙">4.4 第四种方式：图形界面安装OpenInGitGui( <a href="https://code.google.com/p/git-osx-installer" target="_blank">https://code.google.com/p/git-osx-installer</a> )，但是天朝被墙</h4>
-<h4 id="4-5_配置">4.5 配置</h4>
-<h5 id="4-5-1_检查SSH_key">4.5.1 检查SSH key</h5>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="built_in">cd</span> ~/.ssh
-</pre></td></tr></table></figure>
-
-
-<h5 id="4-5-2_备份已有的key，（如果有的话）">4.5.2 备份已有的key，（如果有的话）</h5>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="keyword">mkdir</span> key_backup
-mv id_rsa* key_backup
-</pre></td></tr></table></figure>
-
-
-<h5 id="4-5-3_生成SSH_key">4.5.3 生成SSH key</h5>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>ssh<span class="attribute">-keygen</span> <span class="attribute">-t</span> rsa <span class="attribute">-C</span> <span class="string">"xxxx@xxxx.com”</span>
-</pre></td></tr></table></figure>
-
-
-<h5 id="4-5-4_将SSH_key添加到Github">4.5.4 将SSH key添加到Github</h5>
-<p>登录到GitHub页面，Account Settings-&gt;SSH Public Keys-&gt;Add another key将生成的key(id_rsa.pub文件）内容copy到输入框中，save。 </p>
-<h5 id="4-5-5_测试连接">4.5.5 测试连接</h5>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>ssh git<span class="variable">@github</span>.com
-</pre></td></tr></table></figure>
-
-
-<h5 id="4-5-6_设置个人信息">4.5.6 设置个人信息</h5>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="comment">git</span> <span class="comment">config</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">global</span> <span class="comment">user</span><span class="string">.</span><span class="comment">name</span> <span class="comment">"treason258”</span>
-<span class="comment">git</span> <span class="comment">config</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">global</span> <span class="comment">user</span><span class="string">.</span><span class="comment">email</span> <span class="comment">ma</span><span class="string">.</span><span class="comment">tengfei2008@163</span><span class="string">.</span><span class="comment">com</span>
-</pre></td></tr></table></figure>
-
-
-<h3 id="5_修改hexo根目录下_config-yml文件（xxxx为你的github账户名称）">5 修改hexo根目录下_config.yml文件（xxxx为你的github账户名称）</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="label">deploy:</span>
-  type: github
-  repo: git@github<span class="preprocessor">.com</span>:xxxx/xxxx<span class="preprocessor">.github</span><span class="preprocessor">.io</span><span class="preprocessor">.git</span>
-  branch: master
-</pre></td></tr></table></figure>
-
-
-<h3 id="6_注册github账号，新建名为xxxx-github-io的repository">6 注册github账号，新建名为xxxx.github.io的repository</h3>
-<p>到这，Hexo博客搭建已经完成了，并且可以git提交到github上，通过访问xxxx.github.io就可以访问本博客，关于hexo的一些操作以后有时间再整理吧</p>
 
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2015/11/17/使用hexo在github搭建静态博客/#more" class="more-link">Read More</a>
+          </div>
         
         
       

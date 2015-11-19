@@ -4,7 +4,7 @@
   <subtitle><![CDATA[熊孩子的学习]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://biancheng.me/"/>
-  <updated>2015-11-19T06:16:20.380Z</updated>
+  <updated>2015-11-19T06:19:07.125Z</updated>
   <id>http://biancheng.me/</id>
   
   <author>
@@ -19,10 +19,12 @@
     <link href="http://biancheng.me/2015/11/19/git%E4%BB%8B%E7%BB%8D%E4%B8%80/"/>
     <id>http://biancheng.me/2015/11/19/git介绍一/</id>
     <published>2015-11-19T06:15:13.000Z</published>
-    <updated>2015-11-19T06:16:07.000Z</updated>
+    <updated>2015-11-19T06:18:51.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Git起步">Git起步</h1>
 <h3 id="起步">起步</h3>
 <p>本章介绍开始使用 Git 前的相关知识。我们会先了解一些版本控制工具的历史背景，然后试着让 Git 在你的系统上跑起来，直到最后配置好，可以正常开始开发工作。读完本章，你就会明白为什么 Git 会如此流行，为什么你应该立即开始使用它。</p>
+ <a id="more"></a>
+
 <h3 id="1-1_关于版本控制">1.1 关于版本控制</h3>
 <p>什么是版本控制？我真的需要吗？版本控制是一种记录若干文件内容变化，以便将来查阅特定版本修订情况的系统。在本书所展示的例子中，我们仅对保存着软件源代码的文本文件作版本控制管理，但实际上，你可以对任何类型的文件进行版本控制。</p>
 <p>如果你是位图形或网页设计师，可能会需要保存某一幅图片或页面布局文件的所有修订版本（这或许是你非常渴望拥有的功能）。采用版本控制系统 （VCS）是个明智的选择。有了它你就可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态。你可以比较文件的变化细节，查出最 后是谁修改了哪个地方，从而导致出现怪异问题，又是谁在何时报告了某个功能缺陷等等。使用版本控制系统通常还意味着，就算你乱来一气把整个项目中的文件改 的改删的删，你也照样可以轻松恢复到原先的样子。但额外增加的工作量却微乎其微。</p>
@@ -47,7 +49,7 @@
 </ul>
 <p>自诞生于 2005 年以来，Git 日臻成熟完善，在高度易用的同时，仍然保留着初期设定的目标。它的速度飞快，极其适合管理大项目，它还有着令人难以置信的非线性分支管理系统（见第三章），可以应付各种复杂的项目开发需求。</p>
 <h3 id="1-3_Git_基础">1.3 Git 基础</h3>
-<p>那么，简单地说，Git 究竟是怎样的一个系统呢？请注意，接下来的内容非常重要，若是理解了 Git 的思想和基本工作原理，用起来就会知其所以然，游刃有余。在开始学习 Git 的时候，请不要尝试把各种概念和其他版本控制系统（诸如 Subversion 和 Perforce 等）相比拟，否则容易混淆���个操作的实际意义。Git 在保存和处理各种信息的时候，虽然操作起来的命令形式非常相近，但它与其他版本控制系统的做法颇为不同。理解这些差异将有助于你准确地使用 Git 提供的各种工具。</p>
+<p>那么，简单地说，Git 究竟是怎样的一个系统呢？请注意，接下来的内容非常重要，若是理解了 Git 的思想和基本工作原理，用起来就会知其所以然，游刃有余。在开始学习 Git 的时候，请不要尝试把各种概念和其他版本控制系统（诸如 Subversion 和 Perforce 等）相比���，否则容易混淆每个操作的实际意义。Git 在保存和处理各种信息的时候，虽然操作起来的命令形式非常相近，但它与其他版本控制系统的做法颇为不同。理解这些差异将有助于你准确地使用 Git 提供的各种工具。</p>
 <h3 id="直接记录快照，而非差异比较">直接记录快照，而非差异比较</h3>
 <p>Git 和其他版本控制系统的主要差别在于，Git 只关心文件数据的整体是否发生变化，而大多数其他系统则只关心文件内容的具体差异。这类系统 （CVS，Subversion，Perforce，Bazaar 等等）每次记录有哪些文件作了更新，以及都更新了哪些行的什么内容，请看图 1-4。</p>
 <h3 id="Git详解之一_Git起步">Git详解之一 Git起步</h3>
@@ -87,7 +89,7 @@
 </ol>
 <p>所以，我们可以从文件所处的位置来判断状态：如果是 Git 目录中保存着的特定版本文件，就属于已提交状态；如果作了修改并已放入暂存区域，就属于已暂存状态；如果自上次取出后，作了修改但还没有放到暂存区域，就 是已修改状态。到第二章的时候，我们会进一步了解其中细节，并学会如何根据文件状态实施后续操作，以及怎样跳过暂存直接提交。</p>
 <h3 id="1-4_安装_Git">1.4 安装 Git</h3>
-<p>是时候动手尝试下 Git 了，不过得先安装好它。有许多种安装方式，主要分为两种，一种是通过编译源代码来安装；另一种是���用为特定平台预编译好的安装包。</p>
+<p>是时候动手尝试下 Git 了，不过得先安装好它。有许多种安装方式，主要分为两种，一种是通过编译源代码���安装；另一种是使用为特定平台预编译好的安装包。</p>
 <p>从源代码安装<br>若是条件允许，从源代码安装有很多好处，至少可以安装最新的版本。Git 的每个版本都在不断尝试改进用户体验，所以能通过源代码自己编译安装最新版本就再好不过了。有些 Linux 版本自带的安装包更新起来并不及时，所以除非你在用最新的 distro 或者 backports，那么从源代码安装其实该算是最佳选择。</p>
 <p>Git 的工作需要调用 curl，zlib，openssl，expat，libiconv 等库的代码，所以需要先安装这些依赖工具。在有 yum 的系统上（比如 Fedora）或者有 apt-get 的系统上（比如 Debian 体系），可以用下面的命令安装：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -153,7 +155,7 @@
 <p>第一个要配置的是你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：</p>
 <p>$ git config —global user.name “John Doe” $ git config —global user.email johndoe@example.com<br>如果用了 —global 选项，那么更改的配置文件就是位于你用户主目录下的那个，以后你所有的项目都会默认使用这里配置的用户信息。如果要在某个特定的项目中使用其他名字或者电邮，只要去掉—global 选项重新配置即可，新的设定保存在当前项目的.git/config 文件里。</p>
 <h3 id="文本编辑器">文本编辑器</h3>
-<p>接下来要设置的是默认使用的文本编辑器。Git 需要你输入一些额外消息的时候，会自动调用一个外部文本编辑器给你用。默认会使用操作系统指定的默���编辑器，一般可能会是 Vi 或者 Vim。如果你有其他偏好，比如 Emacs 的话，可以重新设置：</p>
+<p>接下来要设置的是默认使用的文本编辑器。Git 需要你输入一些额外消息的时候，会自动调用一个外部文本编辑器给你用。默认会使用���作系统指定的默认编辑器，一般可能会是 Vi 或者 Vim。如果你有其他偏好，比如 Emacs 的话，可以重新设置：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>$ git config --<span class="keyword">global</span> core.<span class="keyword">editor</span> emacs
 </pre></td></tr></table></figure>
@@ -201,7 +203,9 @@
     <summary type="html">
     <![CDATA[<h1 id="Git起步">Git起步</h1>
 <h3 id="起步">起步</h3>
-<p>本章介绍开始使用 Git 前的相关知识。我们会先了解一些版本控制工具的历史背景，然后试着让 Git 在你的系统上跑起来，直到最后配置好，可以正常开始开发工作。读完本章，你就会明白为什]]>
+<p>本章介绍开始使用 Git 前的相关知识。我们会先了解一些版本控制工具的历史背景，然后试着让 Git 在你的系统上跑起来，直到最后配置好，可以正常开始开发工作。读完本章，你就会明白为什么 Git 会如此流行，为什么你应该立即开始使用它。</p>
+ ]]>
+    
     </summary>
     
       <category term="Git" scheme="http://biancheng.me/tags/Git/"/>
@@ -618,7 +622,7 @@ mv id_rsa* key_backup
         state    <span class="comment">//被输出:success  </span>
     <span class="keyword">case</span> (<span class="keyword">let</span> errorCode, _):  
         <span class="string">"error code is \(errorCode)"</span>  
-}  <span class="comment">// ���盖了所有可能的case，不用写default了  </span>
+}  <span class="comment">// 涵盖了所有可能的case，不用写default了  </span>
 这样也是可以的：
 <span class="keyword">let</span> request = (<span class="number">0</span>,<span class="string">"success"</span>)  
 <span class="keyword">switch</span> request {  
@@ -739,7 +743,7 @@ mv id_rsa* key_backup
 
 
 <h3 id="AFHTTPRequestOperation_核心代码">AFHTTPRequestOperation 核心代码</h3>
-<p>与NSURLConnection对象不同，每个共享应用范围的设置如会话管理、缓存策略、Cookie存储以及URL协议等，这些NSURLSession对象都可以单独进行配置。使用特定的配置来初始化会话，它可以发送任务来获取数据，并上传或下载文件。</p>
+<p>与NSURLConnection对象不同，每个共享应用范围的设置如会话管理、缓存策略、Cookie存储以及URL协议等，这些NSURLSession对象都可以单独进行配置。使用特定的配置来初���化会话，它可以发送任务来获取数据，并上传或下载文件。</p>
 <p>在AFNetworking 2.0中，使用AFHTTPRequestOperation，有可能创建一个没有额外开销的独立的网络请求来获取数据。NSURLSession则需要更多的开销，为了获得所要请求的数据。</p>
 <p>接下来，将要通过AFHTTPSessionManager创建一个单例，并创建一个任务和启动它。</p>
 <p>AFNetworking 2.x</p>
@@ -905,7 +909,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>也许聪明的你已经看到了，还是一样的，创建新的行为规则（UICollisionBehavior），然后加到animator中…唯一区别的地方是碰撞需要设定碰撞边界范围translatesReferenceBoundsIntoBoundary将整个参照view（也就是self.view）的边框作为碰撞边界（另外你还可以使用setTranslatesReferenceBoundsIntoBoundaryWithInsets:这样的方法来设定某一个区域作为碰撞边界，更复杂的边界可以使用addBoundaryWithIdentifier:forPath:来添加UIBezierPath，或者addBoundaryWithIdentifier:fromPoint:toPoint:来添加一条线段为边界，详细地还请查阅文档）；另外碰撞是有回调的，可以在self中实现UICollisionBehaviorDelegate。<br>最后，只是直直地掉下来的话未免太无聊了，加个角度吧：<br>1<br>aView.transform = CGAffineTransformRotate(aView.transform, 45);<br>结果是这样的，帅死了…这在以前只用iOS SDK的话，够写上很长时间了吧..<br>碰撞和重力同时作用的动力UI<br>碰���和重力同时作用的动力UI<br>碰撞的delegate可以帮助我们了解碰撞的具体情况，包括哪个item和哪个item开始发生碰撞，碰撞接触点是什么，是否和边界碰撞，和哪个边界碰撞了等信息。这些回调方法保持了Apple一向的命名原则，所以通俗易懂。需要多说一句的是回调方法中对于ReferenceView的Bounds做边界的情况，BoundaryIdentifier将会是nil，自行添加的其他边界的话，ID自然是添加时指定的ID了。<br>– collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:<br>– collisionBehavior:beganContactForItem:withItem:atPoint:<br>– collisionBehavior:endedContactForItem:withBoundaryIdentifier:<br>– collisionBehavior:endedContactForItem:withItem:<br>其他能实现的效果<br>除了重力和碰撞，iOS SDK还预先帮我们实现了一些其他的有用的物理行为，它们包括<br>UIAttachmentBehavior 描述一个view和一个锚相连接的情况，也可以描述view和view之间的连接。attachment描述的是两个点之间的连接情况，可以通过设置来模拟无形变或者弹性形变的情况（再次希望你还记得这些概念，简单说就是木棒连接和弹簧连接两个物体）。当然，在多个物体间设定多个；UIAttachmentBehavior，就可以模拟多物体连接了..有了这些，似乎可以做个老鹰捉小鸡的游戏了- -…<br>UISnapBehavior 将UIView通过动画吸附到某个点上。初始化的时候设定一下UISnapBehavior的initWithItem:snapToPoint:就行，因为API非常简单，视觉效果也很棒，估计它是今后非游戏app里会被最常用的效果之一了；<br>UIPushBehavior 可以为一个UIView施加一个力的作用，这个力可以是持续的，也可以只是一个冲量。当然我们可以指定力的大小，方向和作用点等等信息。<br>UIDynamicItemBehavior 其实是一个辅助的行为，用来在item层级设定一些参数，比如item的摩擦，阻力，角阻力，弹性密度和可允许的旋转等等<br>UIDynamicItemBehavior有一组系统定义的默认值，<br>allowsRotation YES<br>density 1.0<br>elasticity 0.0<br>friction 0.0<br>resistance 0.0<br>所有的UIDynamicBehavior都是可以独立作用的，同时作用时也遵守力的合成。也就是说，组合使用行为可以达到一些较复杂的效果。举个例子，希望模拟一个drag物体然后drop后下落的过程，可以用如下代码：</p>
+<p>也许聪明的你已经看到了，还是一样的，创建新的行为规则（UICollisionBehavior），然后加到animator中…唯一区别的地方是碰撞需要设定碰撞边界范围translatesReferenceBoundsIntoBoundary将整个参照view（也就是self.view）的边框作为碰撞边界（另外你还可以使用setTranslatesReferenceBoundsIntoBoundaryWithInsets:这样的方法来设定某一个区域作为碰撞边界，更复杂的边界可以使用addBoundaryWithIdentifier:forPath:来添加UIBezierPath，或者addBoundaryWithIdentifier:fromPoint:toPoint:来添加一条线段为边界，详细地还请查阅文档）；另外碰撞是有回调的，可以在self中实现UICollisionBehaviorDelegate。<br>最后，只是直直地掉下来的话未免太无聊了，加个角度吧：<br>1<br>aView.transform = CGAffineTransformRotate(aView.transform, 45);<br>结果是这样的，帅死了…这在���前只用iOS SDK的话，够写上很长时间了吧..<br>碰撞和重力同时作用的动力UI<br>碰撞和重力同时作用的动力UI<br>碰撞的delegate可以帮助我们了解碰撞的具体情况，包括哪个item和哪个item开始发生碰撞，碰撞接触点是什么，是否和边界碰撞，和哪个边界碰撞了等信息。这些回调方法保持了Apple一向的命名原则，所以通俗易懂。需要多说一句的是回调方法中对于ReferenceView的Bounds做边界的情况，BoundaryIdentifier将会是nil，自行添加的其他边界的话，ID自然是添加时指定的ID了。<br>– collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:<br>– collisionBehavior:beganContactForItem:withItem:atPoint:<br>– collisionBehavior:endedContactForItem:withBoundaryIdentifier:<br>– collisionBehavior:endedContactForItem:withItem:<br>其他能实现的效果<br>除了重力和碰撞，iOS SDK还预先帮我们实现了一些其他的有用的物理行为，它们包括<br>UIAttachmentBehavior 描述一个view和一个锚相连接的情况，也可以描述view和view之间的连接。attachment描述的是两个点之间的连接情况，可以通过设置来模拟无形变或者弹性形变的情况（再次希望你还记得这些概念，简单说就是木棒连接和弹簧连接两个物体）。当然，在多个物体间设定多个；UIAttachmentBehavior，就可以模拟多物体连接了..有了这些，似乎可以做个老鹰捉小鸡的游戏了- -…<br>UISnapBehavior 将UIView通过动画吸附到某个点上。初始化的时候设定一下UISnapBehavior的initWithItem:snapToPoint:就行，因为API非常简单，视觉效果也很棒，估计它是今后非游戏app里会被最常用的效果之一了；<br>UIPushBehavior 可以为一个UIView施加一个力的作用，这个力可以是持续的，也可以只是一个冲量。当然我们可以指定力的大小，方向和作用点等等信息。<br>UIDynamicItemBehavior 其实是一个辅助的行为，用来在item层级设定一些参数，比如item的摩擦，阻力，角阻力，弹性密度和可允许的旋转等等<br>UIDynamicItemBehavior有一组系统定义的默认值，<br>allowsRotation YES<br>density 1.0<br>elasticity 0.0<br>friction 0.0<br>resistance 0.0<br>所有的UIDynamicBehavior都是可以独立作用的，同时作用时也遵守力的合成。也就是说，组合使用行为可以达到一些较复杂的效果。举个例子，希望模拟一个drag物体然后drop后下落的过程，可以用如下代码：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -981,7 +985,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>viewDidiLoad时先在现在环境中加入了重力，然后监测到pan时附加一个UIAttachmentBehavior，并在pan位置更新更新其锚点，此时UIAttachmentBehavior和UIGravityBehavior将同时作用（想象成一根木棒连着手指处和view）。在手势结束时将这个UIAttachmentBehavior移除，view将在重力作用下下落。整个过程如下图：<br>Drag &amp; Drop<br>Drag &amp; Drop<br>UIKit力学的物理学分析<br>既然是力学，那显然各种单位是很重要的。在现实世界中，理想情况下物体的运动符合牛顿第二运动定理，在国际单位制中，力的单位是牛顿（N），距离单位是米（m），时间单位是秒（s），质量单位是千克（kg）。根据地球妈妈的心情，我们生活在这样一套体制中：重力加速度约为9.8m/s2 ，加速度的单位是m/s2 ，速度单位是m/s，牛顿其实是kg·m/s2 ，即1牛顿是让质量为1千克的物体产生1米每二次方秒的加速度所需要的力。<br>以上是帮助您回忆初中知识，而现在这一套体系在UIKit里又怎么样呢？这其实是每一个物理引擎都要讨论和明白的事情，UIKit的单位体制里由于m这个东西太过夸张，因此用等量化的点（point，之后简写为p）来代替。具体是这样的：UI重力加速度定义为1000p/s2 ，这样的定义有两方面的考虑，一时为了简化，好记，确实1000比9.8来的只观好看，二是也算符合人们的直感：一个UIView从y=0开始自由落体落到屏幕底部所需的时间，在3.5寸屏幕上为0.98秒，4寸屏幕上为1.07秒，1秒左右的自由落体的视觉效果对人眼来说是很舒服能进行判断的。<br>那么UIView的质量又如何定义呢，这也是很重要的，并涉及到力作用和加速度下UIView的表现。苹果又给出了自己的“UIKit牛顿第二定律”，定义了1单位作用力相当于将一个100px100p的默认密度的UIView以100p/s2 的加速度移动。这里需要注意默认密度这个假设，因为在UIDynamicItem的委托中并没有实现任何密度相关的定义，而是通过UIDynamicItemBehavior来附加指定的。默认情况下，密度值为1，这就相当于质量是10000单位的UIView在1单位的作用力下可以达到1/10的UI重力加速度。<br>这样类比之后的结论是，如果将1单位的UI力学中的力等同于1牛顿的话：<br>1000单位的UI质量，与现实世界中1kg的质量相当，即一个点等同一克；<br>屏幕的100像素的长度，约和现实世界中0.99米相当（完全可以看为1米）<br>UI力学中的默认密度，约和现实世界的0.1kg/m2 相���<br>可以说UIKit为我们构建了一套适应iOS屏幕的相当优雅的力学系统，不仅让人过目不忘，在实际的物理情景和用户体验中也近乎完美。在开发中，我们可以参照这些关系寻找现实中的例子，然后将其带入UIKit的力学系统中，以得到良好的模拟效果。<br>UIKit动力学自定义<br>除了SDK预先定义好的行为以外，我们还可以自己定义想要的行为。这种定义可以发生在两个层级上，一种是将官方的行为打包，以简化实现。另一种是完全定义新的计算规则。<br>对于第一种，其实考虑一下上面的重力+边界碰撞，或者drag &amp; drop行为，其实都是两个甚至多个行为的叠加。要是每次都这样设定一次的话，不是很辛苦么，还容易遗忘出错。于是一种好的方式是将它们打包封装一下。具体地，如下步骤：<br>继承一下UIDynamicBehavior（在这里UIDynamicBehavior类似一个抽象类，并没有具体实现什么行为）<br>在子类中实现一个类似其他内置行为初始化方法initWithItems:，用以添加物体和想要打包的规则。当然你如果喜欢用其他方式也行..只不过和自带的行为保持API统一对大家都有好处..添加item的话就用默认规则的initWithItems:就行，对于规则UIDynamicBehavior提供了一个addChildBehavior:的方法，来将其他规则加入到当前规则里<br>没有第三步了，使用就行了。<br>一个例子，打包了碰撞和重力两种行为，定义之后使用时就只需要写一次了。当然这只是最简单的例子和运用，当行为复杂以后，这样的使用方法是不可避免的，否则管理起来会让人有想死的心。另外，将手势等交互的方式也集成之中，进一步封装调用细节会是不错的实践。</p>
+<p>viewDidiLoad时先在现在环境中加入了重力，然后监测到pan时附加一个UIAttachmentBehavior，并在pan位置更新更新其锚点，此时UIAttachmentBehavior和UIGravityBehavior将同时作用（想象成一根木棒连着手指处和view）。在手势结束时将这个UIAttachmentBehavior移除，view将在重力作用下下落。整个过程如下图：<br>Drag &amp; Drop<br>Drag &amp; Drop<br>UIKit力学的物理学分析<br>既然是力学，那显然各种单位是很重要的。在现实世界中，理想情况下物体的运动符合牛顿第二运动定理，在国际单位制中，力的单位是牛顿（N），距离单位是米（m），时间单位是秒（s），质量单位是千克（kg）。根据地球妈妈的心情，我们生活在这样一套体制中：重力加速度约为9.8m/s2 ，加速度的单位是m/s2 ，速度单位是m/s，牛顿其实是kg·m/s2 ，即1牛顿是让质量为1千克的物体产生1米每二次方秒的加速度所需要的力。<br>以上是帮助您回忆初中知识，而现在这一套体系在UIKit里又怎么样呢？这其实是每一个物理引擎都要讨论和明白的事情，UIKit的单位体制里由于m这个东西太过夸张，因此用等量化的点（point，之后简写为p）来代替。具体是这样的：UI重力加速度定义为1000p/s2 ，这样的定义有两方面的考虑，一时为了简化，好记，确实1000比9.8来的只观好看，二是也算符合人们的直感：一个UIView从y=0开始自由落体落到屏幕底部所需的时间，在3.5寸屏幕上为0.98秒，4寸屏幕上为1.07秒，1秒左右的自由落体的视觉效果对人眼来说是很舒服能进行判断的。<br>那么UIView的质量又如何定义呢，这也是很重要的，并涉及到力作用和加速度下UIView的表现。苹果又给出了自己的“UIKit牛顿第二定律”，定义了1单位作用力相当于将一个100px100p的默认密度的UIView以100p/s2 的加速度移动。这里需要注意默认密度这个假设，因为在UIDynamicItem的委托中并没有实现任何密度相关的定义，而是通过UIDynamicItemBehavior来附加指定的。默认情况下，密度值为1，这就相当于质量是10000单位的UIView在1单位的作用力下可以达到1/10的UI重力加速度。<br>这样类比之后的结论是，如果将1单位的UI力学中的力等同于1牛顿的话：<br>1000单位的UI质量，与现实世界中1kg的质量相当，即一个点等同一克；<br>屏幕的100像素的长度，约和现实世界中0.99米相当（完全可以看为1米）<br>UI力学中的默认密度，约和现实世界的0.1kg/m2 相当<br>可以说UIKit为我们构建了一套适应iOS屏幕的相当优雅的力学系统，不仅让人过目不忘，在实际的物理情景和用户体验中也近乎完美。在开发中，我们可以参照这些关系寻找现实中的例子，然后将其带入UIKit的力学系统中，以得到良好的模拟效果。<br>UIKit动力学自定义<br>除了SDK预先定义好的行为以外，我们还可以自己定义想要的行为。这种定义可以发生在两个层级上，一种是将官方的行为打包，以简化实现。另一种是完全定义新的计算规则。<br>对于第一种，其实考虑一下上面的重力+边界碰撞，或者drag &amp; drop行为，其实都是两个甚至多个行为的叠加。要是每次都这样设定一次的话，不是很辛苦么，还容易遗忘出错。于是一种好的方式是将它们打包封装一下。具体地，如下步骤：<br>继承一下UIDynamicBehavior（在这里UIDynamicBehavior类似一个抽象类，并没有具体实现什么行为）<br>在子类中实现一个类似其他内置行为初始化方法initWithItems:，用以添加物体和想要打包的规则。当然你如果喜欢用其他方式也行..只不过和自带的行为保持API统一对大家都有好处..添加item的话就用默认规则的initWithItems:就行，对于规则UIDynamicBehavior提供了一个addChildBehavior:的方法，来将其他规则加入到当前规则里<br>没有第三步了，使用就行了。<br>一个例子，打包了碰撞和重力两种行为，定义之后使用时就只需要写一次了。当然这只是最简单的例子和运用，当行为复杂以后，这样的使用方法是不可避免的，否则管理起来会让人有想死的心。另外，将手势等交互的方式也集成之中，进一步封装调用细节会是不错的实践。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -1053,7 +1057,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 <p><img src="http://7xnr36.com1.z0.glb.clouddn.com/IMG_0773.JPG" alt="月季"></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>理解分为两类，将需要理解的事物归到已经理解的，此为上策；不然，那就只能强制理解，习惯的力量是无穷的，如果习惯了，那他就应该是那样���不需要理解了。</p>
+    <![CDATA[<p>理解分为两类，将需要理解的事物归到已经理解的，此为上策；不���，那就只能强制理解，习惯的力量是无穷的，如果习惯了，那他就应该是那样，不需要理解了。</p>
 ]]>
     
     </summary>

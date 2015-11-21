@@ -4,7 +4,7 @@
   <subtitle><![CDATA[熊孩子的学习]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://biancheng.me/"/>
-  <updated>2015-11-21T06:00:48.137Z</updated>
+  <updated>2015-11-21T06:01:54.862Z</updated>
   <id>http://biancheng.me/</id>
   
   <author>
@@ -19,9 +19,11 @@
     <link href="http://biancheng.me/2015/11/21/%E4%BD%BF%E7%94%A8charles(%E9%9D%92%E8%8A%B1%E7%93%B7)%EF%BC%8C%E5%9C%A8mac%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AF%B9android%E6%89%8B%E6%9C%BA%E6%8A%93%E5%8C%85/"/>
     <id>http://biancheng.me/2015/11/21/使用charles(青花瓷)，在mac环境下对android手机抓包/</id>
     <published>2015-11-21T05:50:57.000Z</published>
-    <updated>2015-11-21T05:52:30.000Z</updated>
+    <updated>2015-11-21T06:01:47.000Z</updated>
     <content type="html"><![CDATA[<h4 id="1-下载工具">1.下载工具</h4>
-<p>安装抓包工具 Charles , 到官网<a href="http://www.charlesproxy.com/可下载到最新版本" target="_blank">http://www.charlesproxy.com/可下载到最新版本</a></p>
+<p>安装抓包工具 Charles , 到<a href="http://www.charlesproxy.com/" target="_blank">官网</a>可下载到最新版本</p>
+<a id="more"></a>
+
 <h4 id="2-用安装了charles的电脑，代理待抓包anroid手机的网络连接">2.用安装了charles的电脑，代理待抓包anroid手机的网络连接</h4>
 <p>首先查看Mac的网络IP地址；打开电脑Charles软件后，接着打开手机设置，进入当前wifi连接，进入wifi设置界面，找到<code>代理</code>选项，设置<code>代理</code>为手动，将服务器填为电脑的IP，端口默认为8888（在charles的proxy setting中可以改这个端口号）。这时Charles弹出确认框，点击Allow按钮即可。然后就可以通过电脑抓包<br>手机的http请求了。</p>
 <h4 id="3-中文乱码问题解决">3.中文乱码问题解决</h4>
@@ -29,7 +31,7 @@
 <h4 id="HTTPS抓包:">HTTPS抓包:</h4>
 <p>如果不进行下面的设置，https的reqeust和response都是乱码，设置完之后https就可以抓包了。</p>
 <h5 id="手机端设置">手机端设置</h5>
-<p>下载Charles证书<a href="http://www.charlesproxy.com/ssl.zip，解压后导入到手机中，然后设置-&gt;安全-&gt;凭据存储-&gt;从存储设备安装，选中证书。" target="_blank">http://www.charlesproxy.com/ssl.zip，解压后导入到手机中，然后设置-&gt;安全-&gt;凭据存储-&gt;从存储设备安装，选中证书。</a></p>
+<p>下载Charles证书<a href="http://www.charlesproxy.com/ssl.zip" target="_blank">http://www.charlesproxy.com/ssl.zip</a>，解压后导入到手机中，然后设置-&gt;安全-&gt;凭据存储-&gt;从存储设备安装，选中证书。</p>
 <p>v3.10之前的版本使用一个SSL根证书。仍然可以<a href="http://www.charlesproxy.com/assets/legacy-ssl/ssl.zip" target="_blank">下载证书</a>(安装在移动设备上)。注意,这些证书将不会在v3.10以及之后的版本有效。</p>
 <p>如果你运行的是v3.10或之后,请到帮助菜单,根据子菜单SSL Proxying提示操作。</p>
 <h5 id="电脑端设置">电脑端设置</h5>
@@ -39,7 +41,9 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h4 id="1-下载工具">1.下载工具</h4>
-<p>安装抓包工具 Charles , 到官网<a href="http://www.charlesproxy.com/可下载到最新版本" target="_blank">http://www.charlesproxy.co]]>
+<p>安装抓包工具 Charles , 到<a href="http://www.charlesproxy.com/" target="_blank">官网</a>可下载到最新版本</p>
+]]>
+    
     </summary>
     
       <category term="Mac" scheme="http://biancheng.me/tags/Mac/"/>
@@ -104,7 +108,7 @@
 </pre></td></tr></table></figure>
 
 
-<p>Git 的工作完全依赖于这类指纹字串，所以你会经常看到这样的哈希值。实际上，所有保存在 Git 数据库中的东西都是用此哈希值来作索引的，而不是靠文件名。</p>
+<p>Git 的工作完全依赖于这类指纹字串，所以你会经常看到这样的哈希值。实际上，所有保存在 Git 数据库中的���西都是用此哈希值来作索引的，而不是靠文件名。</p>
 <h3 id="多数操作仅添加数据">多数操作仅添加数据</h3>
 <p>常用的 Git 操作大多仅仅是把数据添加到数据库。因为任何一种不可逆的操作，比如删除数据，都会使回退或重现历史版本变得困难重重。在别的 VCS 中，若还未提交更新，就有可能丢失或者混淆一些修改的内容，但在 Git 里，一旦提交快照之后就完全不用担心丢失数据，特别是养成定期推送到其他仓库的习惯的话。</p>
 <p>这种高可靠性令我们的开发工作安心不少，尽管去做各种试验性的尝试好了，再怎样也不会弄丢数据。至于 Git 内部究竟是如何保存和恢复数据的，我们会在第九章讨论 Git 内部原理时再作详述。</p>
@@ -255,7 +259,7 @@
     <content type="html"><![CDATA[<h3 id="先屡一下思路">先屡一下思路</h3>
 <ol>
 <li>首先hexo是基于nodejs的，所以必须安装nodejs </li>
-<li>安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它 </li>
+<li>安装nodejs方法很多，我选择homebrew安装方式���所以需要安装它 </li>
 <li>安装homebrew就很简单了，mac自带ruby脚本功能，一句话搞定 </li>
 <li>hexo提交部署github需要使用git工具，所以需要安装git，用homebrew的话也是一句话搞定 </li>
 <li>OK整理一下安装顺序（homebrew-nodejs-hexo-git） </li>
@@ -385,9 +389,9 @@ mv id_rsa* key_backup
     <summary type="html">
     <![CDATA[<h3 id="先屡一下思路">先屡一下思路</h3>
 <ol>
-<li>首���hexo是基于nodejs的，所以必须安装nodejs </li>
+<li>首先hexo是基于nodejs的，所以必须安装nodejs </li>
 <li>安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它 </li>
-<li>安装homebrew就很简单了，mac自带ruby脚本功能，一句话搞定 </li>
+<li>���装homebrew就很简单了，mac自带ruby脚本功能，一句话搞定 </li>
 <li>hexo提交部署github需要使用git工具，所以需要安装git，用homebrew的话也是一句话搞定 </li>
 <li>OK整理一下安装顺序（homebrew-nodejs-hexo-git） </li>
 </ol>
@@ -719,7 +723,7 @@ mv id_rsa* key_backup
 <h3 id="新设备要求:_iOS_7,_Mac_OS_X_10-9,_watchOS_2,_tvOS_9,_&amp;_Xcode_7">新设备要求: iOS 7, Mac OS X 10.9, watchOS 2, tvOS 9, &amp; Xcode 7</h3>
 <p>AFNetworking 3.0正式支持的iOS 7， Mac OS X的10.9， watchOS 2 ， tvOS 9 和Xcode 7。如果你想使用AFNetworking在针对较旧版本的SDK项目，请检查README的兼容性信息。</p>
 <h3 id="NSURLConnection的API已废弃">NSURLConnection的API已废弃</h3>
-<p>AFNetworking 1.0建立在NSURLConnection的基础API之上 ，AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession���API的选项。 AFNetworking 3.0现已完全基于NSURLSession的API，这降低了维护的负担，同时支持苹果增强关于NSURLSession提供的任何额外功能。由于Xcode 7中，NSURLConnection的API已经正式被苹果弃用。虽然该API将继续运行，但将没有新功能将被添加，并且苹果已经通知所有基于网络的功能，以充分使NSURLSession向前发展。</p>
+<p>AFNetworking 1.0建立在NSURLConnection的基础API之上 ，AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API的选项。 AFNetworking 3.0现已完全基于NSURLSession的API，这降低了维护的负担，同时支持苹果增强关于NSURLSession提供的任何额外功能。由于Xcode 7中，NSURLConnection的API已经正式被苹果弃用。虽然该API将继续运行，但将没有新功能将被添加，并且苹果已经通知所有基于网络的功能，以充分使NSURLSession向前发展。</p>
 <p>AFNetworking 2.X将继续获得关键的隐患和安全补丁，但没有新的功能将被添加。Alamofire(Swift下的网络请求)软件基金会建议，所有的项目迁移到基于NSURLSession的API。</p>
 <h3 id="弃用的类">弃用的类</h3>
 <p>下面的类已从AFNetworking 3.0中废弃：</p>
@@ -901,7 +905,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>代码很简单，<br>以现在ViewController的view为参照系（ReferenceView），来初始化一个UIDynamicAnimator。<br>然后分配并初始化一个动力行为，这里是UIGravityBehavior，将需要进行物理模拟的UIDynamicItem传入。UIGravityBehavior的initWithItems:接受的参数为包含id的数组，另外UIGravityBehavior实例还有一个addItem:方法接受单个的id。就是说，实现了UIDynamicItem委托的对象，都可以看作���被力学特性影响的，进而参与到计算中。UIDynamicItem委托需要我们实现bounds，center和transform三个属性，在UIKit Dynamics计算新的位置时，需要向Behavior内的item询问这些参数，以进行正确计算。iOS7中，UIView和UICollectionViewLayoutAttributes已经默认实现了这个接口，所以这里我们直接把需要模拟重力的UIView添加到UIGravityBehavior里就行了。<br>把配置好的UIGravityBehavior添加到animator中。<br>strong持有一下animator，避免当前scope结束被ARC释放掉（后果当然就是UIView在哪儿傻站着不掉）<br>运行结果，view开始受重力影响了：<br>重力作用下的UIview<br>重力作用下的UIview<br>碰撞，我要碰撞<br>没有碰撞的话，物理引擎就没有任何意义了。和重力行为类似，碰撞也有一个UIDynamicBehavior子类来描述碰撞行为，即UICollisionBehavior。在上面的demo中加上几句：</p>
+<p>代码很简单，<br>以现在ViewController的view为参照系（ReferenceView），来初始化一个UIDynamicAnimator。<br>然后分配并初始化一个动力行为，这里是UIGravityBehavior，将需要进行物理模拟的UIDynamicItem传入。UIGravityBehavior的initWithItems:接受的参数为包含id的数组，另外UIGravityBehavior实例还有一个addItem:方法接受单个的id。就是说，实现了UIDynamicItem委托的对象，都可以看作是被力学特性影响的，进而参与到计算中。UIDynamicItem委托需要我们实现bounds，center和transform三个属性，在UIKit Dynamics计���新的位置时，需要向Behavior内的item询问这些参数，以进行正确计算。iOS7中，UIView和UICollectionViewLayoutAttributes已经默认实现了这个接口，所以这里我们直接把需要模拟重力的UIView添加到UIGravityBehavior里就行了。<br>把配置好的UIGravityBehavior添加到animator中。<br>strong持有一下animator，避免当前scope结束被ARC释放掉（后果当然就是UIView在哪儿傻站着不掉）<br>运行结果，view开始受重力影响了：<br>重力作用下的UIview<br>重力作用下的UIview<br>碰撞，我要碰撞<br>没有碰撞的话，物理引擎就没有任何意义了。和重力行为类似，碰撞也有一个UIDynamicBehavior子类来描述碰撞行为，即UICollisionBehavior。在上面的demo中加上几句：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -1067,7 +1071,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>@end<br>另一种比较高级一点，需要对计算完全定义。在默认的行为或者它们组合不能满足禽兽般的产品经理/设计师的需求是，亲爱的骚年..开始自己写吧..其实说简单也简单，UIDynamicBehavior里提供了一个@property(nonatomic, copy) void (^action)(void)，animator将在每次animation step（就是需要计算动画时）调用这个block。就是说，你可以通过设定这个block来实现自己的行为。基本思路就是在这个block中向所有item询问它们当前的center和transform状态，然后开始计算，然后把计算后的相应值再赋予item，从而改变在屏幕上的位置，大小，角度等。<br>UIKit动力学的性能分析和限制<br>使用物理引擎不是没有代价的的，特别是在碰撞检测这块，是要耗费一定CPU资源的。但是以测试的情况来看，如果只是UI层面上的碰撞检测还是没有什么问题的，我自己实测iPhone4上同时进行数十个碰撞计算完全没有掉帧的情况。因此如果只是把其用在UI特效上，应该不用太在意资源的耗费。但是如果同时有成百上千的碰撞需要处理的情况，可能会出现卡顿吧。<br>对于UIDynamicItem来说，当它们被添加到动画系统后，我们只能通过动画系统来改变位置，而外部的对于UIDynamicItem的center,transform等设定是被忽略的（其实这也是大多数2D引擎的实现策略，算不上限制）。<br>主要的限制是在当计算迭代无法得到有效解的时候，动画将无法正确呈现。这对于绝大多数物理引擎都是一样的。迭代不能收敛时整个物理系统处于不确定的状态，比如初始时就设定了碰撞物体位于边界内部，或者在狭小空间内放入了过多的非弹性碰撞物体等。另外，这个引擎仅仅只是用来呈现UI效果，它并没有保证物理上的精确度，因此如果要用它来做UI以外的事情，有可能是无法得到很好的结果的。<br>总结<br>总之就是一套全新的UI交互的视觉体验和效果，但是并非处处适用。在合适的地方使用可以增加体验，但是也会有其他方式更适合的情况。</p>
+<p>@end<br>另一种比较高级一点，需要对计算完全定义。在默认的行为或者它们组合不能满足禽兽般的产品经理/设计师的需求是，亲爱的骚年..开始自己写吧..其实说简单也简单，UIDynamicBehavior里提供了一个@property(nonatomic, copy) void (^action)(void)，animator将在每次animation step（就是需要计算动画时）调用这个block。就是说，你可以通过设定这个block来实现自己的行为。基本思路就是在这个block中向所有item询问它们当前的center和transform状态，然后开始计算，然后把计算后的相应值再赋予item，从而改变在屏幕上的位置，大小，角度等。<br>UIKit动力学的性能分析和限制<br>使用物理引擎不是没有代价的的，特别是在碰撞检测这块，是要耗费一定CPU资源的。但是以测试的情况来看，如果只是UI层面上的碰撞检测还是没有什么问题的，我自己实测iPhone4上同时进行数十个碰撞计算完全没有掉帧的情况。因此如果只是把其用在UI特效上，应该不用太在意资源的耗费。但是如果同时有成百上千的碰撞需要处理的情况，可能会出现卡顿吧。<br>对于UIDynamicItem来说，当它们被添加到动画系统后，我们只能通过动画系统来改变位置，而外部的对于UIDynamicItem的center,transform���设定是被忽略的（其实这也是大多数2D引擎的实现策略，算不上限制）。<br>主要的限制是在当计算迭代无法得到有效解的时候，动画将无法正确呈现。这对于绝大多数物理引擎都是一样的。迭代不能收敛时整个物理系统处于不确定的状态，比如初始时就设定了碰撞物体位于边界内部，或者在狭小空间内放入了过多的非弹性碰撞物体等。另外，这个引擎仅仅只是用来呈现UI效果，它并没有保证物理上的精确度，因此如果要用它来做UI以外的事情，有可能是无法得到很好的结果的。<br>总结<br>总之就是一套全新的UI交互的视觉体验和效果，但是并非处处适用。在合适的地方使用可以增加体验，但是也会有其他方式更适合的情况。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="什么是UIKit动力学（UIKit_Dynamics）">什么是UIKit动力学（UIKit Dynamics）</h3>

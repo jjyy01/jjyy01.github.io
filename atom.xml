@@ -4,7 +4,7 @@
   <subtitle><![CDATA[熊孩子的学习]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://biancheng.me/"/>
-  <updated>2015-11-28T01:51:53.114Z</updated>
+  <updated>2015-11-30T06:10:05.261Z</updated>
   <id>http://biancheng.me/</id>
   
   <author>
@@ -13,6 +13,335 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Core Data基本介绍]]></title>
+    <link href="http://biancheng.me/2015/11/30/core-data%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://biancheng.me/2015/11/30/core-data基本介绍/</id>
+    <published>2015-11-30T06:08:25.000Z</published>
+    <updated>2015-11-30T06:09:53.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="简介">简介</h3>
+<p>大概10年前，在2005年4月，Apple发布了OS X 10.4版本，第一次引入了Core Data框架。那时YouTube也刚发布。</p>
+<p>Core Data提供了对象-关系映射(ORM)的功能，即能够将OC对象转化成数据，保存在SQLite数据库文件中，也能够将保存在数据库中的数据还原成OC对象。简单地用下图描述下它的作用：<br>  <img src="img/1359705997_4313.png" alt="core data"></p>
+<p>  左边是关系模型，即数据库，数据库里面有张person表，person表里面有id、name、age三个字段，而且有2条记录；<br>右边是对象模型，可以看到，有2个OC对象；<br>利用Core Data框架，我们就可以轻松地将数据库里面的2条记录转换成2个OC对象，也可以轻松地将2个OC对象保存到数据库中，变成2条表记录，而且不用写一条SQL语句。</p>
+<p>Core Data是模型层的技术。Core Data帮助你构建代表程序状态的模型层。Core Data也是一种持久化技术，它可以将模型的状态持久化到磁盘。但它更重要的特点是：Core Data不只是一个加载和保存数据的框架，它也能处理内存中的数据。</p>
+<p>如果你曾接触过Object-relational mapping(O/RM)，Core Data不仅是一种O/RM。如果你曾接触过SQL wrappers, Core Data也不是一种SQL wrapper。它确实默认使用SQL，但是，它是一种更高层次的抽象概念。如果你需要一个O/RM或者SQL wrapper，那么Core Data并不适合你。</p>
+<blockquote>
+<p>Core Data提供的最强大的功能之一是它的对象图形管理。为了更有效的使用Core Data, 你需要理解这一部分内容。</p>
+</blockquote>
+<p>还有一点需要注意：Core Data完全独立于任何UI层的框架。从设计的角度来说，它是完全的模型层的框架。</p>
+<h3 id="堆栈The_Stack">堆栈The Stack</h3>
+<p>Core Data中有不少组件，它是一种非常灵活的技术。在大多数使用情况里，设置相对来说比较简单。</p>
+<p>当所有组件绑定在一起，我们把它们称为Core Data Stack. 这种堆栈有两个主要部分。一部分是关于对象图管理，这是你需要掌握好的部分，也应该知道怎么使用。第二部分是关于持久化的，比如保存模型对象的状态和再次恢复对象的状态。</p>
+<p>在这两部分的中间，即堆栈中间，是持久化存储协调器(Persistent Store Coordinator, PSC)，也被朋友们戏称做中心监视局。通过它将对象图管理部分和持久化部分绑在一起。当这两部分中的一部分需要和另一部分交互，将通过PSC来调节。</p>
+<p><img src="img/7cc829d3gw1eap6hhq1gkj20yo108wi0.jpg" alt="core data"></p>
+<p>对象图管理是你的应用中模型层逻辑存在的地方。模型层对象存在于一个context里。在大多数设置中，只有一个context，所有的对象都放在这个context中。Core Data支持多个context，但是是针对更高级的使用情况。需要注意的是，每个context和其他context区分都很清楚。有个重要的事需要记住，对象和他们的context绑定在一起。每一个被管理的对象都知道它属于哪个context，每一个context也知道它管理着哪些对象。</p>
+<p>堆栈的另一部分是持久化发生的地方，比如Core Data从文件系统读或写。在所有情况下，持久化存储协调器(PSC)有一个属于自己的的持久化存储器(persistent store)，这个store在文件系统和SQLite数据库交互。为了支持更高级的设置，Core Data支持使用多个存储器附属于同一个持久化存储协调器，并且除了SQL，还有一些别的存储类型可以选择。</p>
+<p>一个常见的解决方案，看起来是这个样子的：</p>
+<p><img src="img/7cc829d3gw1eap6hgqs2xj20uk0gaq41.jpg" alt="core data"></p>
+<h2 id="模型文件">模型文件</h2>
+<p>在Core Data，需要进行映射的对象称为实体(entity)，而且需要使用Core Data的模型文件来描述app中的所有实体和实体属性。这里以Person(人)和Card(身份证)2个实体为例子，先看看实体属性和实体之间的关联关系：<br><img src="img/1359707024_5895.png" alt="core data"><br>Person实体中有：name（姓名）、age（年龄）、card（身份证）三个属性<br>Card实体中有：no（号码）、person（人）两个属性</p>
+<p>接下来看看创建模型文件的过程：</p>
+<p>1.选择模板</p>
+<p><img src="img/1359707426_5763.png" alt="core data"></p>
+<p>2.添加实体</p>
+<p><img src="img/1359707563_9302.png" alt="core data"></p>
+<p>3.添加Person的2个基本属性</p>
+<p><img src="img/1359707773_7614.png" alt="core data"></p>
+<p>4.添加Card的1个基本属性</p>
+<p><img src="img/1359707796_4561.png" alt="core data"></p>
+<p>5.建立Card和Person的关联关系</p>
+<p><img src="img/1359708105_6064.png" alt="core data"></p>
+<p>上图中的<img src="img/1359708186_1349.png" alt="core data">表示Card中有个Person类型的person属性，目的就是建立Card跟Person之间的一对一关联关系(建议补上这一项)，在Person中加上Inverse属性后，你会发现Card中Inverse属性也自动补上了</p>
+<p><img src="img/1359708436_2378.png" alt="core data"></p>
+<h2 id="了解NSManagedObject">了解NSManagedObject</h2>
+<p>1.上面创建的模型，默认情况下都是NSManagedObject类型，对应的Core Data中的模型对象都是NSManagedObject类的对象</p>
+<p><img src="img/1359708744_9527.png" alt="core data"></p>
+<p>2.NSManagedObject的工作模式有点类似于NSDictionary对象，通过键-值对来存取所有的实体属性<br>1&gt; setValue:forKey:存储属性值(属性名为key)<br>2&gt; valueForKey:获取属性值(属性名为key)</p>
+<h2 id="代码实现">代码实现</h2>
+<p>先添加CoreData.framework和导入主头文件<CoreData/CoreData.h></p>
+<p><img src="img/1359710937_3208.png" alt="core data"></p>
+<p>1.搭建上下文环境</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre>// 从应用程序包中加载模型文件  
+NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:<span class="keyword">nil</span>];  
+// 传入模型对象，初始化NSPersistentStoreCoordinator  
+NSPersistentStoreCoordinator *psc = <span class="string">[[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model] autorelease];  
+// 构建SQLite数据库文件的路径  
+NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];  
+NSURL *url = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"person.data"]]</span>;  
+// 添加持久化存储库，这里使用SQLite作为存储库  
+NSError *<span class="built_in">error</span> = <span class="keyword">nil</span>;  
+NSPersistentStore *store = [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:<span class="keyword">nil</span> URL:url options:<span class="keyword">nil</span> <span class="built_in">error</span>:&<span class="built_in">error</span>];  
+<span class="keyword">if</span> (store == <span class="keyword">nil</span>) { // 直接抛异常  
+    [NSException raise:@<span class="string">"添加数据库错误"</span> format:@<span class="string">"%@"</span>, [<span class="built_in">error</span> localizedDescription]];  
+}  
+// 初始化上下文，设置persistentStoreCoordinator属性  
+NSManagedObjectContext *context = <span class="string">[[NSManagedObjectContext alloc] init];  
+context.persistentStoreCoordinator = psc;</span>
+</pre></td></tr></table></figure>
+
+
+<p>2.添加数据到数据库</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="comment">// 传入上下文，创建一个Person实体对象  </span>
+NSManagedObject *person = [NSEntityDescription insertNewObjectForEntityForName:@<span class="string">"Person"</span> inManagedObjectContext:context];  
+<span class="comment">// 设置Person的简单属性  </span>
+[person setValue:@<span class="string">"MJ"</span> forKey:@<span class="string">"name"</span>];  
+[person setValue:[<span class="built_in">NSNumber</span> numberWithInt:<span class="number">27</span>] forKey:@<span class="string">"age"</span>];  
+<span class="comment">// 传入上下文，创建一个Card实体对象  </span>
+NSManagedObject *card = [NSEntityDescription insertNewObjectForEntityForName:@<span class="string">"Card"</span> inManagedObjectContext:context];  
+[card setValue:@<span class="string">"4414241933432"</span> forKey:@<span class="string">"no"</span>];  
+<span class="comment">// 设置Person和Card之间的关联关系  </span>
+[person setValue:card forKey:@<span class="string">"card"</span>];  
+<span class="comment">// 利用上下文对象，将数据同步到持久化存储库  </span>
+<span class="built_in">NSError</span> *error = <span class="literal">nil</span>;  
+<span class="built_in">BOOL</span> success = [context save:&error];  
+<span class="keyword">if</span> (!success) {  
+    [<span class="built_in">NSException</span> raise:@<span class="string">"访问数据库错误"</span> format:@<span class="string">"%@"</span>, [error localizedDescription]];  
+}  
+<span class="comment">// 如果是想做更新操作：只要在更改了实体对象的属性后调用[context save:&error]，就能将更改的数据同步到数据库</span>
+</pre></td></tr></table></figure>
+
+
+<p>3.从数据库中查询数据</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="comment">// 初始化一个查询请求  </span>
+NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];  
+<span class="comment">// 设置要查询的实体  </span>
+request<span class="variable">.entity</span> = [NSEntityDescription entityForName:@<span class="string">"Person"</span> inManagedObjectContext:context];  
+<span class="comment">// 设置排序（按照age降序）  </span>
+NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@<span class="string">"age"</span> ascending:<span class="literal">NO</span>];  
+request<span class="variable">.sortDescriptors</span> = [<span class="built_in">NSArray</span> arrayWithObject:sort];  
+<span class="comment">// 设置条件过滤(搜索name中包含字符串"Itcast-1"的记录，注意：设置条件过滤时，数据库SQL语句中的%要用*来代替，所以%Itcast-1%应该写成*Itcast-1*)  </span>
+NSPredicate *predicate = [NSPredicate predicateWithFormat:@<span class="string">"name like %@"</span>, @<span class="string">"*Itcast-1*"</span>];  
+request<span class="variable">.predicate</span> = predicate;  
+<span class="comment">// 执行请求  </span>
+<span class="built_in">NSError</span> *error = <span class="literal">nil</span>;  
+<span class="built_in">NSArray</span> *objs = [context executeFetchRequest:request error:&error];  
+<span class="keyword">if</span> (error) {  
+    [<span class="built_in">NSException</span> raise:@<span class="string">"查询错误"</span> format:@<span class="string">"%@"</span>, [error localizedDescription]];  
+}  
+<span class="comment">// 遍历数据  </span>
+<span class="keyword">for</span> (NSManagedObject *obj in objs) {  
+    <span class="built_in">NSLog</span>(@<span class="string">"name=%@"</span>, [obj valueForKey:@<span class="string">"name"</span>]  
+}
+</pre></td></tr></table></figure>
+
+
+<p>注：Core Data不会根据实体中的关联关系立即获取相应的关联对象，比如通过Core Data取出Person实体时，并不会立即查询相关联的Card实体；当应用真的需要使用Card时，才会再次查询数据库，加载Card实体的信息。这个就是Core Data的延迟加载机制</p>
+<p>4.删除数据库中的数据</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>// 传入需要删除的实体对象  
+[context deleteObject:managedObject];  
+// 将结果同步到数据库  
+NSError *<span class="built_in">error</span> = <span class="keyword">nil</span>;  
+[context save:&<span class="built_in">error</span>];  
+<span class="keyword">if</span> (<span class="built_in">error</span>) {  
+    [NSException raise:@<span class="string">"删除错误"</span> format:@<span class="string">"%@"</span>, [<span class="built_in">error</span> localizedDescription]];  
+}
+</pre></td></tr></table></figure>
+
+
+<h2 id="打开CoreData的SQL语句输出开关">打开CoreData的SQL语句输出开关</h2>
+<p>1.打开Product，点击EditScheme…<br>2.点击Arguments，在ArgumentsPassed On Launch中添加2项<br>1&gt; -com.apple.CoreData.SQLDebug<br>2&gt; 1<img src="img/1359711942_1857.png" alt="core data"><img src="img/1359711964_1550.png" alt="core data"></p>
+<h2 id="创建NSManagedObject的子类">创建NSManagedObject的子类</h2>
+<p>默认情况下，利用Core Data取出的实体都是NSManagedObject类型的，能够利用键-值对来存取数据。但是一般情况下，实体在存取数据的基础上，有时还需要添加一些业务方法来完成一些其他任务，那么就必须创建NSManagedObject的子类</p>
+<p><img src="img/1359712054_3978.png" alt="core data"></p>
+<p>选择模型文件</p>
+<p><img src="img/1359712079_5045.png" alt="core data"></p>
+<p>选择需要创建子类的实体 </p>
+<p><img src="img/1359712094_5888.png" alt="core data"></p>
+<p>创建完毕后，多了2个子类</p>
+<p><img src="img/1359712116_3772.png" alt="core data"></p>
+<p>文件内容展示：</p>
+<p>Person.h</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="preprocessor">#import <span class="title">&lt;Foundation/Foundation.h&gt;</span>  </span>
+<span class="preprocessor">#import <span class="title">&lt;CoreData/CoreData.h&gt;</span>  </span>
+  
+<span class="class"><span class="keyword">@class</span> <span class="title">Card</span>;  </span>
+  
+<span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSManagedObject</span>  </span>
+  
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, retain) <span class="built_in">NSString</span> * name;  
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, retain) <span class="built_in">NSNumber</span> * age;  
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, retain) Card *card;  
+  
+<span class="keyword">@end</span>
+</pre></td></tr></table></figure>
+
+
+<p>Person.m</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="id">#import</span> "<span class="tag">Person</span><span class="class">.h</span>"  
+  
+<span class="at_rule">@<span class="keyword">implementation</span> Person  
+  
+@dynamic name</span>;  
+<span class="at_rule">@<span class="keyword">dynamic</span> age</span>;  
+<span class="at_rule">@<span class="keyword">dynamic</span> card</span>;  
+  
+<span class="at_rule">@<span class="keyword">end</span></span>
+</pre></td></tr></table></figure>
+
+
+<p>Card.h</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="preprocessor">#import <span class="title">&lt;Foundation/Foundation.h&gt;</span>  </span>
+<span class="preprocessor">#import <span class="title">&lt;CoreData/CoreData.h&gt;</span>  </span>
+  
+<span class="class"><span class="keyword">@class</span> <span class="title">Person</span>;  </span>
+  
+<span class="class"><span class="keyword">@interface</span> <span class="title">Card</span> : <span class="title">NSManagedObject</span>  </span>
+  
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, retain) <span class="built_in">NSString</span> * no;  
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, retain) Person *person;  
+  
+<span class="keyword">@end</span>
+</pre></td></tr></table></figure>
+
+
+<p>Card.m</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="preprocessor">#import <span class="title">"Card.h"</span>  </span>
+<span class="preprocessor">#import <span class="title">"Person.h"</span>  </span>
+  
+<span class="class"><span class="keyword">@implementation</span> <span class="title">Card</span>  </span>
+  
+<span class="keyword">@dynamic</span> no;  
+<span class="keyword">@dynamic</span> person;  
+  
+<span class="keyword">@end</span>
+</pre></td></tr></table></figure>
+
+
+<p>那么往数据库中添加数据的时候就应该写了：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>Person *person = [NSEntityDescription insertNewObjectForEntityForName:@<span class="string">"Person"</span> inManagedObjectContext:context];  
+person.name = @<span class="string">"MJ"</span>;  
+person.age = [NSNumber numberWithInt:<span class="number">27</span>];  
+  
+Card *card = [NSEntityDescription insertNewObjectForEntityForName:@”Card<span class="string">" inManagedObjectContext:context];  </span>
+card.no = @”<span class="number">4414245465656</span><span class="string">";  </span>
+person.card = card;  
+<span class="comment">// 最后调用[context save&error];保存数据</span>
+</pre></td></tr></table></figure>
+
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="简介">简介</h3>
+<p>大概10年前，在2005年4月，Apple发布了OS X 10.4版本，第一次引入了Core Data框架。那时YouTube也刚发布。</p>
+<p>Core Data提供了对象-关系映射(ORM)的功能，即能够将OC对象转化成数据]]>
+    </summary>
+    
+      <category term="iOS" scheme="http://biancheng.me/tags/iOS/"/>
+    
+      <category term="Core Data" scheme="http://biancheng.me/tags/Core%20Data/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[使用Charles(青花瓷)，在Mac环境下对android手机抓包]]></title>
@@ -65,7 +394,7 @@
 
 <h3 id="1-1_关于版本控制">1.1 关于版本控制</h3>
 <p>什么是版本控制？我真的需要吗？版本控制是一种记录若干文件内容变化，以便将来查阅特定版本修订情况的系统。在本书所展示的例子中，我们仅对保存着软件源代码的文本文件作版本控制管理，但实际上，你可以对任何类型的文件进行版本控制。</p>
-<p>如果你是位图形或网页设计师，可能会需要保存某一幅图片或页面布局文件的所有修订版本（这或许是你非常渴望拥有的功能）。采用版本控制系统 （VCS）是个明智的选择。有了它你就可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态。你可以比较文件的变化细节，查出最 后是谁修改了哪个地方，从而导致出现怪异问题，又是谁在何时报告了某个功能缺陷等等。使用版本控制系统通常还意味着，就算你乱来一气把整个项目中的文件改 的改删的删，你也照样可以轻松恢复到原先的样子。但额外增加的工作量却微乎其微。</p>
+<p>如果你是位图形或网页设计师，可能会需要保存某一幅图片或页面布局文件的所有修订版本（这或许是你非常渴望拥有的功能）。采用版本控���系统 （VCS）是个明智的选择。有了它你就可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态。你可以比较文件的变化细节，查出最 后是谁修改了哪个地方，从而导致出现怪异问题，又是谁在何时报告了某个功能缺陷等等。使用版本控制系统通常还意味着，就算你乱来一气把整个项目中的文件改 的改删的删，你也照样可以轻松恢复到原先的样子。但额外增加的工作量却微乎其微。</p>
 <h3 id="本地版本控制系统">本地版本控制系统</h3>
 <p>许多人习惯用复制整个项目目录的方式来保存不同的版本，或许还会改名加上备份时间以示区别。这么做唯一的好处就是简单。不过坏处也不少：有时候会混淆所在的工作目录，一旦弄错文件丢了数据就没法撤销恢复。</p>
 <p>为了解决这个问题，人们很久以前就开发了许多种本地版本控制系统，大多都是采用某种简单的数据库来记录文件的历次更新差异（见图 1-1）。</p>
@@ -108,7 +437,7 @@
 </pre></td></tr></table></figure>
 
 
-<p>Git 的工作完全依赖于这类指纹字串，所以你会经常看到这样的哈希值。实际上，所有保存在 Git 数据库中的���西都是用此哈希值来作索引的，而不是靠文件名。</p>
+<p>Git 的工作完全依赖于这类指纹字串，所以你会经常看到这样的哈希值。实际上，所有保存在 Git 数据库中的东西都是用此哈希值来作索引的，而不是靠文件名。</p>
 <h3 id="多数操作仅添加数据">多数操作仅添加数据</h3>
 <p>常用的 Git 操作大多仅仅是把数据添加到数据库。因为任何一种不可逆的操作，比如删除数据，都会使回退或重现历史版本变得困难重重。在别的 VCS 中，若还未提交更新，就有可能丢失或者混淆一些修改的内容，但在 Git 里，一旦提交快照之后就完全不用担心丢失数据，特别是养成定期推送到其他仓库的习惯的话。</p>
 <p>这种高可靠性令我们的开发工作安心不少，尽管去做各种试验性的尝试好了，再怎样也不会弄丢数据。至于 Git 内部究竟是如何保存和恢复数据的，我们会在第九章讨论 Git 内部原理时再作详述。</p>
@@ -259,7 +588,7 @@
     <content type="html"><![CDATA[<h3 id="先屡一下思路">先屡一下思路</h3>
 <ol>
 <li>首先hexo是基于nodejs的，所以必须安装nodejs </li>
-<li>安装nodejs方法很多，我选择homebrew安装方式���所以需要安装它 </li>
+<li>安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它 </li>
 <li>安装homebrew就很简单了，mac自带ruby脚本功能，一句话搞定 </li>
 <li>hexo提交部署github需要使用git工具，所以需要安装git，用homebrew的话也是一句话搞定 </li>
 <li>OK整理一下安装顺序（homebrew-nodejs-hexo-git） </li>
@@ -391,7 +720,7 @@ mv id_rsa* key_backup
 <ol>
 <li>首先hexo是基于nodejs的，所以必须安装nodejs </li>
 <li>安装nodejs方法很多，我选择homebrew安装方式，所以需要安装它 </li>
-<li>���装homebrew就很简单了，mac自带ruby脚本功能，一句话搞定 </li>
+<li>安装homebrew就很简单了，mac自带ruby脚本功能，一句话搞定 </li>
 <li>hexo提交部署github需要使用git工具，所以需要安装git，用homebrew的话也是一句话搞定 </li>
 <li>OK整理一下安装顺序（homebrew-nodejs-hexo-git） </li>
 </ol>
@@ -875,7 +1204,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     <published>2014-10-19T15:36:35.000Z</published>
     <updated>2015-11-07T05:10:55.000Z</updated>
     <content type="html"><![CDATA[<h3 id="什么是UIKit动力学（UIKit_Dynamics）">什么是UIKit动力学（UIKit Dynamics）</h3>
-<p>其实就是UIKit的一套动画和交互体系。我们现在进行UI动画基本都是使用CoreAnimation或者UIView animations。而UIKit动力学最大的特点是将现实世界动力驱动的动画引入了UIKit，比如重力，铰链连接，碰撞，悬挂等效果。一言蔽之，即是，将2D物理引擎引入了人UIKit。需要注意，UIKit动力学的引入，并不是以替代CA或者UIView动画为目的的，在绝大多数情况下CA或者UIView动画仍然是最优方案，只有在需要引入逼真的交互设计的时候，才需要使用UIKit动力学它是作为现有交互设计和实现的一种补充而存在的。<br>目的当然是更加自然和炫目的UI动画效果，比如模拟现实的拖拽和弹性效果，放在以前如果单用iOS SDK的动画实现起来还是相当困难的，而在UIKit Dynamics的帮助下，复杂的动画效果可能也只需要很短的代码（基本100行以内…其实现在用UIView animation想实现一个不太复杂的动画所要的代码行数都不止这个数了吧）。总之，便利多多，配合UI交互设计，以前很多不敢想和不敢写（至少不敢自己写）的效果实现起来会非常方便，也相信在iOS7的时代各色使用UIKit动力学的应用的在动画效果肯定会上升一个档次。<br>那么，应该怎么做呢<br><a id="more"></a><br>UIKit动力学实现的结构<br>为了实现动力UI，需要注册一套UI行为的体系，之后UI便会按照预先的设定进行运动了。我们应该了解的新的基本概念有如下四个：<br>UIDynamicItem：用来描述一个力学物体的状态，其实就是实现了UIDynamicItem委托的对象，或者抽象为有面积有旋转的质点；<br>UIDynamicBehavior：动力行为的描述，用来指定UIDynamicItem应该如何运动，即定义适用的物理规则。一般我们使用这个类的子类对象来对一组UIDynamicItem应该遵守的行为规则进行描述；<br>UIDynamicAnimator；动画的播放者，动力行为（UIDynamicBehavior）的容器，添加到容器内的行为将发挥作用；<br>ReferenceView：等同于力学参考系，如果你的初中物理不是语文老师教的话，我想你知道这是啥..只有当想要添加力学的UIView是ReferenceView的子view时，动力UI才发生作用。<br>光说不练假把式，来做点简单的demo吧。比如为一个view添加重力行为：</p>
+<p>其实就是UIKit的一套动画和交互体系。我们现在进行UI动画基本都是使用CoreAnimation或者UIView animations。而UIKit动力学最大的特点是将现实世界动力驱动的动画引入了UIKit，比如重力，铰链连接，碰撞，悬挂等效果。一言蔽之，即是，将2D物理引擎引入了人UIKit。需要注意，UIKit动力学的引入，并不是以替代CA或者UIView动画为目的的，在绝大多数情况下CA或者UIView动画仍然是最优方案，只有在需要引入逼真的交互设计的时候，才需要使用UIKit动力学它是作为现有交互设计和实现的一种补充而存在的。<br>目的当然是更加自然和炫目的UI动画效果，比如模拟现实的拖拽和弹性效果，放在以前如果单用iOS SDK的动画实现起来还是相当困难的，而在UIKit Dynamics的帮助下，复杂的动画效果可能也只需要很短的代码（基本100行以内…其实现在用UIView animation想实现一个不太复杂的动画所要的代码行数都不止这个数了吧）。总之，便利多多，配合UI交互设计，以前很多不敢想和不敢写（至少不敢自己写）的效果实现起来会非常方便，也相信在iOS7的时代各色使用UIKit动力学的应用的在动画效果肯定会上升一个档次。<br>那么，应该怎么���呢<br><a id="more"></a><br>UIKit动力学实现的结构<br>为了实现动力UI，需要注册一套UI行为的体系，之后UI便会按照预先的设定进行运动了。我们应该了解的新的基本概念有如下四个：<br>UIDynamicItem：用来描述一个力学物体的状态，其实就是实现了UIDynamicItem委托的对象，或者抽象为有面积有旋转的质点；<br>UIDynamicBehavior：动力行为的描述，用来指定UIDynamicItem应该如何运动，即定义适用的物理规则。一般我们使用这个类的子类对象来对一组UIDynamicItem应该遵守的行为规则进行描述；<br>UIDynamicAnimator；动画的播放者，动力行为（UIDynamicBehavior）的容器，添加到容器内的行为将发挥作用；<br>ReferenceView：等同于力学参考系，如果你的初中物理不是语文老师教的话，我想你知道这是啥..只有当想要添加力学的UIView是ReferenceView的子view时，动力UI才发生作用。<br>光说不练假把式，来做点简单的demo吧。比如为一个view添加重力行为：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -905,7 +1234,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>代码很简单，<br>以现在ViewController的view为参照系（ReferenceView），来初始化一个UIDynamicAnimator。<br>然后分配并初始化一个动力行为，这里是UIGravityBehavior，将需要进行物理模拟的UIDynamicItem传入。UIGravityBehavior的initWithItems:接受的参数为包含id的数组，另外UIGravityBehavior实例还有一个addItem:方法接受单个的id。就是说，实现了UIDynamicItem委托的对象，都可以看作是被力学特性影响的，进而参与到计算中。UIDynamicItem委托需要我们实现bounds，center和transform三个属性，在UIKit Dynamics计���新的位置时，需要向Behavior内的item询问这些参数，以进行正确计算。iOS7中，UIView和UICollectionViewLayoutAttributes已经默认实现了这个接口，所以这里我们直接把需要模拟重力的UIView添加到UIGravityBehavior里就行了。<br>把配置好的UIGravityBehavior添加到animator中。<br>strong持有一下animator，避免当前scope结束被ARC释放掉（后果当然就是UIView在哪儿傻站着不掉）<br>运行结果，view开始受重力影响了：<br>重力作用下的UIview<br>重力作用下的UIview<br>碰撞，我要碰撞<br>没有碰撞的话，物理引擎就没有任何意义了。和重力行为类似，碰撞也有一个UIDynamicBehavior子类来描述碰撞行为，即UICollisionBehavior。在上面的demo中加上几句：</p>
+<p>代码很简单，<br>以现在ViewController的view为参照系（ReferenceView），来初始化一个UIDynamicAnimator。<br>然后分配并初始化一个动力行为，这里是UIGravityBehavior，将需要进行物理模拟的UIDynamicItem传入。UIGravityBehavior的initWithItems:接受的参数为包含id的数组，另外UIGravityBehavior实例还有一个addItem:方法接受单个的id。就是说，实现了UIDynamicItem委托的对象，都可以看作是被力学特性影响的，进而参与到计算中。UIDynamicItem委托需要我们实现bounds，center和transform三个属性，在UIKit Dynamics计算新的位置时，需要向Behavior内的item询问这些参数，以进行正确计算。iOS7中，UIView和UICollectionViewLayoutAttributes已经默认实现了这个接口，所以这里我们直接把需要模拟重力的UIView添加到UIGravityBehavior里就行了。<br>把配置好的UIGravityBehavior添加到animator中。<br>strong持有一下animator，避免当前scope结束被ARC释放掉（后果当然就是UIView在哪儿傻站着不掉）<br>运行结果，view开始受重力影响了：<br>重力作用下的UIview<br>重力作用下的UIview<br>碰撞，我要碰撞<br>没有碰撞的话，物理引擎就没有任何意义了。和重力行为类似，碰撞也有一个UIDynamicBehavior子类来描述碰撞行为，即UICollisionBehavior。在上面的demo中加上几句：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -1071,7 +1400,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>@end<br>另一种比较高级一点，需要对计算完全定义。在默认的行为或者它们组合不能满足禽兽般的产品经理/设计师的需求是，亲爱的骚年..开始自己写吧..其实说简单也简单，UIDynamicBehavior里提供了一个@property(nonatomic, copy) void (^action)(void)，animator将在每次animation step（就是需要计算动画时）调用这个block。就是说，你可以通过设定这个block来实现自己的行为。基本思路就是在这个block中向所有item询问它们当前的center和transform状态，然后开始计算，然后把计算后的相应值再赋予item，从而改变在屏幕上的位置，大小，角度等。<br>UIKit动力学的性能分析和限制<br>使用物理引擎不是没有代价的的，特别是在碰撞检测这块，是要耗费一定CPU资源的。但是以测试的情况来看，如果只是UI层面上的碰撞检测还是没有什么问题的，我自己实测iPhone4上同时进行数十个碰撞计算完全没有掉帧的情况。因此如果只是把其用在UI特效上，应该不用太在意资源的耗费。但是如果同时有成百上千的碰撞需要处理的情况，可能会出现卡顿吧。<br>对于UIDynamicItem来说，当它们被添加到动画系统后，我们只能通过动画系统来改变位置，而外部的对于UIDynamicItem的center,transform���设定是被忽略的（其实这也是大多数2D引擎的实现策略，算不上限制）。<br>主要的限制是在当计算迭代无法得到有效解的时候，动画将无法正确呈现。这对于绝大多数物理引擎都是一样的。迭代不能收敛时整个物理系统处于不确定的状态，比如初始时就设定了碰撞物体位于边界内部，或者在狭小空间内放入了过多的非弹性碰撞物体等。另外，这个引擎仅仅只是用来呈现UI效果，它并没有保证物理上的精确度，因此如果要用它来做UI以外的事情，有可能是无法得到很好的结果的。<br>总结<br>总之就是一套全新的UI交互的视觉体验和效果，但是并非处处适用。在合适的地方使用可以增加体验，但是也会有其他方式更适合的情况。</p>
+<p>@end<br>另一种比较高级一点，需要对计算完全定义。在默认的行为或者它们组合不能满足禽兽般的产品经理/设计师的需求是，亲爱的骚年..开始自己写吧..其实说简单也简单，UIDynamicBehavior里提供了一个@property(nonatomic, copy) void (^action)(void)，animator将在每次animation step（就是需要计算动画时）调用这个block。就是说，你可以通过设定这个block来实现自己的行为。基本思路就是在这个block中向所有item询问它们当前的center和transform状态，然后开始计算，然后把计算后的相应值再赋予item，从而改变在屏幕上的位置，大小，角度等。<br>UIKit动力学的性能分析和限制<br>使用物理引擎不是没有代价的的，特别是在碰撞检测这块，是要耗费一定CPU资源的。但是以测试的情况来看，如果只是UI层面上的碰撞检测还是没有什么问题的，我自己实测iPhone4上同时进行数十个碰撞计算完全没有掉帧的情况。因此如果只是把其用在UI特效上，应该不用太在意资源的耗费。但是如果同时有成百上千的碰撞需要处理的情况，可能会出现卡顿吧。<br>对于UIDynamicItem来说，当它们被添加到动画系统后，我们只能通过动画系统来改变位置，而外部的对于UIDynamicItem的center,transform等设定是被忽略的（其实这也是大多数2D引擎的实现策略，算不上限制）。<br>主要的限制是在当计算迭代无法得到有效解的时候，动画将无法正确呈现。这对于绝大多数物理引擎都是一样的。迭代不能收敛时整个物理系统处于不确定的状态，比如初始时就设定了碰撞物体位于边界内部，或者在狭小空间内放入了过多的非弹性碰撞物体等。另外，这个引擎仅仅只是用来呈现UI效果，它并没有保证物理上的精确度，因此如果要用它来做UI以外的事情，有可能是无法得到很好的结果的。<br>总结<br>总之就是一套全新的UI交互的视觉体验和效果，但是并非处处适用。在合适的地方使用可以增加体验，但是也会有其他方式更适合的情况。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="什么是UIKit动力学（UIKit_Dynamics）">什么是UIKit动力学（UIKit Dynamics）</h3>

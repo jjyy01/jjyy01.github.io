@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta name="ujianVerification" content="90f7e05b4ebf6d93b26b29571bfa3d8d" />
 <meta name="wumiiVerification" content="7aa6b405-12b5-4f11-866e-44744aa0ff26" />
 <meta name="baidu-site-verification" content="lN75kqASJm" />
 <meta name="baidu_union_verify" content="c369e2e06e939daead298c9098d2638e">
+<meta name="ujianVerification" content="b5bbc0cfd614a7e607a2a1806a9c7485" />
 
   <meta charset="utf-8">
   
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
 <p>大概10年前，在2005年4月，Apple发布了OS X 10.4版本，第一次引入了Core Data框架。那时YouTube也刚发布。</p>
 <a id="more"></a>
 
-<p>Core Data提供了对象-关系映射(ORM)的功能，即能够将OC对象转化成数据，保存在SQLite数据库文件中，也能够将保存在数据库中的数据还原成OC对象。简单地用下图描述下它的作用：<br>  <img src="img/1359705997_4313.png" alt="core data"></p>
+<p>Core Data提供了对象-关系映射(ORM)的功能，即能够将OC对象转化成数据，保存在SQLite数据库文件中，也能够将保存在数据库中的数据还原成OC对象。简单地用下图描述下它的作用：<br>  <img src="http://7xnr36.com1.z0.glb.clouddn.com/1359705997_4313.png" alt="http://biancheng.me"></p>
 <p>  左边是关系模型，即数据库，数据库里面有张person表，person表里面有id、name、age三个字段，而且有2条记录；<br>右边是对象模型，可以看到，有2个OC对象；<br>利用Core Data框架，我们就可以轻松地将数据库里面的2条记录转换成2个OC对象，也可以轻松地将2个OC对象保存到数据库中，变成2条表记录，而且不用写一条SQL语句。</p>
 <p>Core Data是模型层的技术。Core Data帮助你构建代表程序状态的模型层。Core Data也是一种持久化技术，它可以将模型的状态持久化到磁盘。但它更重要的特点是：Core Data不只是一个加载和保存数据的框架，它也能处理内存中的数据。</p>
 <p>如果你曾接触过Object-relational mapping(O/RM)，Core Data不仅是一种O/RM。如果你曾接触过SQL wrappers, Core Data也不是一种SQL wrapper。它确实默认使用SQL，但是，它是一种更高层次的抽象概念。如果你需要一个O/RM或者SQL wrapper，那么Core Data并不适合你。</p>
@@ -94,33 +94,33 @@ var _hmt = _hmt || [];
 <p>Core Data中有不少组件，它是一种非常灵活的技术。在大多数使用情况里，设置相对来说比较简单。</p>
 <p>当所有组件绑定在一起，我们把它们称为Core Data Stack. 这种堆栈有两个主要部分。一部分是关于对象图管理，这是你需要掌握好的部分，也应该知道怎么使用。第二部分是关于持久化的，比如保存模型对象的状态和再次恢复对象的状态。</p>
 <p>在这两部分的中间，即堆栈中间，是持久化存储协调器(Persistent Store Coordinator, PSC)，也被朋友们戏称做中心监视局。通过它将对象图管理部分和持久化部分绑在一起。当这两部分中的一部分需要和另一部分交互，将通过PSC来调节。</p>
-<p><img src="img/7cc829d3gw1eap6hhq1gkj20yo108wi0.jpg" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/7cc829d3gw1eap6hhq1gkj20yo108wi0.jpg" alt="http://biancheng.me"></p>
 <p>对象图管理是你的应用中模型层逻辑存在的地方。模型层对象存在于一个context里。在大多数设置中，只有一个context，所有的对象都放在这个context中。Core Data支持多个context，但是是针对更高级的使用情况。需要注意的是，每个context和其他context区分都很清楚。有个重要的事需要记住，对象和他们的context绑定在一起。每一个被管理的对象都知道它属于哪个context，每一个context也知道它管理着哪些对象。</p>
 <p>堆栈的另一部分是持久化发生的地方，比如Core Data从文件系统读或写。在所有情况下，持久化存储协调器(PSC)有一个属于自己的的持久化存储器(persistent store)，这个store在文件系统和SQLite数据库交互。为了支持更高级的设置，Core Data支持使用多个存储器附属于同一个持久化存储协调器，并且除了SQL，还有一些别的存储类型可以选择。</p>
 <p>一个常见的解决方案，看起来是这个样子的：</p>
-<p><img src="img/7cc829d3gw1eap6hgqs2xj20uk0gaq41.jpg" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/7cc829d3gw1eap6hgqs2xj20uk0gaq41.jpg" alt="core data"></p>
 <h2 id="模型文件">模型文件</h2>
-<p>在Core Data，需要进行映射的对象称为实体(entity)，而且需要使用Core Data的模型文件来描述app中的所有实体和实体属性。这里以Person(人)和Card(身份证)2个实体为例子，先看看实体属性和实体之间的关联关系：<br><img src="img/1359707024_5895.png" alt="core data"><br>Person实体中有：name（姓名）、age（年龄）、card（身份证）三个属性<br>Card实体中有：no（号码）、person（人）两个属性</p>
+<p>在Core Data，需要进行映射的对象称为实体(entity)，而且需要使用Core Data的模型文件来描述app中的所有实体和实体属性。这里以Person(人)和Card(身份证)2个实体为例子，先看看实体属性和实体之间的关联关系：<br><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359707024_5895.png" alt="core data"><br>Person实体中有：name（姓名）、age（年龄）、card（身份证）三个属性<br>Card实体中有：no（号码）、person（人）两个属性</p>
 <p>接下来看看创建模型文件的过程：</p>
 <p>1.选择模板</p>
-<p><img src="img/1359707426_5763.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359707426_5763.png" alt="core data"></p>
 <p>2.添加实体</p>
-<p><img src="img/1359707563_9302.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359707563_9302.png" alt="core data"></p>
 <p>3.添加Person的2个基本属性</p>
-<p><img src="img/1359707773_7614.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359707773_7614.png" alt="core data"></p>
 <p>4.添加Card的1个基本属性</p>
-<p><img src="img/1359707796_4561.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359707796_4561.png" alt="core data"></p>
 <p>5.建立Card和Person的关联关系</p>
-<p><img src="img/1359708105_6064.png" alt="core data"></p>
-<p>上图中的<img src="img/1359708186_1349.png" alt="core data">表示Card中有个Person类型的person属性，目的就是建立Card跟Person之间的一对一关联关系(建议补上这一项)，在Person中加上Inverse属性后，你会发现Card中Inverse属性也自动补上了</p>
-<p><img src="img/1359708436_2378.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359708105_6064.png" alt="core data"></p>
+<p>上图中的<img src="http://7xnr36.com1.z0.glb.clouddn.com/1359708186_1349.png" alt="core data">表示Card中有个Person类型的person属性，目的就是建立Card跟Person之间的一对一关联关系(建议补上这一项)，在Person中加上Inverse属性后，你会发现Card中Inverse属性也自动补上了</p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359708436_2378.png" alt="core data"></p>
 <h2 id="了解NSManagedObject">了解NSManagedObject</h2>
 <p>1.上面创建的模型，默认情况下都是NSManagedObject类型，对应的Core Data中的模型对象都是NSManagedObject类的对象</p>
-<p><img src="img/1359708744_9527.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359708744_9527.png" alt="core data"></p>
 <p>2.NSManagedObject的工作模式有点类似于NSDictionary对象，通过键-值对来存取所有的实体属性<br>1&gt; setValue:forKey:存储属性值(属性名为key)<br>2&gt; valueForKey:获取属性值(属性名为key)</p>
 <h2 id="代码实现">代码实现</h2>
 <p>先添加CoreData.framework和导入主头文件<CoreData/CoreData.h></p>
-<p><img src="img/1359710937_3208.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359710937_3208.png" alt="core data"></p>
 <p>1.搭建上下文环境</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -261,16 +261,25 @@ NSError *<span class="built_in">error</span> = <span class="keyword">nil</span>;
 
 
 <h2 id="打开CoreData的SQL语句输出开关">打开CoreData的SQL语句输出开关</h2>
-<p>1.打开Product，点击EditScheme…<br>2.点击Arguments，在ArgumentsPassed On Launch中添加2项<br>1&gt; -com.apple.CoreData.SQLDebug<br>2&gt; 1<img src="img/1359711942_1857.png" alt="core data"><img src="img/1359711964_1550.png" alt="core data"></p>
+<ol>
+<li>打开Product，点击EditScheme…</li>
+<li>点击Arguments，在ArgumentsPassed On Launch中添加2项<ul>
+<li>-com.apple.CoreData.SQLDebug</li>
+<li>1</li>
+</ul>
+</li>
+</ol>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359711942_1857.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359711964_1550.png" alt="core data"></p>
 <h2 id="创建NSManagedObject的子类">创建NSManagedObject的子类</h2>
 <p>默认情况下，利用Core Data取出的实体都是NSManagedObject类型的，能够利用键-值对来存取数据。但是一般情况下，实体在存取数据的基础上，有时还需要添加一些业务方法来完成一些其他任务，那么就必须创建NSManagedObject的子类</p>
-<p><img src="img/1359712054_3978.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359712054_3978.png" alt="core data"></p>
 <p>选择模型文件</p>
-<p><img src="img/1359712079_5045.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359712079_5045.png" alt="core data"></p>
 <p>选择需要创建子类的实体 </p>
-<p><img src="img/1359712094_5888.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359712094_5888.png" alt="core data"></p>
 <p>创建完毕后，多了2个子类</p>
-<p><img src="img/1359712116_3772.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359712116_3772.png" alt="core data"></p>
 <p>文件内容展示：</p>
 <p>Person.h</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1

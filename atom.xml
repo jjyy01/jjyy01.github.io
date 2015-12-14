@@ -4,7 +4,7 @@
   <subtitle><![CDATA[熊孩子的学习]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://biancheng.me/"/>
-  <updated>2015-12-10T09:00:52.809Z</updated>
+  <updated>2015-12-14T06:11:25.312Z</updated>
   <id>http://biancheng.me/</id>
   
   <author>
@@ -19,12 +19,12 @@
     <link href="http://biancheng.me/2015/11/30/core-data%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/"/>
     <id>http://biancheng.me/2015/11/30/core-data基本介绍/</id>
     <published>2015-11-30T06:08:25.000Z</published>
-    <updated>2015-12-07T11:14:06.000Z</updated>
+    <updated>2015-12-14T06:10:58.000Z</updated>
     <content type="html"><![CDATA[<h3 id="简介">简介</h3>
 <p>大概10年前，在2005年4月，Apple发布了OS X 10.4版本，第一次引入了Core Data框架。那时YouTube也刚发布。</p>
 <a id="more"></a>
 
-<p>Core Data提供了对象-关系映射(ORM)的功能，即能够将OC对象转化成数据，保存在SQLite数据库文件中，也能够将保存在数据库中的数据还原成OC对象。简单地用下图描述下它的作用：<br>  <img src="img/1359705997_4313.png" alt="core data"></p>
+<p>Core Data提供了对象-关系映射(ORM)的功能，即能够将OC对象转化成数据，保存在SQLite数据库文件中，也能够将保存在数据库中的数据还原成OC对象。简单地用下图描述下它的作用：<br>  <img src="http://7xnr36.com1.z0.glb.clouddn.com/1359705997_4313.png" alt="http://biancheng.me"></p>
 <p>  左边是关系模型，即数据库，数据库里面有张person表，person表里面有id、name、age三个字段，而且有2条记录；<br>右边是对象模型，可以看到，有2个OC对象；<br>利用Core Data框架，我们就可以轻松地将数据库里面的2条记录转换成2个OC对象，也可以轻松地将2个OC对象保存到数据库中，变成2条表记录，而且不用写一条SQL语句。</p>
 <p>Core Data是模型层的技术。Core Data帮助你构建代表程序状态的模型层。Core Data也是一种持久化技术，它可以将模型的状态持久化到磁盘。但它更重要的特点是：Core Data不只是一个加载和保存数据的框架，它也能处理内存中的数据。</p>
 <p>如果你曾接触过Object-relational mapping(O/RM)，Core Data不仅是一种O/RM。如果你曾接触过SQL wrappers, Core Data也不是一种SQL wrapper。它确实默认使用SQL，但是，它是一种更高层次的抽象概念。如果你需要一个O/RM或者SQL wrapper，那么Core Data并不适合你。</p>
@@ -36,33 +36,33 @@
 <p>Core Data中有不少组件，它是一种非常灵活的技术。在大多数使用情况里，设置相对来说比较简单。</p>
 <p>当所有组件绑定在一起，我们把它们称为Core Data Stack. 这种堆栈有两个主要部分。一部分是关于对象图管理，这是你需要掌握好的部分，也应该知道怎么使用。第二部分是关于持久化的，比如保存模型对象的状态和再次恢复对象的状态。</p>
 <p>在这两部分的中间，即堆栈中间，是持久化存储协调器(Persistent Store Coordinator, PSC)，也被朋友们戏称做中心监视局。通过它将对象图管理部分和持久化部分绑在一起。当这两部分中的一部分需要和另一部分交互，将通过PSC来调节。</p>
-<p><img src="img/7cc829d3gw1eap6hhq1gkj20yo108wi0.jpg" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/7cc829d3gw1eap6hhq1gkj20yo108wi0.jpg" alt="http://biancheng.me"></p>
 <p>对象图管理是你的应用中模型层逻辑存在的地方。模型层对象存在于一个context里。在大多数设置中，只有一个context，所有的对象都放在这个context中。Core Data支持多个context，但是是针对更高级的使用情况。需要注意的是，每个context和其他context区分都很清楚。有个重要的事需要记住，对象和他们的context绑定在一起。每一个被管理的对象都知道它属于哪个context，每一个context也知道它管理着哪些对象。</p>
 <p>堆栈的另一部分是持久化发生的地方，比如Core Data从文件系统读或写。在所有情况下，持久化存储协调器(PSC)有一个属于自己的的持久化存储器(persistent store)，这个store在文件系统和SQLite数据库交互。为了支持更高级的设置，Core Data支持使用多个存储器附属于同一个持久化存储协调器，并且除了SQL，还有一些别的存储类型可以选择。</p>
 <p>一个常见的解决方案，看起来是这个样子的：</p>
-<p><img src="img/7cc829d3gw1eap6hgqs2xj20uk0gaq41.jpg" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/7cc829d3gw1eap6hgqs2xj20uk0gaq41.jpg" alt="core data"></p>
 <h2 id="模型文件">模型文件</h2>
-<p>在Core Data，需要进行映射的对象称为实体(entity)，而且需要使用Core Data的模型文件来描述app中的所有实体和实体属性。这里以Person(人)和Card(身份证)2个实体为例子，先看看实体属性和实体之间的关联关系：<br><img src="img/1359707024_5895.png" alt="core data"><br>Person实体中有：name（姓名）、age（年龄）、card（身份证）三个属性<br>Card实体中有：no（号码）、person（人）两个属性</p>
+<p>在Core Data，需要进行映射的对象称为实体(entity)，而且需要使用Core Data的模型文件来描述app中的所有实体和实体属性。这里以Person(人)和Card(身份证)2个实体为例子，先看看实体属性和实体之间的关联关系：<br><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359707024_5895.png" alt="core data"><br>Person实体中有：name（姓名）、age（年龄）、card（身份证）三个属性<br>Card实体中有：no（号码）、person（人）两个属性</p>
 <p>接下来看看创建模型文件的过程：</p>
 <p>1.选择模板</p>
-<p><img src="img/1359707426_5763.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359707426_5763.png" alt="core data"></p>
 <p>2.添加实体</p>
-<p><img src="img/1359707563_9302.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359707563_9302.png" alt="core data"></p>
 <p>3.添加Person的2个基本属性</p>
-<p><img src="img/1359707773_7614.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359707773_7614.png" alt="core data"></p>
 <p>4.添加Card的1个基本属性</p>
-<p><img src="img/1359707796_4561.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359707796_4561.png" alt="core data"></p>
 <p>5.建立Card和Person的关联关系</p>
-<p><img src="img/1359708105_6064.png" alt="core data"></p>
-<p>上图中的<img src="img/1359708186_1349.png" alt="core data">表示Card中有个Person类型的person属性，目的就是建立Card跟Person之间的一对一关联关系(建议补上这一项)，在Person中加上Inverse属性后，你会发现Card中Inverse属性也自动补上了</p>
-<p><img src="img/1359708436_2378.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359708105_6064.png" alt="core data"></p>
+<p>上图中的<img src="http://7xnr36.com1.z0.glb.clouddn.com/1359708186_1349.png" alt="core data">表示Card中有个Person类型的person属性，目的就是建立Card跟Person之间的一对一关联关系(建议补上这一项)，在Person中加上Inverse属性后，你会发现Card中Inverse属性也自动补上了</p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359708436_2378.png" alt="core data"></p>
 <h2 id="了解NSManagedObject">了解NSManagedObject</h2>
 <p>1.上面创建的模型，默认情况下都是NSManagedObject类型，对应的Core Data中的模型对象都是NSManagedObject类的对象</p>
-<p><img src="img/1359708744_9527.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359708744_9527.png" alt="core data"></p>
 <p>2.NSManagedObject的工作模式有点类似于NSDictionary对象，通过键-值对来存取所有的实体属性<br>1&gt; setValue:forKey:存储属性值(属性名为key)<br>2&gt; valueForKey:获取属性值(属性名为key)</p>
 <h2 id="代码实现">代码实现</h2>
 <p>先添加CoreData.framework和导入主头文件<CoreData/CoreData.h></p>
-<p><img src="img/1359710937_3208.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359710937_3208.png" alt="core data"></p>
 <p>1.搭建上下文环境</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -203,16 +203,25 @@ NSError *<span class="built_in">error</span> = <span class="keyword">nil</span>;
 
 
 <h2 id="打开CoreData的SQL语句输出开关">打开CoreData的SQL语句输出开关</h2>
-<p>1.打开Product，点击EditScheme…<br>2.点击Arguments，在ArgumentsPassed On Launch中添加2项<br>1&gt; -com.apple.CoreData.SQLDebug<br>2&gt; 1<img src="img/1359711942_1857.png" alt="core data"><img src="img/1359711964_1550.png" alt="core data"></p>
+<ol>
+<li>打开Product，点击EditScheme…</li>
+<li>点击Arguments，在ArgumentsPassed On Launch中添加2项<ul>
+<li>-com.apple.CoreData.SQLDebug</li>
+<li>1</li>
+</ul>
+</li>
+</ol>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359711942_1857.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359711964_1550.png" alt="core data"></p>
 <h2 id="创建NSManagedObject的子类">创建NSManagedObject的子类</h2>
 <p>默认情况下，利用Core Data取出的实体都是NSManagedObject类型的，能够利用键-值对来存取数据。但是一般情况下，实体在存取数据的基础上，有时还需要添加一些业务方法来完成一些其他任务，那么就必须创建NSManagedObject的子类</p>
-<p><img src="img/1359712054_3978.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359712054_3978.png" alt="core data"></p>
 <p>选择模型文件</p>
-<p><img src="img/1359712079_5045.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359712079_5045.png" alt="core data"></p>
 <p>选择需要创建子类的实体 </p>
-<p><img src="img/1359712094_5888.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359712094_5888.png" alt="core data"></p>
 <p>创建完毕后，多了2个子类</p>
-<p><img src="img/1359712116_3772.png" alt="core data"></p>
+<p><img src="http://7xnr36.com1.z0.glb.clouddn.com/1359712116_3772.png" alt="core data"></p>
 <p>文件内容展示：</p>
 <p>Person.h</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -392,12 +401,12 @@ person.card = card;
     <updated>2015-12-07T11:12:30.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Git起步">Git起步</h1>
 <h3 id="起步">起步</h3>
-<p>本章介绍开始使用 Git 前的相关知识。我们会先了解一些版本控制工具的历史背景，然后试着让 Git 在你的系统上跑起来，直到最后配置好，可以正常开始开发工作。读完本章，你就会明白为什么 Git 会如此流行，为什么你应该立即开始使用它。</p>
+<p>本章介绍开始使用 Git 前的相关知识。我们会先了解一些版本控制工具的历史背景，然后试着让 Git 在你的系统上跑起来，直到最后配置好，可以正常开始开发工作。读完本章，你就会明白为什么 Git 会如此流行，为什么���应该立即开始使用它。</p>
 <a id="more"></a>
 
 <h3 id="1-1_关于版本控制">1.1 关于版本控制</h3>
 <p>什么是版本控制？我真的需要吗？版本控制是一种记录若干文件内容变化，以便将来查阅特定版本修订情况的系统。在本书所展示的例子中，我们仅对保存着软件源代码的文本文件作版本控制管理，但实际上，你可以对任何类型的文件进行版本控制。</p>
-<p>如果你是位图形或网页设计师，可能会需要保存某一幅图片或页面布局文件的所有修订版本（这或许是你非常渴望拥有的功能）。采用版本控制系统 （VCS）是个明智的选择。有了它你就可以���某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态。你可以比较文件的变化细节，查出最 后是谁修改了哪个地方，从而导致出现怪异问题，又是谁在何时报告了某个功能缺陷等等。使用版本控制系统通常还意味着，就算你乱来一气把整个项目中的文件改 的改删的删，你也照样可以轻松恢复到原先的样子。但额外增加的工作量却微乎其微。</p>
+<p>如果你是位图形或网页设计师，可能会需要保存某一幅图片或页面布局文件的所有修订版本（这或许是你非常渴望拥有的功能）。采用版本控制系统 （VCS）是个明智的选择。有了它你就可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态。你可以比较文件的变化细节，查出最 后是谁修改了哪个地方，从而导致出现怪异问题，又是谁在何时报告了某个功能缺陷等等。使用版本控制系统通常还意味着，就算你乱来一气把整个项目中的文件改 的改删的删，你也照样可以轻松恢复到原先的样子。但额外增加的工作量却微乎其微。</p>
 <h3 id="本地版本控制系统">本地版本控制系统</h3>
 <p>许多人习惯用复制整个项目目录的方式来保存不同的版本，或许还会改名加上备份时间以示区别。这么做唯一的好处就是简单。不过坏处也不少：有时候会混淆所在的工作目录，一旦弄错文件丢了数据就没法撤销恢复。</p>
 <p>为了解决这个问题，人们很久以前就开发了许多种本地版本控制系统，大多都是采用某种简单的数据库来记录文件的历次更新差异（见图 1-1）。</p>
@@ -429,7 +438,7 @@ person.card = card;
 <p>图 1-5. Git 保存每次更新时的文件快照</p>
 <p>这是 Git 同其他系统的重要区别。它完全颠覆了传统版本控制的套路，并对各个环节的实现方式作了新的设计。Git 更像是个小型的文件系统，但它同时还提供了许多以此为基础的超强工具，而不只是一个简单的 VCS。稍后在第三章讨论 Git 分支管理的时候，我们会再看看这样的设计究竟会带来哪些好处。</p>
 <h3 id="近乎所有操作都是本地执行">近乎所有操作都是本地执行</h3>
-<p>在 Git 中的绝大多数操作都只需要访问���地文件和资源，不用连网。但如果用 CVCS 的话，差不多所有操作都需要连接网络。因为 Git 在本地磁盘上就保存着所有当前项目的历史更新，所以处理起来速度飞快。</p>
+<p>在 Git 中的绝大多数操作都只需要访问本地文件和资源，不用连网。但如果用 CVCS 的话，差不多所有操作都需要连接网络。因为 Git 在本地磁盘上就保存着所有当前项目的历史更新，所以处理起来速度飞快。</p>
 <p>举个例子，如果要浏览项目的历史更新摘要，Git 不用跑到外面的服务器上去取数据回来，而直接从本地数据库读取后展示给你看。所以任何时候你都可以马上翻阅，无需等待。如果想要看当前版本的文件和一个月 前的版本之间有何差异，Git 会取出一个月前的快照和当前文件作一次差异运算，而不用请求远程服务器来做这件事，或是把老版本的文件拉到本地来作比较。</p>
 <p>用 CVCS 的话，没有网络或者断开 VPN 你就无法做任何事情。但用 Git 的话，就算你在飞机或者火车上，都可以非常愉快地频繁提交更新，等到了有网络的时候再上传到远程仓库。同样，在回家的路上，不用连接 VPN 你也可以继续工作。换作其他版本控制系统，这么做几乎不可能，抑或非常麻烦。比如 Perforce，如果不连到服务器，几乎什么都做不了（译注：默认无法发出命令p4 edit file 开始编辑文件，因为 Perforce 需要联网通知系统声明该文件正在被谁修订。但实际上手工修改文件权限可以绕过这个限制，只是完成后还是无法提交更新。）；如果是 Subversion 或 CVS，虽然可以编辑文件，但无法提交更新，因为数据库在网络上。看上去好像这些都不是什么大问题，但实际体验过之后，你就会惊喜地发现，这其实是会带来很大不同的。</p>
 <h3 id="时刻保持数据完整性">时刻保持数据完整性</h3>
@@ -1279,7 +1288,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>也许聪明的你已经看到了，还是一样的，创建新的行为规则（UICollisionBehavior），然后加到animator中…唯一区别的地方是碰撞需要设定碰撞边界范围translatesReferenceBoundsIntoBoundary将整个参照view（也就是self.view）的边框作为碰撞边界（另外你还可以使用setTranslatesReferenceBoundsIntoBoundaryWithInsets:这样的方法来设定某一个区域作为碰撞边界，更复杂的边界可以使用addBoundaryWithIdentifier:forPath:来添加UIBezierPath，或者addBoundaryWithIdentifier:fromPoint:toPoint:来添加一条线段为边界，详细地还请查阅文档）；另外碰撞是有回调的，可以在self中实现UICollisionBehaviorDelegate。<br>最后，只是直直地掉下来的话未免太无聊了，加个角度吧：<br>1<br>aView.transform = CGAffineTransformRotate(aView.transform, 45);<br>结果是这样的，帅死了…这在以前只用iOS SDK的话，够写上很长时间了吧..<br>碰撞和重力同时作用的动力UI<br>碰撞和重力同时作用的动力UI<br>碰撞的delegate可以帮助我们了解碰撞的具体情况，包括哪个item和哪个item开始发生碰撞，碰撞接触点是什么，是否和边界碰撞，和哪个边界碰撞了等信息。这些回调方法保持了Apple一向的命名原则，所以通俗易懂。需要多说一句的是回调方法中对于ReferenceView的Bounds做边界的情况，BoundaryIdentifier将会是nil，自行添加的其他边界的话，ID自然是添加时指定的ID了。<br>– collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:<br>– collisionBehavior:beganContactForItem:withItem:atPoint:<br>– collisionBehavior:endedContactForItem:withBoundaryIdentifier:<br>– collisionBehavior:endedContactForItem:withItem:<br>其他能实现的效果<br>除了重力和碰撞，iOS SDK还预先帮我们实现了一些其他的有用的物理行为，它们包括<br>UIAttachmentBehavior 描述一个view和一个锚相连接的情况，也可以描述view和view之间的连接。attachment描述的是两个点之间的连接情况，可以通过设置来模拟无形变或者弹性形变的情况（再次希望你还记得这些概念，简单说就是木棒连接和弹簧连接两个物体）。当然，在多个物体间设定多个；UIAttachmentBehavior，就可以模拟多物体连接了..有了这些，似乎可以做个老鹰捉小鸡的游戏了- -…<br>UISnapBehavior 将UIView通过动画吸附到某个点上。初始化的时候设定一下UISnapBehavior的initWithItem:snapToPoint:就行，因为API非常简单，视觉效果也很棒，估计它是今后非游戏app里会被最常用的效果之一了；<br>UIPushBehavior 可以为一个UIView施加一个力的作用，这个力可以是持续的，也可以只是一个冲量。当然我们可以指定力的大小，方向和作用点等等信息。<br>UIDynamicItemBehavior 其实是一个辅助的行为，用来在item层级设定一些参数，比如item的摩擦，阻力，角阻力，弹性密度和可允许的旋转等等<br>UIDynamicItemBehavior有一组系统定义的默认值，<br>allowsRotation YES<br>density 1.0<br>elasticity 0.0<br>friction 0.0<br>resistance 0.0<br>所有的UIDynamicBehavior都是可以独立作用的，同时作用时也遵守力的合成。也就是说，组合使用行为可以达到一些较复杂的效果。举个例子，希望模拟一个drag物体然后drop后下落的过程，可以用如下代码：</p>
+<p>也许聪明的你已经看到了，还是一样的，创建新的行为规则（UICollisionBehavior），然后加到animator中…唯一区别的地方是碰撞需要设定碰撞边界范围translatesReferenceBoundsIntoBoundary将整个参照view（也就是self.view）的边框作为碰撞边界（另外你还可以使用setTranslatesReferenceBoundsIntoBoundaryWithInsets:这样的方法来设定某一个区域作为碰撞边界，更复杂的边界可以使用addBoundaryWithIdentifier:forPath:来添加UIBezierPath，或者addBoundaryWithIdentifier:fromPoint:toPoint:来添加一条线段为边界，详细地还请查阅文档）；另外碰撞是有回调的，可以在self中实现UICollisionBehaviorDelegate。<br>最后，只是直直地掉下来的话未免太无聊了，加个角度吧：<br>1<br>aView.transform = CGAffineTransformRotate(aView.transform, 45);<br>结果是这样的，帅死了…这在以前只用iOS SDK的话，够写上很长时间了吧..<br>碰撞和重力同时作用的动力UI<br>碰撞和重力同时作用的动力UI<br>碰撞的delegate可以帮助我们了解碰撞的具体情况，包括哪个item和哪个item开始发生碰撞，碰撞接触点是什么，是否和边界碰撞，和哪个边界碰撞了等信息。这些回调方法保持了Apple一向的命名原则，所以通俗易懂。需要多说一句的是回调方法中对于ReferenceView的Bounds做边界的情况，BoundaryIdentifier将会是nil，自行添加的其他边界的话，ID自然是添加时指定的ID了。<br>– collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:<br>– collisionBehavior:beganContactForItem:withItem:atPoint:<br>– collisionBehavior:endedContactForItem:withBoundaryIdentifier:<br>– collisionBehavior:endedContactForItem:withItem:<br>其他能实现的效果<br>除了重力和碰撞，iOS SDK还预先帮我们实现了一些其他的有用的物理行为，它们包括<br>UIAttachmentBehavior 描述一个view和一个锚相连接的情况，也可以描述view和view之间的连接。attachment描述的是两个点之间的连接情况，可以通过设置来模拟无形变或者弹性形变的情况（再次希望你还记得这些概念，简单说就���木棒连接和弹簧连接两个物体）。当然，在多个物体间设定多个；UIAttachmentBehavior，就可以模拟多物体连接了..有了这些，似乎可以做个老鹰捉小鸡的游戏了- -…<br>UISnapBehavior 将UIView通过动画吸附到某个点上。初始化的时候设定一下UISnapBehavior的initWithItem:snapToPoint:就行，因为API非常简单，视觉效果也很棒，估计它是今后非游戏app里会被最常用的效果之一了；<br>UIPushBehavior 可以为一个UIView施加一个力的作用，这个力可以是持续的，也可以只是一个冲量。当然我们可以指定力的大小，方向和作用点等等信息。<br>UIDynamicItemBehavior 其实是一个辅助的行为，用来在item层级设定一些参数，比如item的摩擦，阻力，角阻力，弹性密度和可允许的旋转等等<br>UIDynamicItemBehavior有一组系统定义的默认值，<br>allowsRotation YES<br>density 1.0<br>elasticity 0.0<br>friction 0.0<br>resistance 0.0<br>所有的UIDynamicBehavior都是可以独立作用的，同时作用时也遵守力的合成。也就是说，组合使用行为可以达到一些较复杂的效果。举个例子，希望模拟一个drag物体然后drop后下落的过程，可以用如下代码：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -1355,7 +1364,7 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 </pre></td></tr></table></figure>
 
 
-<p>viewDidiLoad时先在现在环境中加入了重力，然后监测到pan时附加一个UIAttachmentBehavior，并在pan位置更新更新其锚点，此时UIAttachmentBehavior和UIGravityBehavior将同时作用（想象成一根木棒连着手指处和view）。在手势结束时将这个UIAttachmentBehavior移除，view将在重力作用下下落。整个过程如下图：<br>Drag &amp; Drop<br>Drag &amp; Drop<br>UIKit力学的物理学分析<br>既然是力学，那显然各种单位是很重要的。在现实世界中，理想情况下物体的运动符合牛顿第二运动定理，在国际单位制中，力的单位是牛顿（N），距离单位是米（m），时间单位是秒（s），质量单位是千克（kg）。根据地球妈妈的心情，我们生活在这样一套体制中：重力加速度约为9.8m/s2 ，加速度的单位是m/s2 ，速度单位是m/s，牛顿其实是kg·m/s2 ，即1牛顿是让质量为1千克的物体产生1米每二次方秒的加速度所需要的力。<br>以上是帮助您回忆初中知识，而现在这一套体系在UIKit里又怎么样呢？这其实是每一个物理引擎都要讨论和明白的事情，UIKit的单位体制里由于m这个东西太过夸张，因此用等量化的点（point，之后简写为p）来代替。具体是这样的：UI重力加速度定义为1000p/s2 ，这样的定义有两方面的考虑，一时为了简化，好记，确实1000比9.8来的只观好看，二是也算符合人们的直感：一个UIView从y=0开始自由落体落到屏幕底部所需的时间，在3.5寸屏幕上为0.98秒，4寸屏幕上为1.07秒，1秒左右的自由落体的视觉效果对人眼来说是很舒服能进行判断的。<br>那么UIView的质量又如何定义呢，这也是很重要的，并涉及到力作用和加速度下UIView的表现。苹果又给出了自己的“UIKit牛顿第二定律”，定义了1单位作用力相当于将一个100px100p的默认密度的UIView以100p/s2 的加速度移动。这里需要注意默认密度这个假设，因为在UIDynamicItem的委托中并没有实现任何密度相关的定义，而是通过UIDynamicItemBehavior来附加指定的。默认情况下，密度值为1，这就相当于质量是10000单位的UIView在1单位的作用力下可以达到1/10的UI重力加速度。<br>这样类比之后的结论是，如果将1单位的UI力学中的力等同于1牛顿的话：<br>1000单位的UI质量，与现实世界中1kg的质量相当，即一个点等同一克；<br>屏幕的100像素的长度，约和现实世界中0.99米相当（完全可以看为1米）<br>UI力学中的默认密度，约和现实世界的0.1kg/m2 相当<br>可以说UIKit为我们构建了一套适应iOS屏幕的相当优雅的力学系统，不仅让人过目不忘，在实际的物理情景和用户体验中也近乎完美。在开发中，我们可以参照这些关系寻找现实中的例子，然后将其带入UIKit的力学系统中，以得到良好的模拟效果。<br>UIKit动力学自定义<br>除了SDK预先定义好的行为以外，我们还可以自己定义想要的行为。这种定义可以发生在两个层级上，一种是将官方的行为打包，以简化实现。另一种是完全定义新的计算规则。<br>对于第一种，其实考虑一下上面的重力+边界碰撞，或者drag &amp; drop行为，其实都是两个甚至多个行为的叠加。要是每次都这样设定一次的话，不是很辛苦么，还容易遗忘出错。于是一种好的方式是将它们打包封装一下。具体地，如下步骤：<br>继承一下UIDynamicBehavior（在这里UIDynamicBehavior类似一个抽象类，并没有具体实现什么行为）<br>在子类中实现一个类似其他内置行为初始化方法initWithItems:，用以添加物体和想要打包的规则。当然你如果喜欢用其他方式也行..只不过和自带的行为保持API统一对大家都有好处..添加item的话就用默认规则的initWithItems:就行，对于规则UIDynamicBehavior提供了一个addChildBehavior:的方法，来将其他规则加入到当前规则里<br>没有第三步了，使用就行了。<br>一个例子，打包了碰撞和重力两种行为，定义之后使用时就只需要写一次了。当然这只是最简单的例子和运用，当行为复杂以后，这样的使用方法是不可避免的，否则管理起来会让人有想死的心。另外，将手势等交互的方式也集成之中，进一步封装调用细节会是不错的实践。</p>
+<p>viewDidiLoad时先在现在环境中加入了重力，然后监测到pan时附加一个UIAttachmentBehavior，并在pan位置更新更新其锚点，此时UIAttachmentBehavior和UIGravityBehavior将同时作用（想象成一根木棒连着手指处和view）。在手势结束时将这个UIAttachmentBehavior移除，view将在重力作用下下落。整个过程如下图：<br>Drag &amp; Drop<br>Drag &amp; Drop<br>UIKit力学的物理学分析<br>既然是力学，那显然各种单位是很重要的。在现实世界中，理想情况下物体的运动符合牛顿第二运动定理，在国际单位制中，力的单位是牛顿（N），距离单位是米（m），时间单位是秒（s），质量单位是千克（kg）。根据地球妈妈的心情，我们生活在这样一套体制中：重力加速度约为9.8m/s2 ，加速度的单位是m/s2 ，速度单位是m/s，牛顿其实是kg·m/s2 ，即1牛顿是让质量为1千克的物体产生1米每二次方秒的加速度所需要的力。<br>以上是帮助您回忆初中知识，而现在这一套体系在UIKit里又怎么样呢？这其实是每一个物理引擎都要讨论和明白的事情，UIKit的单位体制里由于m这个东西太过夸张，因此用等量化的点（point，之后简写为p）来代替。具体是这样的：UI重力加速度定义为1000p/s2 ，这样的定义有两方面的考虑，一时为了简化，好记，确实1000比9.8来的只观好看，二是也算符合人们的直感：一个UIView从y=0开始自由落体落到屏幕底部所需的时间，在3.5寸屏幕上为0.98秒，4寸屏幕上为1.07秒，1秒左右的自由落体的视觉效果对人眼来说是很舒服能进行判断的。<br>那么UIView的质量又如何定义呢，这也是很重要的，并涉及到力作用和加速度下UIView的表现。苹果又给出了自己的“UIKit牛顿第二定律”，定义了1单位作用力相当于将一个100px100p的默认密度的UIView以100p/s2 的加速度移动。这里需要注意默认密度这个假设，因为在UIDynamicItem的委托中并没有实现任何密度相关的定义，而是通过UIDynamicItemBehavior来附加指定的。默认情况下，密度值为1，这就相当于质量是10000单位的UIView在1单位的作用力下可以达到1/10的UI重力加速度。<br>这样类比之后的结论是，如果将1单位的UI力学中的力等同于1牛顿的话：<br>1000单位的UI质量，与现实世界中1kg的质量相当，即一个点等同一克；<br>屏幕的100像素的长度，约和现实世界中0.99米相当（完全可以看为1米）<br>UI力学中的默认密度，约和现实世界的0.1kg/m2 相当<br>可以说UIKit为我们构建了一套适应iOS屏幕的相当优雅的力学系统，不仅让人过目不忘，在实际的物理情景和用户体验中也近乎完美。在开发中，我们可以参照这些关系寻找现实中的例子，然后将其带入UIKit的力学系统中，以得到良好的模拟效果。<br>UIKit动力学自定义<br>除了SDK预先定义好的行为以外，我们还可以自己定义想要的行为。这种定义可以发生在两个层级上，一种是将官方的行为打包，以简化实现。另一种是完全定义新的计算规则。<br>对于第一种，其实考虑一下上面的重力+边界碰撞，或者drag &amp; drop行为，其实都是两个甚至多个行为的叠加。要是每次都这样设定一次的话，不是很辛苦么，还容易遗忘出错。于是一种好的方式是将它们打包封装一下。具体地，如下步骤：<br>继承一下UIDynamicBehavior（在这里UIDynamicBehavior类似一个抽象类，并没有具体实现什么行为）<br>在子类中实现一个类似其他内置行为初始化方法initWithItems:，用以添加物体和想要打包的规则。当然你如果喜欢用其他方式也行..只���过和自带的行为保持API统一对大家都有好处..添加item的话就用默认规则的initWithItems:就行，对于规则UIDynamicBehavior提供了一个addChildBehavior:的方法，来将其他规则加入到当前规则里<br>没有第三步了，使用就行了。<br>一个例子，打包了碰撞和重力两种行为，定义之后使用时就只需要写一次了。当然这只是最简单的例子和运用，当行为复杂以后，这样的使用方法是不可避免的，否则管理起来会让人有想死的心。另外，将手势等交互的方式也集成之中，进一步封装调用细节会是不错的实践。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
